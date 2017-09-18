@@ -69,13 +69,17 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Wyde&#39;s Blog">
-<meta property="og:url" content="https://wyde.github.io/index.html">
+<meta name="description" content="第一篇文章不可免俗地來介紹這個 blog 怎麼建起來的，最陽春的那種 :) 主要有三個部分，  Cloud9 設置免費的 Ubuntu 14.04 的 安裝與設定 Hexo 編輯完推上 Github Pages  之前在考慮 Pelican 、 Hugo 、 Hexo ，聽說了 Pelican 開發較不活躍且 render 速度慢， Hugo 配置較麻煩，就採用了 Hexo，希望有 Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How to Deploy Hexo on Github pages">
+<meta property="og:url" content="https://wyde.github.io/2017/09/18/How-to-Deploy-Hexo-on-Github-pages/index.html">
 <meta property="og:site_name" content="Wyde&#39;s Blog">
+<meta property="og:description" content="第一篇文章不可免俗地來介紹這個 blog 怎麼建起來的，最陽春的那種 :) 主要有三個部分，  Cloud9 設置免費的 Ubuntu 14.04 的 安裝與設定 Hexo 編輯完推上 Github Pages  之前在考慮 Pelican 、 Hugo 、 Hexo ，聽說了 Pelican 開發較不活躍且 render 速度慢， Hugo 配置較麻煩，就採用了 Hexo，希望有 Python">
 <meta property="og:locale" content="zh-tw">
+<meta property="og:updated_time" content="2017-09-18T16:24:27.979Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Wyde&#39;s Blog">
+<meta name="twitter:title" content="How to Deploy Hexo on Github pages">
+<meta name="twitter:description" content="第一篇文章不可免俗地來介紹這個 blog 怎麼建起來的，最陽春的那種 :) 主要有三個部分，  Cloud9 設置免費的 Ubuntu 14.04 的 安裝與設定 Hexo 編輯完推上 Github Pages  之前在考慮 Pelican 、 Hugo 、 Hexo ，聽說了 Pelican 開發較不活躍且 render 速度慢， Hugo 配置較麻煩，就採用了 Hexo，希望有 Python">
 
 
 
@@ -105,13 +109,13 @@
 
 
 
-  <link rel="canonical" href="https://wyde.github.io/"/>
+  <link rel="canonical" href="https://wyde.github.io/2017/09/18/How-to-Deploy-Hexo-on-Github-pages/"/>
 
 
 
 
 
-  <title>Wyde's Blog</title>
+  <title>How to Deploy Hexo on Github pages | Wyde's Blog</title>
   
 
 
@@ -130,8 +134,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -204,9 +207,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -236,9 +239,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/09/18/How-to-Deploy-Hexo-on-Github-pages/" itemprop="url">How to Deploy Hexo on Github pages</a></h1>
+          <h1 class="post-title" itemprop="name headline">How to Deploy Hexo on Github pages</h1>
         
 
         <div class="post-meta">
@@ -250,7 +251,7 @@
               
                 <span class="post-meta-item-text">發表於</span>
               
-              <time title="創建於" itemprop="dateCreated datePublished" datetime="2017-09-18T08:49:42+08:00">
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2017-09-18T00:49:42+00:00">
                 2017-09-18
               </time>
             
@@ -288,9 +289,7 @@
       
 
       
-        
-          
-            <p>第一篇文章不可免俗地來介紹這個 blog 怎麼建起來的，最陽春的那種 :)</p>
+        <p>第一篇文章不可免俗地來介紹這個 blog 怎麼建起來的，最陽春的那種 :)</p>
 <p>主要有三個部分，</p>
 <ol>
 <li>Cloud9 設置免費的 Ubuntu 14.04 的</li>
@@ -316,8 +315,6 @@
 <h2 id="新增文章的流程"><a href="#新增文章的流程" class="headerlink" title="新增文章的流程"></a>新增文章的流程</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ hexo n &quot;New Post&quot;</div><div class="line">$ hexo s -p $PORT</div><div class="line">$ hexo d --generate</div></pre></td></tr></table></figure>
 <h2 id="刪除文章的流程"><a href="#刪除文章的流程" class="headerlink" title="刪除文章的流程"></a>刪除文章的流程</h2><p>先去網站目錄下的 ./source/_posts 裡刪除預計的文章<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ hexo clean</div><div class="line">$ hexo s -p $PORT</div><div class="line">$ hexo d --generate</div></pre></td></tr></table></figure></p>
 
-          
-        
       
     </div>
     
@@ -334,12 +331,12 @@
       
 
       
+      
+      
 
       
 
       
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -349,10 +346,11 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -360,6 +358,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -380,8 +382,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            本站概覽
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           
             <p class="site-author-name" itemprop="name">Wyde Wu</p>
@@ -424,6 +435,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Cloud9-簡易設置"><span class="nav-number">1.</span> <span class="nav-text">Cloud9 簡易設置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝-Hexo"><span class="nav-number">2.</span> <span class="nav-text">安裝 Hexo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Github-Pages-設定"><span class="nav-number">3.</span> <span class="nav-text">Github Pages 設定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新增文章的流程"><span class="nav-number">4.</span> <span class="nav-text">新增文章的流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#刪除文章的流程"><span class="nav-number">5.</span> <span class="nav-text">刪除文章的流程</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
