@@ -76,7 +76,7 @@
 <meta property="og:site_name" content="Wyde&#39;s Blog">
 <meta property="og:description" content="利用 Hexo 和 Github Pages 建立 blog第一篇文章不可免俗地來介紹這個 blog 怎麼建起來的，最陽春的那種 :) 主要有三個部分，  Cloud9 設置免費的 Ubuntu 14.04 的開發環境 安裝與設定 Hexo 編輯完推上 Github Pages  之前在考慮 Pelican 、 Hugo 、 Hexo ，聽說了 Pelican 開發較不活躍且 render 速度慢">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2017-09-19T09:55:43.072Z">
+<meta property="og:updated_time" content="2017-09-19T10:10:06.659Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="How to Deploy Hexo on Github Pages">
 <meta name="twitter:description" content="利用 Hexo 和 Github Pages 建立 blog第一篇文章不可免俗地來介紹這個 blog 怎麼建起來的，最陽春的那種 :) 主要有三個部分，  Cloud9 設置免費的 Ubuntu 14.04 的開發環境 安裝與設定 Hexo 編輯完推上 Github Pages  之前在考慮 Pelican 、 Hugo 、 Hexo ，聽說了 Pelican 開發較不活躍且 render 速度慢">
@@ -308,20 +308,21 @@
 <p>然後安裝個 theme ，我選的是 next<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git clone https://github.com/iissnan/hexo-theme-next themes/next</div><div class="line">$ vim _config.yml</div></pre></td></tr></table></figure></p>
 <p>修改 theme 的設定值為 next，還有 #Site 與 #URL 的設定也能改一改，改完之後可以再起 server 看一下</p>
 <h2 id="Github-Pages-設定"><a href="#Github-Pages-設定" class="headerlink" title="Github Pages 設定"></a>Github Pages 設定</h2><ul>
-<li>先申請一個 Github 帳號</li>
-<li>開一個新的 repo 叫 <github account="">.github.io</github></li>
+<li>如果沒有，先申請一個 <a href="https://github.com/" target="_blank" rel="external">Github</a> 帳號</li>
+<li>開一個新的 repo 叫 &lt;your github account&gt;.github.io</li>
 <li>到 repo 的 settings -&gt; Github Pages -&gt; Source 選擇 master branch</li>
 </ul>
 <p>以下回到 Cloud9 console</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ git config --global user.name &quot;&lt;github username&gt;&quot;</div><div class="line">$ git config --global user.email &quot;&lt;github user email&gt;&quot;</div><div class="line">$ vim ~/.ssh/&lt;private key&gt;</div></pre></td></tr></table></figure>
-<p>貼上 private key 或用 ssh-keygen 產一把新的 private key，這樣其實會把 ssh private key 放在本機以外的地方，我會生一把專用的 key ，要採用這種方法的人請自行考慮風險～</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ eval &quot;$(ssh-agent -s)&quot;</div><div class="line">Agent pid 31418</div><div class="line"></div><div class="line">$ ssh-add ~/.ssh/&lt;private key&gt;</div><div class="line">$ ssh -T git@github.com</div><div class="line">Hi &lt;github account&gt;! Youve successfully authenticated, but GitHub does not provide shell access.</div></pre></td></tr></table></figure>
-<p>修改 _config.yml 裡的 deploy<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">deploy:</div><div class="line">    type: git</div><div class="line">    repository: git@github.com:&lt;github account&gt;/&lt;github account&gt;.github.io.git</div><div class="line">    branch: master</div></pre></td></tr></table></figure></p>
+<p>貼上 private key 或用 ssh-keygen 產一把新的 private key，這樣其實會把 ssh private key 放在網路上的某台機器，即使這台機器必須經由密碼登入，對於安全性非常敏感的人可能不能接受。我會生一把專用的 key ，不會用在其他工作場合的 key ，所以要採用這種方法的人請自行考慮風險～</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ eval &quot;$(ssh-agent -s)&quot;</div><div class="line">Agent pid 31418</div><div class="line"></div><div class="line">$ ssh-add ~/.ssh/&lt;private key&gt;</div><div class="line">$ ssh -T git@github.com</div><div class="line">Hi &lt;your github account&gt;! Youve successfully authenticated, but GitHub does not provide shell access.</div></pre></td></tr></table></figure>
+<p>修改 _config.yml 裡的 deploy<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">deploy:</div><div class="line">    type: git</div><div class="line">    repository: git@github.com:&lt;your github account&gt;/&lt;github account&gt;.github.io.git</div><div class="line">    branch: master</div></pre></td></tr></table></figure></p>
 <p>然後就可以測試部署<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo d --generate</div></pre></td></tr></table></figure></p>
+<p>開啟瀏覽器分頁，你的 blog 會在 &lt;your github account&gt;.github.io</p>
 <hr>
 <p>以下是編修文章的流程</p>
-<h2 id="新增文章的流程"><a href="#新增文章的流程" class="headerlink" title="新增文章的流程"></a>新增文章的流程</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ hexo n &quot;New Post&quot;</div><div class="line">$ hexo s -p $PORT</div><div class="line">$ hexo d --generate</div></pre></td></tr></table></figure>
-<h2 id="刪除文章的流程"><a href="#刪除文章的流程" class="headerlink" title="刪除文章的流程"></a>刪除文章的流程</h2><p>先去網站目錄下的 ./source/_posts 裡刪除預計的文章<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ hexo clean</div><div class="line">$ hexo s -p $PORT</div><div class="line">$ hexo d --generate</div></pre></td></tr></table></figure></p>
+<h2 id="新增文章的流程"><a href="#新增文章的流程" class="headerlink" title="新增文章的流程"></a>新增文章的流程</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ hexo n &quot;New Post&quot;</div><div class="line">$ hexo s -p $PORT # local 預覽</div><div class="line">$ hexo d --generate</div></pre></td></tr></table></figure>
+<h2 id="刪除文章的流程"><a href="#刪除文章的流程" class="headerlink" title="刪除文章的流程"></a>刪除文章的流程</h2><p>先去網站目錄下的 ./source/_posts 裡刪除預計的文章<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ hexo clean</div><div class="line">$ hexo s -p $PORT # local 預覽</div><div class="line">$ hexo d --generate</div></pre></td></tr></table></figure></p>
 <hr>
 <h2 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h2><ul>
 <li>社群分享</li>
