@@ -294,8 +294,9 @@
 <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>之前有需要用到台灣 368 鄉鎮市區的天氣預報，查了政府資料開放平台，有編號 9307 和 9309 的下列兩筆</p>
 <ul>
 <li><a href="https://data.gov.tw/dataset/9307" target="_blank" rel="external">鄉鎮天氣預報-台灣未來2天天氣預報</a></li>
-<li><a href="https://data.gov.tw/dataset/9309" target="_blank" rel="external">鄉鎮天氣預報-全臺灣各鄉鎮市區預報資料</a><br>不過都沒有提供 json 的 API ，而且內容看起來是縣市級的未來 72 小時的逐三小時的預報，不是鄉鎮市區級的，因此就寫了爬蟲抓資料，試提供 REST API，資料來源直接由中央氣象局的天氣報馬仔來抓，<a href="http://www.cwb.gov.tw/V7/forecast/town368/towns/6300300.htm" target="_blank" rel="external">大安區公所範例</a></li>
+<li><a href="https://data.gov.tw/dataset/9309" target="_blank" rel="external">鄉鎮天氣預報-全臺灣各鄉鎮市區預報資料</a></li>
 </ul>
+<p>不過都沒有提供 json 的 API ，而且內容看起來是縣市級的未來 72 小時的逐三小時的預報，不是鄉鎮市區級的，因此就寫了爬蟲抓資料，試提供 REST API，資料來源直接由中央氣象局的天氣報馬仔來抓，<a href="http://www.cwb.gov.tw/V7/forecast/town368/towns/6300300.htm" target="_blank" rel="external">大安區公所範例</a></p>
 <p>台灣的<a href="http://data.nhi.gov.tw/" target="_blank" rel="external">健康保險資料服務</a>做得還不錯，可以參考一下，還有以下兩個規範也是未來可努力的方向</p>
 <ul>
 <li>民104.7 國發會 <a href="http://file.data.gov.tw/opendatafile/%E5%85%B1%E9%80%9A%E6%80%A7%E8%B3%87%E6%96%99%E5%AD%98%E5%8F%96%E6%87%89%E7%94%A8%E7%A8%8B%E5%BC%8F%E4%BB%8B%E9%9D%A2API%E8%A6%8F%E7%AF%84.pdf" target="_blank" rel="external">共通性資料存取應用程式介面(API)規範</a></li>
