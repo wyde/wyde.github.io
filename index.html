@@ -238,7 +238,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/09/18/Crawler-RESTful-API-Data-Visualization/" itemprop="url">Crawler, RESTful API & Data-Visualization</a></h1>
+                <a class="post-title-link" href="/2017/09/18/Crawler-RESTful-API-Data-Visualization/" itemprop="url">Crawler, RESTful API & Data Visualization</a></h1>
         
 
         <div class="post-meta">
@@ -290,89 +290,15 @@
       
         
           
-            <h2 id="爬蟲、RESTful-API、資料視覺化"><a href="#爬蟲、RESTful-API、資料視覺化" class="headerlink" title="爬蟲、RESTful API、資料視覺化"></a>爬蟲、RESTful API、資料視覺化</h2><p>TL;DR 寫了一個簡單可用的 prototype ，把抓資料、存資料、呈現資料和資料視覺化這幾件事兜起來，作為自己未來如果要作資料科學專案的腳手架，也 open source 給大家鞭一鞭<br><a href="https://town368.csie.ntu.edu.tw" target="_blank" rel="external">台灣 368 鄉鎮市區天氣預報 REST api</a> | <a href="https://github.com/wyde/town368" target="_blank" rel="external">Fork me on Github</a> | <a href="http://dadacho.com" target="_blank" rel="external">前端應用實例</a></p>
-<p>#後端Python #前端d3 #MySQL #datascience</p>
-<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>之前有需要用到台灣 368 鄉鎮市區的天氣預報，查了政府資料開放平台，有編號 9307 和 9309 的下列兩筆</p>
-<ul>
-<li><a href="https://data.gov.tw/dataset/9307" target="_blank" rel="external">鄉鎮天氣預報-台灣未來2天天氣預報</a></li>
-<li><a href="https://data.gov.tw/dataset/9309" target="_blank" rel="external">鄉鎮天氣預報-全臺灣各鄉鎮市區預報資料</a></li>
-</ul>
-<p>不過都沒有提供 json 的 API ，而且內容看起來是縣市級的未來 72 小時的逐三小時的預報，不是鄉鎮市區級的，因此就寫了爬蟲抓資料，試提供 RESTful API，資料來源直接由中央氣象局的在地天氣報馬仔來抓，例如說<a href="http://www.cwb.gov.tw/V7/forecast/town368/towns/6300300.htm" target="_blank" rel="external">大安區公所</a>的範例</p>
-<p>btw，在公部門開放資料的部目，目前看到<a href="http://data.nhi.gov.tw/" target="_blank" rel="external">健康保險資料服務</a>做得還不錯，可以參考一下，還有以下兩個規範也是未來可努力的方向</p>
-<ul>
-<li>民104.7 國發會 <a href="http://file.data.gov.tw/opendatafile/%E5%85%B1%E9%80%9A%E6%80%A7%E8%B3%87%E6%96%99%E5%AD%98%E5%8F%96%E6%87%89%E7%94%A8%E7%A8%8B%E5%BC%8F%E4%BB%8B%E9%9D%A2API%E8%A6%8F%E7%AF%84.pdf" target="_blank" rel="external">共通性資料存取應用程式介面(API)規範</a></li>
-<li>民104.7 國發會 <a href="http://file.data.gov.tw/opendatafile/%E8%B3%87%E6%96%99%E9%9B%86%E8%A9%AE%E9%87%8B%E8%B3%87%E6%96%99%E6%A8%99%E6%BA%96%E8%A6%8F%E7%AF%84.pdf" target="_blank" rel="external">資料集詮釋資料標準規範</a></li>
-</ul>
-<h2 id="流程與技術棧"><a href="#流程與技術棧" class="headerlink" title="流程與技術棧"></a>流程與技術棧</h2><p>實作一個開放資料的 API prototype，資料來源由爬蟲去抓中央氣象局的資料，存在資料庫裡，然後再做一個 RESTful API 當作前後端的接口，開放給前端的 data consumer 作應用，概念上可以參考碁峰的 &lt;資料視覺化使用 Python 與 JavaScript&gt; 一書，以下簡稱視覺化參考書，想做的事很像，都是為現在當紅所謂資料處理顯學，做一些基礎的工作。那本書我沒有看完，後端也用了 Python 不同的工具，但它給了我蠻多啟發，以下詳述</p>
-<p>資料的生命週期裡</p>
-<ol>
-<li>我們會需要先把資料爬下來</li>
-<li>觀察格式、清理出我們要的資料</li>
-<li>存進 db ，資料持久化</li>
-<li>如果需要的話進行一些加值運算再存回 db</li>
-<li>使用 API 提供網路上存取 db 裡的資料</li>
-<li>網頁、移動裝置…etc的前端應用使用 API</li>
-</ol>
-<p>前、後端是相對的，在不同語境下有其指涉對象，在這裡我指的是網路資料的提供者與使用者，依上述資料週期來看，稍微提一下參考書與我的工具選擇</p>
-<h3 id="參考書的工具選擇"><a href="#參考書的工具選擇" class="headerlink" title="參考書的工具選擇"></a>參考書的工具選擇</h3><ol>
-<li>(1、3項合併) 爬取：Scrapy + MongoDB</li>
-<li>清理、探索 / 處理：IPython + Pandas + Matplotlib</li>
-<li>提供：Flask RESTful API + MongoDB</li>
-<li>轉換：D3.js</li>
-</ol>
-<h3 id="我的工具選擇"><a href="#我的工具選擇" class="headerlink" title="我的工具選擇"></a>我的工具選擇</h3><p>稍微寫了 Scrapy ，蠻容易上手的，可是感覺比較適合簡單而且 HTML 格式清晰的網站，例如 Scrapy 官方教程的<a href="http://quotes.toscrape.com" target="_blank" rel="external">示範網站</a>，如果爬蟲需要比較複雜的互動，例如說處理 .NET 的 ViewSet ，就覺得寫起來卡卡的，所以我就換一個方式，概念上我會用 pandas dataframe 或 csv 檔案當作 metadata ，確定存在關聯式資料庫時會大概的樣子，然後用 Jupyter 來取代 Scrapy Shell 的資料調適步驟、 SQLAlchemy + MySQLdb 來取代 Scrapy Pipeline + MongoDB ，據說大量迸發的爬取可以用 multiprocessing 這個庫，不過我還沒用過</p>
-<ol>
-<li>抓取：Jupyter + requests</li>
-<li>清理：Jupyter + pandas + beautifulsoup</li>
-<li>持久化：Jupyter + SQLAlchemy + MySQLdb</li>
-<li>撰寫腳本：將 1-3 寫成 scripts ，如果需要計算模型或額外處理的話加在這裡</li>
-<li>提供：Django REST Framework + MySQLdb</li>
-<li>呈現：D3.js + bootstrap</li>
-</ol>
-<p>稍微提一下寫 Scrapy (1.4.0) 的寫法，主要修改下面檔案</p>
-<ul>
-<li>items.py (optional): 可寫可不寫，與 Django 的 models.py 概念不一樣，只是事先規範爬取的變數</li>
-<li>spider/myspider.py: 最主要關於抓取和 parsing HTML 的 code，如果不存在 db ，可以抓完直接 -o 輸出 json 檔</li>
-<li>settings.py: 各種配置，例如要不要經過 pipeline 存入 db</li>
-<li>pipelines.py: 爬下來的資料做後處理，連結 db 持久化</li>
-</ul>
-<h2 id="實作參考"><a href="#實作參考" class="headerlink" title="實作參考"></a>實作參考</h2><p>之所以說是 prototype ，因為想法是做一個 Proof of Concept ，雖然可以用，但是缺乏安全與效能的探討，算是套套 framework 、踩踩坑，如果使用者數量有起來再來處理</p>
-<p>跟其他的爬蟲 + API 解決方案比起來，例如說 AWS API Gateway + Lambda + Dynamodb，自己用框架可能多了一些工作，但至少使用的框架都是開源的，利於學習。還有就是我不想也不會使用 M$ 的解決方案，所以不要問說這些流程在 Windows 、.NET 下的對應關係。而且我只用到雲端資源做開發，就算 Laptop 使用 non-Linux OS，只要瀏覽器能上網也是可以玩玩看，甚至 git clone 完就可以改改 code ，做一個自己的 data processing demo。繼續往下閱讀的 prerequisite 大概就是有一點 Linux 的使用經驗，不會用 vim 的話至少要會其他 Linux 上的純文字編輯器像是 nano</p>
-<h3 id="開發環境建置"><a href="#開發環境建置" class="headerlink" title="開發環境建置"></a>開發環境建置</h3><p>我在 <a href="https://c9.io" target="_blank" rel="external">Cloud9</a> 上的 Ubuntu14.04 環境下進行開發，然後在 CentOS 7 上部署，目前是比較偏好 redhat 系的發行版，不過雲端 IDE 好像都是 Ubuntu 居多，當然也可以自己開 CentOS 的開發虛擬機或 Container ，但就沒有雲端 IDE 方便，目前先這樣吧</p>
-<p>需要設定或安裝</p>
-<ul>
-<li>MySQL 5.7</li>
-<li>pip + virtualenv + Python 3.4 </li>
-</ul>
-<h3 id="爬蟲與資料清理使用-requests-、-pandas-、-beautifulsoup4"><a href="#爬蟲與資料清理使用-requests-、-pandas-、-beautifulsoup4" class="headerlink" title="爬蟲與資料清理使用 requests 、 pandas 、 beautifulsoup4"></a>爬蟲與資料清理使用 requests 、 pandas 、 beautifulsoup4</h3><p>這邊處理兩種資料</p>
-<ol>
-<li>(舊制)行政區域及村里代碼，對應全台 368 鄉鎮市區唯一編號，是網路上的 csv 檔案</li>
-<li>另一種是 cwb 上的網頁資料，逐三小時鄉鎮天氣預報，嵌在不是很直觀的 HTML 表格裡</li>
-</ol>
-<p>直接用 Jupyter notebook 來講解</p>
-<ul>
-<li><a href="https://github.com/wyde/town368/blob/master/jupyter/Lab1-fetch-data-into-pandas-dataframe.ipynb" target="_blank" rel="external">Lab1</a> 整理各縣市鄉鎮區行政中心區碼</li>
-<li><a href="https://github.com/wyde/town368/blob/master/jupyter/Lab2-fetch-data-parse-with-bs4.ipynb" target="_blank" rel="external">Lab2</a> 抓取大安區公所的逐三小時預報</li>
-<li><a href="https://github.com/wyde/town368/blob/master/jupyter/Lab3-create-mysql-table-with-sqlalchemy.ipynb" target="_blank" rel="external">Lab3</a> 利用 SQLAlchemy 創建 MySQL table</li>
-<li><a href="https://github.com/wyde/town368/blob/master/jupyter/Lab4-insert-data-into-mysql.ipynb" target="_blank" rel="external">Lab4</a> 將 Lab1、Lab2 的結果利用 SQLAlchemy 存入 MySQL</li>
-<li><a href="https://github.com/wyde/town368/blob/master/jupyter/Lab5-update-mysql.ipynb" target="_blank" rel="external">Lab5</a> 利用 Lab1:4 建立的流程更新 MySQL 裡的氣象資料</li>
-</ul>
-<p>確定怎麼寫之後，再把 Lab1:5 寫成 <a href="https://github.com/wyde/town368/tree/master/crawler" target="_blank" rel="external">scripts</a> ，我放在 crawler 資料夾裡，方便管理與 cron job 的執行</p>
-<h3 id="RESTful-API-使用-Django-REST-Framework"><a href="#RESTful-API-使用-Django-REST-Framework" class="headerlink" title="RESTful API 使用 Django REST Framework"></a>RESTful API 使用 Django REST Framework</h3><p><a href="https://github.com/wyde/town368/tree/master/djangorest" target="_blank" rel="external">本篇範例</a></p>
-<p>(教學文件待補)</p>
-<h3 id="資料視覺化使用-jQuery-D3-js"><a href="#資料視覺化使用-jQuery-D3-js" class="headerlink" title="資料視覺化使用 jQuery + D3.js"></a>資料視覺化使用 jQuery + D3.js</h3><p><a href="http://dadacho.com" target="_blank" rel="external">本篇範例</a></p>
-<p>(教學文件待補)</p>
-<h3 id="Django-App-部署在-CentOS-7"><a href="#Django-App-部署在-CentOS-7" class="headerlink" title="Django App 部署在 CentOS 7"></a>Django App 部署在 CentOS 7</h3><p><a href="https://town368.csie.ntu.edu.tw" target="_blank" rel="external">本篇範例</a></p>
-<p>(教學文件待補)</p>
-<h2 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h2><ul>
-<li>db 換成 PostgresSQL</li>
-<li>測試把 Django 的 ORM 換成 SQLAlchemy 的好處</li>
-<li>優化爬蟲的寫法</li>
-<li>用 container 開發、佈署</li>
-<li>寫 test case</li>
-</ul>
-
-          
+          爬蟲、RESTful API、資料視覺化TL;DR 寫了一個簡單可用的 prototype ，把抓資料、存資料、呈現資料和資料視覺化這幾件事兜起來，作為自己未來如果要作資料科學專案的腳手架，也 open source 給大家鞭一鞭台灣 368 鄉鎮市區天氣預報 REST api | Fork me 
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/09/18/Crawler-RESTful-API-Data-Visualization/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -490,48 +416,22 @@
       
         
           
-            <h2 id="利用-Hexo-和-Github-Pages-建立-blog"><a href="#利用-Hexo-和-Github-Pages-建立-blog" class="headerlink" title="利用 Hexo 和 Github Pages 建立 blog"></a>利用 Hexo 和 Github Pages 建立 blog</h2><p>第一篇文章不可免俗地來介紹這個 blog 怎麼建起來的，最陽春的那種 :)</p>
-<p>主要有三個部分，</p>
-<ol>
-<li><a href="https://c9.io" target="_blank" rel="external">Cloud9</a> 設置免費的 Ubuntu 14.04 的開發環境</li>
-<li>安裝與設定 Hexo</li>
-<li>編輯完推上 Github Pages</li>
-</ol>
-<p>之前在考慮 Pelican 、 Hugo 、 Hexo ，聽說了 Pelican 開發較不活躍且 render 速度慢， Hugo 配置較麻煩，就採用了 Hexo ，這些只是聽說，沒有實測…</p>
-<p>身為 Python 愛好者，希望有 Python + Jinja2 寫的靜態網站產生器同時又兼具美觀和易用性…這次架 Hexo 的感覺真的蠻快蠻方便的</p>
-<hr>
-<h2 id="Cloud9-簡易設置"><a href="#Cloud9-簡易設置" class="headerlink" title="Cloud9 簡易設置"></a>Cloud9 簡易設置</h2><p>這裡可以不用 Cloud9 ，我用起來主要就是免費、方便、到處都可用，而且本機用什麼 OS 都可以</p>
-<p>Cloud9 自稱是雲端 IDE ，我都當作免洗的 Linux container(Ubuntu 14.04) 來用，我在上面做大部分的 web 開發與測試，往後會再寫一篇關於 c9 開發環境的設置，這邊先簡略的寫一下，依 Hexo 的需求，就是裝一個 Nodejs 的環境，有很多種裝法，我們這次用 <a href="https://nodejs.org/en/download/package-manager/" target="_blank" rel="external">Nodejs 官方教學</a>直接用 apt-get 來裝</p>
-<p>開一個 Cloud9 的空白 Ubuntu 14.04<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get update</div><div class="line">$ cd /tmp</div><div class="line">$ curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -</div><div class="line">$ sudo apt-get install -y nodejs</div><div class="line">$ node --version</div><div class="line">v6.11.3</div></pre></td></tr></table></figure></p>
-<h2 id="安裝-Hexo"><a href="#安裝-Hexo" class="headerlink" title="安裝 Hexo"></a>安裝 Hexo</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ sudo npm install -g hexo-cli</div><div class="line">$ hexo</div><div class="line">(列出 Hexo 常用指令，表示成功安裝)</div></pre></td></tr></table></figure>
-<p>我們打算拿 Github Pages 當個人的 blog，於是目錄就直接開 &lt;your github account&gt;.github.io<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ cd ~</div><div class="line">$ mkdir &lt;your github account&gt;.github.io &amp;&amp; cd &lt;your github account&gt;.github.io</div><div class="line">$ hexo init</div><div class="line">$ npm install</div><div class="line">$ hexo s -p $PORT</div><div class="line">(起了 hexo 的測試 server，如果要關掉就 Ctrl + C)</div></pre></td></tr></table></figure></p>
-<p>另開瀏覽器分頁，可以在以下網址看到 Hexo 的 hello-world ， Hexo 基本上就裝完了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">https://&lt;c9 project name&gt;-&lt;c9 user name&gt;.c9users.io</div></pre></td></tr></table></figure></p>
-<p>然後安裝個 theme ，我選的是 next<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git clone https://github.com/iissnan/hexo-theme-next themes/next</div><div class="line">$ vim _config.yml</div></pre></td></tr></table></figure></p>
-<p>修改 theme 的設定值為 next，還有 #Site 與 #URL 的設定也能改一改，改完之後可以再起 server 看一下</p>
-<h2 id="Github-Pages-設定"><a href="#Github-Pages-設定" class="headerlink" title="Github Pages 設定"></a>Github Pages 設定</h2><ul>
-<li>如果沒有，先申請一個 <a href="https://github.com/" target="_blank" rel="external">Github</a> 帳號</li>
-<li>開一個新的 repo 叫 &lt;your github account&gt;.github.io</li>
-<li>到 repo 的 settings -&gt; Github Pages -&gt; Source 選擇 master branch</li>
-</ul>
-<p>以下回到 Cloud9 console</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ git config --global user.name &quot;&lt;github username&gt;&quot;</div><div class="line">$ git config --global user.email &quot;&lt;github user email&gt;&quot;</div><div class="line">$ vim ~/.ssh/&lt;private key&gt;</div></pre></td></tr></table></figure>
-<p>貼上 private key 或用 ssh-keygen 產一把新的 private key，這樣其實會把 ssh private key 放在網路上的某台機器，即使這台機器必須經由密碼登入，對於安全性非常敏感的人可能不能接受。我會生一把專用的 key ，不會用在其他工作場合的 key ，所以要採用這種方法的人請自行考慮風險～</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ eval &quot;$(ssh-agent -s)&quot;</div><div class="line">Agent pid 31418</div><div class="line"></div><div class="line">$ ssh-add ~/.ssh/&lt;private key&gt;</div><div class="line">$ ssh -T git@github.com</div><div class="line">Hi &lt;your github account&gt;! Youve successfully authenticated, but GitHub does not provide shell access.</div></pre></td></tr></table></figure>
-<p>修改 _config.yml 裡的 deploy<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">deploy:</div><div class="line">    type: git</div><div class="line">    repository: git@github.com:&lt;your github account&gt;/&lt;github account&gt;.github.io.git</div><div class="line">    branch: master</div></pre></td></tr></table></figure></p>
-<p>然後就可以測試部署<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo d --generate</div></pre></td></tr></table></figure></p>
-<p>開啟瀏覽器分頁，你的 blog 會在 &lt;your github account&gt;.github.io</p>
-<hr>
-<p>以下是編修文章的流程</p>
-<h2 id="新增文章的流程"><a href="#新增文章的流程" class="headerlink" title="新增文章的流程"></a>新增文章的流程</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ hexo n &quot;New Post&quot;</div><div class="line">$ hexo s -p $PORT # local 預覽</div><div class="line">$ hexo d --generate</div></pre></td></tr></table></figure>
-<h2 id="刪除文章的流程"><a href="#刪除文章的流程" class="headerlink" title="刪除文章的流程"></a>刪除文章的流程</h2><p>先去網站目錄下的 ./source/_posts 裡刪除預計的文章<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ hexo clean</div><div class="line">$ hexo s -p $PORT # local 預覽</div><div class="line">$ hexo d --generate</div></pre></td></tr></table></figure></p>
-<hr>
-<h2 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h2><ul>
-<li>社群分享</li>
-<li>打賞</li>
-<li>disqus</li>
-</ul>
+          利用 Hexo 和 Github Pages 建立 blog第一篇文章不可免俗地來介紹這個 blog 怎麼建起來的，最陽春的那種 :)
+主要有三個部分，
 
-          
+Cloud9 設置免費的 Ubuntu 14.04 的開發環境
+安裝與設定 Hexo
+編輯完推上 Github Pages
+
+之前在考慮 Pel
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/09/18/How-to-Deploy-Hexo-on-Github-pages/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>

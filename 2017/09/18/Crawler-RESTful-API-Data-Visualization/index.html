@@ -71,14 +71,14 @@
 
 <meta name="description" content="爬蟲、RESTful API、資料視覺化TL;DR 寫了一個簡單可用的 prototype ，把抓資料、存資料、呈現資料和資料視覺化這幾件事兜起來，作為自己未來如果要作資料科學專案的腳手架，也 open source 給大家鞭一鞭台灣 368 鄉鎮市區天氣預報 REST api | Fork me on Github | 前端應用實例 #後端Python #前端d3 #MySQL #datasci">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Crawler, RESTful API &amp; Data-Visualization">
+<meta property="og:title" content="Crawler, RESTful API &amp; Data Visualization">
 <meta property="og:url" content="https://wyde.github.io/2017/09/18/Crawler-RESTful-API-Data-Visualization/index.html">
 <meta property="og:site_name" content="Wyde&#39;s Blog">
 <meta property="og:description" content="爬蟲、RESTful API、資料視覺化TL;DR 寫了一個簡單可用的 prototype ，把抓資料、存資料、呈現資料和資料視覺化這幾件事兜起來，作為自己未來如果要作資料科學專案的腳手架，也 open source 給大家鞭一鞭台灣 368 鄉鎮市區天氣預報 REST api | Fork me on Github | 前端應用實例 #後端Python #前端d3 #MySQL #datasci">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2017-09-19T13:48:20.532Z">
+<meta property="og:updated_time" content="2017-09-19T13:55:28.569Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Crawler, RESTful API &amp; Data-Visualization">
+<meta name="twitter:title" content="Crawler, RESTful API &amp; Data Visualization">
 <meta name="twitter:description" content="爬蟲、RESTful API、資料視覺化TL;DR 寫了一個簡單可用的 prototype ，把抓資料、存資料、呈現資料和資料視覺化這幾件事兜起來，作為自己未來如果要作資料科學專案的腳手架，也 open source 給大家鞭一鞭台灣 368 鄉鎮市區天氣預報 REST api | Fork me on Github | 前端應用實例 #後端Python #前端d3 #MySQL #datasci">
 
 
@@ -115,7 +115,7 @@
 
 
 
-  <title>Crawler, RESTful API & Data-Visualization | Wyde's Blog</title>
+  <title>Crawler, RESTful API & Data Visualization | Wyde's Blog</title>
   
 
 
@@ -239,7 +239,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Crawler, RESTful API & Data-Visualization</h1>
+          <h1 class="post-title" itemprop="name headline">Crawler, RESTful API & Data Visualization</h1>
         
 
         <div class="post-meta">
@@ -251,7 +251,7 @@
               
                 <span class="post-meta-item-text">發表於</span>
               
-              <time title="創建於" itemprop="dateCreated datePublished" datetime="2017-09-18T18:05:17+00:00">
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2017-09-19T02:05:17+08:00">
                 2017-09-19
               </time>
             
@@ -319,14 +319,14 @@
 <li>提供：Flask RESTful API + MongoDB</li>
 <li>轉換：D3.js</li>
 </ol>
-<h3 id="我的工具選擇"><a href="#我的工具選擇" class="headerlink" title="我的工具選擇"></a>我的工具選擇</h3><p>稍微寫了 Scrapy ，蠻容易上手的，可是感覺比較適合簡單而且 HTML 格式清晰的網站，例如 Scrapy 官方教程的<a href="http://quotes.toscrape.com" target="_blank" rel="external">示範網站</a>，如果爬蟲需要比較複雜的互動，例如說處理 .NET 的 ViewSet ，就覺得寫起來卡卡的，所以我就換一個方式，概念上我會用 pandas dataframe 或 csv 檔案當作 metadata ，確定存在關聯式資料庫時會大概的樣子，然後用 Jupyter 來取代 Scrapy Shell 的資料調適步驟、 SQLAlchemy + MySQLdb 來取代 Scrapy Pipeline + MongoDB ，據說大量迸發的爬取可以用 multiprocessing 這個庫，不過我還沒用過</p>
+<h3 id="我的工具選擇"><a href="#我的工具選擇" class="headerlink" title="我的工具選擇"></a>我的工具選擇</h3><p>稍微寫了 Scrapy ，蠻容易上手的，可是感覺比較適合簡單而且 HTML 格式清晰的網站，例如 Scrapy 官方教程的<a href="http://quotes.toscrape.com" target="_blank" rel="external">示範網站</a>，如果爬蟲需要比較複雜的互動，例如說處理 .NET 的 ViewSet ，就覺得寫起來卡卡的，所以我就換一個方式，概念上我會用 pandas dataframe 或 csv 檔案當作 metadata ，適合快速迭代想法，確定存在關聯式資料庫時會大概的樣子，然後用 Jupyter + requests 來取代 Scrapy Shell 的資料調適步驟、 SQLAlchemy + MySQLdb 來取代 Scrapy Pipeline + MongoDB ，據說大量迸發的爬取可以用 multiprocessing 這個庫，不過我還沒用過</p>
 <ol>
 <li>抓取：Jupyter + requests</li>
 <li>清理：Jupyter + pandas + beautifulsoup</li>
 <li>持久化：Jupyter + SQLAlchemy + MySQLdb</li>
-<li>撰寫腳本：將 1-3 寫成 scripts ，如果需要計算模型或額外處理的話加在這裡</li>
+<li>撰寫腳本：將 1-3 寫成 scripts ，如果需要計算模型或額外處理的話，在這裡連結</li>
 <li>提供：Django REST Framework + MySQLdb</li>
-<li>呈現：D3.js + bootstrap</li>
+<li>呈現：jQuery + D3.js + bootstrap</li>
 </ol>
 <p>稍微提一下寫 Scrapy (1.4.0) 的寫法，主要修改下面檔案</p>
 <ul>
