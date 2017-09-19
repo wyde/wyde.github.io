@@ -76,7 +76,7 @@
 <meta property="og:site_name" content="Wyde&#39;s Blog">
 <meta property="og:description" content="爬蟲、RESTful API、資料視覺化TL;DR 寫了一個簡單可用的 prototype ，把抓資料、存資料、呈現資料和資料視覺化這幾件事兜起來，作為自己未來如果要作資料科學專案的腳手架，也 open source 給大家鞭一鞭台灣 368 鄉鎮市區天氣預報 REST api | Fork me on Github | 前端應用實例 #後端Python #前端d3 #MySQL #datasci">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2017-09-19T09:41:17.173Z">
+<meta property="og:updated_time" content="2017-09-19T09:57:19.305Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Crawler, RESTful API &amp; Data-Visualization">
 <meta name="twitter:description" content="爬蟲、RESTful API、資料視覺化TL;DR 寫了一個簡單可用的 prototype ，把抓資料、存資料、呈現資料和資料視覺化這幾件事兜起來，作為自己未來如果要作資料科學專案的腳手架，也 open source 給大家鞭一鞭台灣 368 鄉鎮市區天氣預報 REST api | Fork me on Github | 前端應用實例 #後端Python #前端d3 #MySQL #datasci">
@@ -337,7 +337,7 @@
 </ul>
 <h2 id="實作參考"><a href="#實作參考" class="headerlink" title="實作參考"></a>實作參考</h2><p>之所以說是 prototype ，因為想法是做一個 Proof of Concept ，所以不會涉及完整的 Production 的議題，主要是缺乏安全與效能的探討，就套套 framework 、踩踩坑，如果使用者數量有起來再來處理</p>
 <p>我會把用到的工具分資料夾放，而且和 MySQL 一起塞在同一個 Container 或 VM 裡，跟其他的爬蟲 + API 解決方案比起來，例如說 AWS API Gateway + Lambda + Dynamodb，自己用框架可能多了一些工作，但至少使用的框架都是開源的，利於學習。還有就是我不想也不會使用 M$ 的解決方案，所以不要問說這些流程在 Windows 、.NET 下的對應關係。而且我只用到雲端資源做開發，就算 Laptop 使用 non-Linux OS，只要瀏覽器能上網也是可以玩玩看，甚至 git clone 完就可以改改 code ，做一個自己的 data processing demo。繼續往下閱讀的 prerequisite 大概就是有一點 Linux 的使用經驗，不會用 vim 的話至少要會其他 Linux 上的純文字編輯器像是 nano</p>
-<h3 id="開發環境建置"><a href="#開發環境建置" class="headerlink" title="開發環境建置"></a>開發環境建置</h3><p>我在 <a href="https://c9.io" target="_blank" rel="external">Cloud9</a> 上的 Ubuntu14.04 環境下進行開發，然後在 CentOS 7 上部署，目前是比較偏好 redhat 系的發行版，不過雲端 IDE 好像都是 Ubuntu 居多，當然也可以自己開 CentOS 的開發虛擬機或 Container ，但就沒有雲端 IDE 方便，目前先這樣吧</p>
+<h3 id="開發與部署環境建置"><a href="#開發與部署環境建置" class="headerlink" title="開發與部署環境建置"></a>開發與部署環境建置</h3><p>我在 <a href="https://c9.io" target="_blank" rel="external">Cloud9</a> 上的 Ubuntu14.04 環境下進行開發，然後在 CentOS 7 上部署，目前是比較偏好 redhat 系的發行版，不過雲端 IDE 好像都是 Ubuntu 居多，當然也可以自己開 CentOS 的開發虛擬機或 Container ，但就沒有雲端 IDE 方便，目前先這樣吧</p>
 <h3 id="爬蟲與資料清理"><a href="#爬蟲與資料清理" class="headerlink" title="爬蟲與資料清理"></a>爬蟲與資料清理</h3><p>這邊處理兩種資料</p>
 <ol>
 <li>(舊制)行政區域及村里代碼，對應全台 368 鄉鎮市區唯一編號，是網路上的 csv 檔案</li>
@@ -360,7 +360,7 @@
 <li>views.py</li>
 <li>urls.py<br>細節是蠻多的，有機會再來補</li>
 </ul>
-<h3 id="佈署"><a href="#佈署" class="headerlink" title="佈署"></a>佈署</h3><h2 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h2><ul>
+<h2 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h2><ul>
 <li>db 換成 PostgresSQL</li>
 <li>測試把 Django 的 ORM 換成 SQLAlchemy 的好處</li>
 <li>優化爬蟲的寫法</li>
@@ -514,7 +514,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#爬蟲、RESTful-API、資料視覺化"><span class="nav-number">1.</span> <span class="nav-text">爬蟲、RESTful API、資料視覺化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">2.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#流程與技術棧"><span class="nav-number">3.</span> <span class="nav-text">流程與技術棧</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#參考書的工具選擇"><span class="nav-number">3.1.</span> <span class="nav-text">參考書的工具選擇</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#我的工具選擇"><span class="nav-number">3.2.</span> <span class="nav-text">我的工具選擇</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#實作參考"><span class="nav-number">4.</span> <span class="nav-text">實作參考</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#開發環境建置"><span class="nav-number">4.1.</span> <span class="nav-text">開發環境建置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#爬蟲與資料清理"><span class="nav-number">4.2.</span> <span class="nav-text">爬蟲與資料清理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Django-REST-Framework"><span class="nav-number">4.3.</span> <span class="nav-text">Django REST Framework</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#佈署"><span class="nav-number">4.4.</span> <span class="nav-text">佈署</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TODO"><span class="nav-number">5.</span> <span class="nav-text">TODO</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#爬蟲、RESTful-API、資料視覺化"><span class="nav-number">1.</span> <span class="nav-text">爬蟲、RESTful API、資料視覺化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">2.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#流程與技術棧"><span class="nav-number">3.</span> <span class="nav-text">流程與技術棧</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#參考書的工具選擇"><span class="nav-number">3.1.</span> <span class="nav-text">參考書的工具選擇</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#我的工具選擇"><span class="nav-number">3.2.</span> <span class="nav-text">我的工具選擇</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#實作參考"><span class="nav-number">4.</span> <span class="nav-text">實作參考</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#開發與部署環境建置"><span class="nav-number">4.1.</span> <span class="nav-text">開發與部署環境建置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#爬蟲與資料清理"><span class="nav-number">4.2.</span> <span class="nav-text">爬蟲與資料清理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Django-REST-Framework"><span class="nav-number">4.3.</span> <span class="nav-text">Django REST Framework</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TODO"><span class="nav-number">5.</span> <span class="nav-text">TODO</span></a></li></ol></div>
             
 
           </div>
