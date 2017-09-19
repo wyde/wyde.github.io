@@ -69,17 +69,17 @@
 
 
 
-<meta name="description" content="第一篇文章不可免俗地來介紹這個 blog 怎麼建起來的，最陽春的那種 :) 主要有三個部分，  Cloud9 設置免費的 Ubuntu 14.04 的 安裝與設定 Hexo 編輯完推上 Github Pages  之前在考慮 Pelican 、 Hugo 、 Hexo ，聽說了 Pelican 開發較不活躍且 render 速度慢， Hugo 配置較麻煩，就採用了 Hexo，希望有 Python">
+<meta name="description" content="利用 Hexo 和 Github Pages 建立 blog第一篇文章不可免俗地來介紹這個 blog 怎麼建起來的，最陽春的那種 :) 主要有三個部分，  Cloud9 設置免費的 Ubuntu 14.04 的開發環境 安裝與設定 Hexo 編輯完推上 Github Pages  之前在考慮 Pelican 、 Hugo 、 Hexo ，聽說了 Pelican 開發較不活躍且 render 速度慢">
 <meta property="og:type" content="article">
-<meta property="og:title" content="How to Deploy Hexo on Github pages">
+<meta property="og:title" content="How to Deploy Hexo on Github Pages">
 <meta property="og:url" content="https://wyde.github.io/2017/09/18/How-to-Deploy-Hexo-on-Github-pages/index.html">
 <meta property="og:site_name" content="Wyde&#39;s Blog">
-<meta property="og:description" content="第一篇文章不可免俗地來介紹這個 blog 怎麼建起來的，最陽春的那種 :) 主要有三個部分，  Cloud9 設置免費的 Ubuntu 14.04 的 安裝與設定 Hexo 編輯完推上 Github Pages  之前在考慮 Pelican 、 Hugo 、 Hexo ，聽說了 Pelican 開發較不活躍且 render 速度慢， Hugo 配置較麻煩，就採用了 Hexo，希望有 Python">
+<meta property="og:description" content="利用 Hexo 和 Github Pages 建立 blog第一篇文章不可免俗地來介紹這個 blog 怎麼建起來的，最陽春的那種 :) 主要有三個部分，  Cloud9 設置免費的 Ubuntu 14.04 的開發環境 安裝與設定 Hexo 編輯完推上 Github Pages  之前在考慮 Pelican 、 Hugo 、 Hexo ，聽說了 Pelican 開發較不活躍且 render 速度慢">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2017-09-18T16:38:10.910Z">
+<meta property="og:updated_time" content="2017-09-19T01:49:52.995Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="How to Deploy Hexo on Github pages">
-<meta name="twitter:description" content="第一篇文章不可免俗地來介紹這個 blog 怎麼建起來的，最陽春的那種 :) 主要有三個部分，  Cloud9 設置免費的 Ubuntu 14.04 的 安裝與設定 Hexo 編輯完推上 Github Pages  之前在考慮 Pelican 、 Hugo 、 Hexo ，聽說了 Pelican 開發較不活躍且 render 速度慢， Hugo 配置較麻煩，就採用了 Hexo，希望有 Python">
+<meta name="twitter:title" content="How to Deploy Hexo on Github Pages">
+<meta name="twitter:description" content="利用 Hexo 和 Github Pages 建立 blog第一篇文章不可免俗地來介紹這個 blog 怎麼建起來的，最陽春的那種 :) 主要有三個部分，  Cloud9 設置免費的 Ubuntu 14.04 的開發環境 安裝與設定 Hexo 編輯完推上 Github Pages  之前在考慮 Pelican 、 Hugo 、 Hexo ，聽說了 Pelican 開發較不活躍且 render 速度慢">
 
 
 
@@ -115,7 +115,7 @@
 
 
 
-  <title>How to Deploy Hexo on Github pages | Wyde's Blog</title>
+  <title>How to Deploy Hexo on Github Pages | Wyde's Blog</title>
   
 
 
@@ -239,7 +239,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">How to Deploy Hexo on Github pages</h1>
+          <h1 class="post-title" itemprop="name headline">How to Deploy Hexo on Github Pages</h1>
         
 
         <div class="post-meta">
@@ -251,7 +251,7 @@
               
                 <span class="post-meta-item-text">發表於</span>
               
-              <time title="創建於" itemprop="dateCreated datePublished" datetime="2017-09-18T00:49:42+00:00">
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2017-09-18T08:49:42+08:00">
                 2017-09-18
               </time>
             
@@ -289,17 +289,19 @@
       
 
       
-        <p>第一篇文章不可免俗地來介紹這個 blog 怎麼建起來的，最陽春的那種 :)</p>
+        <h1 id="利用-Hexo-和-Github-Pages-建立-blog"><a href="#利用-Hexo-和-Github-Pages-建立-blog" class="headerlink" title="利用 Hexo 和 Github Pages 建立 blog"></a>利用 Hexo 和 Github Pages 建立 blog</h1><p>第一篇文章不可免俗地來介紹這個 blog 怎麼建起來的，最陽春的那種 :)</p>
 <p>主要有三個部分，</p>
 <ol>
-<li>Cloud9 設置免費的 Ubuntu 14.04 的</li>
+<li><a href="https://c9.io" target="_blank" rel="external">Cloud9</a> 設置免費的 Ubuntu 14.04 的開發環境</li>
 <li>安裝與設定 Hexo</li>
 <li>編輯完推上 Github Pages</li>
 </ol>
-<p>之前在考慮 Pelican 、 Hugo 、 Hexo ，聽說了 Pelican 開發較不活躍且 render 速度慢， Hugo 配置較麻煩，就採用了 Hexo，希望有 Python 寫的靜態網站產生器同時又兼具美觀和易用性…這次架 Hexo 的感覺真的蠻快蠻方便的</p>
+<p>之前在考慮 Pelican 、 Hugo 、 Hexo ，聽說了 Pelican 開發較不活躍且 render 速度慢， Hugo 配置較麻煩，就採用了 Hexo ，這些只是聽說，沒有實測…</p>
+<p>身為 Python 愛好者，希望有 Python + Jinja2 寫的靜態網站產生器同時又兼具美觀和易用性…這次架 Hexo 的感覺真的蠻快蠻方便的</p>
 <hr>
-<h2 id="Cloud9-簡易設置"><a href="#Cloud9-簡易設置" class="headerlink" title="Cloud9 簡易設置"></a>Cloud9 簡易設置</h2><p>Cloud9 自稱是雲端 IDE ，我都當作免洗的 Linux container(Ubuntu 14.04) 來用，我在上面做大部分的 web 開發與測試，往後會再寫一篇關於 c9 開發環境的設置，這邊先簡略的寫一下，依 Hexo 的需求，就是裝一個 Nodejs 的環境，有很多種裝法，我們這次用 <a href="https://nodejs.org/en/download/package-manager/" target="_blank" rel="external">Nodejs 官方教學</a>直接用 apt-get 來裝</p>
-<p>開一個 <a href="https://c9.io" target="_blank" rel="external">Cloud9</a> 的空白 Ubuntu 14.04<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get update</div><div class="line">$ cd /tmp</div><div class="line">$ curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -</div><div class="line">$ sudo apt-get install -y nodejs</div><div class="line">$ node --version</div><div class="line">v6.11.3</div></pre></td></tr></table></figure></p>
+<h2 id="Cloud9-簡易設置"><a href="#Cloud9-簡易設置" class="headerlink" title="Cloud9 簡易設置"></a>Cloud9 簡易設置</h2><p>這裡可以不用 Cloud9 ，我用起來主要就是免費、方便、到處都可用，而且本機用什麼 OS 都可以</p>
+<p>Cloud9 自稱是雲端 IDE ，我都當作免洗的 Linux container(Ubuntu 14.04) 來用，我在上面做大部分的 web 開發與測試，往後會再寫一篇關於 c9 開發環境的設置，這邊先簡略的寫一下，依 Hexo 的需求，就是裝一個 Nodejs 的環境，有很多種裝法，我們這次用 <a href="https://nodejs.org/en/download/package-manager/" target="_blank" rel="external">Nodejs 官方教學</a>直接用 apt-get 來裝</p>
+<p>開一個 Cloud9 的空白 Ubuntu 14.04<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get update</div><div class="line">$ cd /tmp</div><div class="line">$ curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -</div><div class="line">$ sudo apt-get install -y nodejs</div><div class="line">$ node --version</div><div class="line">v6.11.3</div></pre></td></tr></table></figure></p>
 <h2 id="安裝-Hexo"><a href="#安裝-Hexo" class="headerlink" title="安裝 Hexo"></a>安裝 Hexo</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ sudo npm install -g hexo-cli</div><div class="line">$ hexo</div><div class="line">(列出 Hexo 常用指令，表示成功安裝)</div></pre></td></tr></table></figure>
 <p>我們打算拿 Github Pages 當個人的 blog，於是目錄就直接開 <github account="">.github.io<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ cd ~</div><div class="line">$ mkdir &lt;your github account&gt;.github.io &amp;&amp; cd &lt;your github account&gt;.github.io</div><div class="line">$ hexo init</div><div class="line">$ npm install</div><div class="line">$ hexo s -p $PORT</div></pre></td></tr></table></figure></github></p>
 <p>另開瀏覽器分頁，可以在以下網址看到 Hexo 的 hello-world<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">https://&lt;c9 project name&gt;-&lt;c9 user name&gt;.c9users.io</div></pre></td></tr></table></figure></p>
@@ -311,7 +313,7 @@
 <li>到 repo 的 settings -&gt; Github Pages -&gt; Source 選擇 master branch</li>
 </ul>
 <p>以下回到 Cloud9 console</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ vim ~/.ssh/&lt;private key&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ git config --global user.name &quot;&lt;github username&gt;&quot;</div><div class="line">$ git config --global user.email &quot;&lt;github user email&gt;&quot;</div><div class="line">$ vim ~/.ssh/&lt;private key&gt;</div></pre></td></tr></table></figure>
 <p>貼上 private key 或用 ssh-keygen 產一把新的 private key，這樣其實會把 ssh private key 放在本機以外的地方，我會生一把專用的 key ，要採用這種方法的人請自行考慮風險～</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ eval &quot;$(ssh-agent -s)&quot;</div><div class="line">Agent pid 31418</div><div class="line"></div><div class="line">$ ssh-add ~/.ssh/&lt;private key&gt;</div><div class="line">$ ssh -T git@github.com</div><div class="line">Hi &lt;github account&gt;! Youve successfully authenticated, but GitHub does not provide shell access.</div></pre></td></tr></table></figure>
 <p>修改 _config.yml 裡的 deploy<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">deploy:</div><div class="line">    type: git</div><div class="line">    repository: git@github.com:&lt;github account&gt;/&lt;github account&gt;.github.io.git</div><div class="line">    branch: master</div></pre></td></tr></table></figure></p>
@@ -320,6 +322,12 @@
 <p>以下是編修文章的流程</p>
 <h2 id="新增文章的流程"><a href="#新增文章的流程" class="headerlink" title="新增文章的流程"></a>新增文章的流程</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ hexo n &quot;New Post&quot;</div><div class="line">$ hexo s -p $PORT</div><div class="line">$ hexo d --generate</div></pre></td></tr></table></figure>
 <h2 id="刪除文章的流程"><a href="#刪除文章的流程" class="headerlink" title="刪除文章的流程"></a>刪除文章的流程</h2><p>先去網站目錄下的 ./source/_posts 裡刪除預計的文章<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ hexo clean</div><div class="line">$ hexo s -p $PORT</div><div class="line">$ hexo d --generate</div></pre></td></tr></table></figure></p>
+<hr>
+<h2 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h2><ul>
+<li>社群分享</li>
+<li>打賞</li>
+<li>disqus</li>
+</ul>
 
       
     </div>
@@ -340,6 +348,22 @@
       
       
 
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/09/18/How-to-Write-An-Open-API-Prototype/" rel="prev" title="How to Write An Open API Prototype">
+                How to Write An Open API Prototype <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
       
 
       
@@ -412,7 +436,7 @@
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">文章</span>
               </a>
             </div>
@@ -451,7 +475,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Cloud9-簡易設置"><span class="nav-number">1.</span> <span class="nav-text">Cloud9 簡易設置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝-Hexo"><span class="nav-number">2.</span> <span class="nav-text">安裝 Hexo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Github-Pages-設定"><span class="nav-number">3.</span> <span class="nav-text">Github Pages 設定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新增文章的流程"><span class="nav-number">4.</span> <span class="nav-text">新增文章的流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#刪除文章的流程"><span class="nav-number">5.</span> <span class="nav-text">刪除文章的流程</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#利用-Hexo-和-Github-Pages-建立-blog"><span class="nav-number">1.</span> <span class="nav-text">利用 Hexo 和 Github Pages 建立 blog</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Cloud9-簡易設置"><span class="nav-number">1.1.</span> <span class="nav-text">Cloud9 簡易設置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝-Hexo"><span class="nav-number">1.2.</span> <span class="nav-text">安裝 Hexo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Github-Pages-設定"><span class="nav-number">1.3.</span> <span class="nav-text">Github Pages 設定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新增文章的流程"><span class="nav-number">1.4.</span> <span class="nav-text">新增文章的流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#刪除文章的流程"><span class="nav-number">1.5.</span> <span class="nav-text">刪除文章的流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TODO"><span class="nav-number">1.6.</span> <span class="nav-text">TODO</span></a></li></ol></li></ol></div>
             
 
           </div>
