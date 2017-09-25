@@ -53,7 +53,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Github Pages, Hexo," />
 
 
 
@@ -69,17 +69,18 @@
 
 
 
-<meta name="description" content="利用 Hexo 和 Github Pages 建立 blog第一篇文章不可免俗地來介紹這個 blog 怎麼建起來的，最陽春的那種 :)結果不小心手殘誤刪，這篇無法當第一篇了，才發現 hexo deploy 只有 push public 裡 render 完的網頁，原本以為會連 markdown 都上傳，看來要用另一個 repo 管理 markdown 的 source ，難怪有人還會再接 CI(C">
+<meta name="description" content="利用 Hexo 和 Github Pages 建立 blog第一篇文章不可免俗地來介紹這個 blog 怎麼建起來的，最陽春的那種 :) 結果不小心手殘誤刪，這篇無法當第一篇了，才發現 hexo deploy 只有 push public 裡 render 完的網頁，原本以為會連 markdown 都上傳，看來要用另一個 repo 管理 markdown 的 source ，難怪有人還會再接 CI(">
+<meta name="keywords" content="Github Pages, Hexo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="How to Deploy Hexo on Github Pages">
 <meta property="og:url" content="https://wyde.github.io/2017/09/23/How-to-Deploy-Hexo-on-Github-Pages/index.html">
 <meta property="og:site_name" content="Wyde&#39;s Blog">
-<meta property="og:description" content="利用 Hexo 和 Github Pages 建立 blog第一篇文章不可免俗地來介紹這個 blog 怎麼建起來的，最陽春的那種 :)結果不小心手殘誤刪，這篇無法當第一篇了，才發現 hexo deploy 只有 push public 裡 render 完的網頁，原本以為會連 markdown 都上傳，看來要用另一個 repo 管理 markdown 的 source ，難怪有人還會再接 CI(C">
+<meta property="og:description" content="利用 Hexo 和 Github Pages 建立 blog第一篇文章不可免俗地來介紹這個 blog 怎麼建起來的，最陽春的那種 :) 結果不小心手殘誤刪，這篇無法當第一篇了，才發現 hexo deploy 只有 push public 裡 render 完的網頁，原本以為會連 markdown 都上傳，看來要用另一個 repo 管理 markdown 的 source ，難怪有人還會再接 CI(">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2017-09-23T06:18:19.606Z">
+<meta property="og:updated_time" content="2017-09-25T12:13:37.405Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="How to Deploy Hexo on Github Pages">
-<meta name="twitter:description" content="利用 Hexo 和 Github Pages 建立 blog第一篇文章不可免俗地來介紹這個 blog 怎麼建起來的，最陽春的那種 :)結果不小心手殘誤刪，這篇無法當第一篇了，才發現 hexo deploy 只有 push public 裡 render 完的網頁，原本以為會連 markdown 都上傳，看來要用另一個 repo 管理 markdown 的 source ，難怪有人還會再接 CI(C">
+<meta name="twitter:description" content="利用 Hexo 和 Github Pages 建立 blog第一篇文章不可免俗地來介紹這個 blog 怎麼建起來的，最陽春的那種 :) 結果不小心手殘誤刪，這篇無法當第一篇了，才發現 hexo deploy 只有 push public 裡 render 完的網頁，原本以為會連 markdown 都上傳，看來要用另一個 repo 管理 markdown 的 source ，難怪有人還會再接 CI(">
 
 
 
@@ -289,7 +290,8 @@
       
 
       
-        <h2 id="利用-Hexo-和-Github-Pages-建立-blog"><a href="#利用-Hexo-和-Github-Pages-建立-blog" class="headerlink" title="利用 Hexo 和 Github Pages 建立 blog"></a>利用 Hexo 和 Github Pages 建立 blog</h2><p><del>第一篇文章不可免俗地來介紹這個 blog 怎麼建起來的，最陽春的那種 :)</del><br>結果不小心手殘誤刪，這篇無法當第一篇了，才發現 hexo deploy 只有 push public 裡 render 完的網頁，原本以為會連 markdown 都上傳，看來要用另一個 repo 管理 markdown 的 source ，難怪有人還會再接 CI(Continous Integration) 的工具，這樣寫完 markdown 就直接生成網站了，這次先簡單地寫一下架設步驟，因為是在雲端 IDE 上處理，所以不論什麼 OS 的使用者都能 remote 免費使用</p>
+        <h2 id="利用-Hexo-和-Github-Pages-建立-blog"><a href="#利用-Hexo-和-Github-Pages-建立-blog" class="headerlink" title="利用 Hexo 和 Github Pages 建立 blog"></a>利用 Hexo 和 Github Pages 建立 blog</h2><p><del>第一篇文章不可免俗地來介紹這個 blog 怎麼建起來的，最陽春的那種 :)</del></p>
+<p>結果不小心手殘誤刪，這篇無法當第一篇了，才發現 hexo deploy 只有 push public 裡 render 完的網頁，原本以為會連 markdown 都上傳，看來要用另一個 repo 管理 markdown 的 source ，難怪有人還會再接 CI(Continous Integration) 的工具，這樣寫完 markdown 就直接生成網站了，這次先簡單地寫一下架設步驟，因為是在雲端 IDE 上處理，所以不論什麼 OS 的使用者都能 remote 免費使用</p>
 <p>主要有三個部分，</p>
 <ol>
 <li>Cloud9 設置免費的 Ubuntu 14.04 的開發環境</li>
@@ -303,7 +305,7 @@
 <p>開一個 Cloud9 的空白 Ubuntu 14.04</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get update</div><div class="line">$ sudo dpkg-reconfigure tzdata # 設置時區</div><div class="line"></div><div class="line"># 安裝 node</div><div class="line">$ cd /tmp</div><div class="line">$ curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -</div><div class="line">$ sudo apt-get install -y nodejs</div><div class="line">$ node --version</div><div class="line">v6.11.3</div></pre></td></tr></table></figure>
 <h2 id="安裝-Hexo"><a href="#安裝-Hexo" class="headerlink" title="安裝 Hexo"></a>安裝 Hexo</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ sudo npm install -g hexo-cli</div><div class="line">$ hexo</div><div class="line">(列出 Hexo 常用指令，表示成功安裝)</div></pre></td></tr></table></figure>
-<p>我們打算拿 Github Pages 當個人的 blog，於是目錄就直接開 <your github="" account="">.github.io</your></p>
+<p>我們打算拿 Github Pages 當個人的 blog，於是目錄就直接開 <code>&lt;your github account&gt;.github.io</code></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ cd ~</div><div class="line">$ mkdir &lt;your github account&gt;.github.io &amp;&amp; cd &lt;your github account&gt;.github.io</div><div class="line">$ hexo init</div><div class="line">$ npm install</div><div class="line">$ hexo s -p $PORT</div></pre></td></tr></table></figure>
 <p>(起了 hexo 的測試 server，如果要關掉就 Ctrl + C)<br>另開瀏覽器分頁，可以在 <code>https://&lt;c9 project name&gt;-&lt;c9 user name&gt;.c9users.io</code>看到 Hexo 的 hello-world ，這樣 Hexo 基本上就裝完了</p>
 <p>然後安裝個 theme ，我選的是 next<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git clone https://github.com/iissnan/hexo-theme-next themes/next</div><div class="line">$ vim _config.yml</div></pre></td></tr></table></figure></p>
@@ -348,6 +350,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/Github-Pages-Hexo/" rel="tag"># Github Pages, Hexo</a>
+          
+        </div>
+      
 
       
       
@@ -366,6 +374,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/09/25/How-to-Deploy-a-Project-Site-on-Github-Pages/" rel="prev" title="How to Deploy a Project Site on Github Pages">
+                How to Deploy a Project Site on Github Pages <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -441,7 +453,7 @@
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">文章</span>
               </a>
             </div>
@@ -449,6 +461,15 @@
 
           
 
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">標籤</span>
+              
+            </div>
           
 
         </nav>
