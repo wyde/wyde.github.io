@@ -77,7 +77,7 @@
 <meta property="og:site_name" content="Wyde&#39;s Blog">
 <meta property="og:description" content="利用 Hexo 和 Github Pages 建立 blog第一篇文章不可免俗地來介紹這個 blog 怎麼建起來的，最陽春的那種 :) 結果不小心手殘誤刪，這篇無法當第一篇了，才發現 hexo deploy 只有 push public 裡 render 完的網頁，原本以為會連 markdown 都上傳，看來要用另一個 repo 管理 markdown 的 source ，難怪有人還會再接 CI(">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2017-09-25T12:13:37.405Z">
+<meta property="og:updated_time" content="2017-09-30T07:03:02.433Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="How to Deploy Hexo on Github Pages">
 <meta name="twitter:description" content="利用 Hexo 和 Github Pages 建立 blog第一篇文章不可免俗地來介紹這個 blog 怎麼建起來的，最陽春的那種 :) 結果不小心手殘誤刪，這篇無法當第一篇了，才發現 hexo deploy 只有 push public 裡 render 完的網頁，原本以為會連 markdown 都上傳，看來要用另一個 repo 管理 markdown 的 source ，難怪有人還會再接 CI(">
@@ -266,9 +266,31 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/09/23/How-to-Deploy-Hexo-on-Github-Pages/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/09/23/How-to-Deploy-Hexo-on-Github-Pages/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
+          
+             <span id="/2017/09/23/How-to-Deploy-Hexo-on-Github-Pages/" class="leancloud_visitors" data-flag-title="How to Deploy Hexo on Github Pages">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">閱讀次數&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
           
 
           
@@ -330,10 +352,16 @@
 <hr>
 <p>以下是常用編修文章的指令</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ cd &lt;hexo 所在資料夾&gt;</div><div class="line">$ hexo n &quot;New Post&quot; # 新增 post</div><div class="line">$ hexo s -p $PORT # 本地起測試 server</div><div class="line">$ hexo clean # 清除 cache，部署前清一波</div><div class="line">$ hexo d --generate # 部署</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="Third-Party-Integration"><a href="#Third-Party-Integration" class="headerlink" title="Third Party Integration"></a>Third Party Integration</h2><p>簡單的配置就懶得寫教學了，直接參考別人的<br>2017-09-30 新增</p>
+<ul>
+<li>評論系統： <a href="http://www.cylong.com/blog/2017/03/26/hexo-next-disqus/" target="_blank" rel="external">Hexo 集成 Disqus 评论</a></li>
+<li>瀏覽統計： <a href="https://notes.wanghao.work/2015-10-21-%E4%B8%BANexT%E4%B8%BB%E9%A2%98%E6%B7%BB%E5%8A%A0%E6%96%87%E7%AB%A0%E9%98%85%E8%AF%BB%E9%87%8F%E7%BB%9F%E8%AE%A1%E5%8A%9F%E8%83%BD.html#%E9%85%8D%E7%BD%AELeanCloud" target="_blank" rel="external">配置 LeanCloud</a> (如果用 Hexo  + NexT 那這篇文章上半就不用看了，直接從配置 LeanCloud 看就好)</li>
+</ul>
+<hr>
 <h2 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h2><ul>
 <li>社群分享</li>
 <li>打賞</li>
-<li>disqus</li>
 </ul>
 
       
@@ -406,6 +434,13 @@
 
           
   <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
     
   </div>
 
@@ -515,7 +550,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#利用-Hexo-和-Github-Pages-建立-blog"><span class="nav-number">1.</span> <span class="nav-text">利用 Hexo 和 Github Pages 建立 blog</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cloud9-簡易設置"><span class="nav-number">2.</span> <span class="nav-text">Cloud9 簡易設置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝-Hexo"><span class="nav-number">3.</span> <span class="nav-text">安裝 Hexo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Github-Pages-設定"><span class="nav-number">4.</span> <span class="nav-text">Github Pages 設定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TODO"><span class="nav-number">5.</span> <span class="nav-text">TODO</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#利用-Hexo-和-Github-Pages-建立-blog"><span class="nav-number">1.</span> <span class="nav-text">利用 Hexo 和 Github Pages 建立 blog</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cloud9-簡易設置"><span class="nav-number">2.</span> <span class="nav-text">Cloud9 簡易設置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝-Hexo"><span class="nav-number">3.</span> <span class="nav-text">安裝 Hexo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Github-Pages-設定"><span class="nav-number">4.</span> <span class="nav-text">Github Pages 設定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Third-Party-Integration"><span class="nav-number">5.</span> <span class="nav-text">Third Party Integration</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TODO"><span class="nav-number">6.</span> <span class="nav-text">TODO</span></a></li></ol></div>
             
 
           </div>
@@ -654,6 +689,26 @@
 
   
 
+    
+      <script id="dsq-count-scr" src="https://wyde.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://wyde.github.io/2017/09/23/How-to-Deploy-Hexo-on-Github-Pages/';
+          this.page.identifier = '2017/09/23/How-to-Deploy-Hexo-on-Github-Pages/';
+          this.page.title = 'How to Deploy Hexo on Github Pages';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://wyde.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
 
 
 
@@ -669,10 +724,6 @@
 
 
 
-  
-
-
-
 
 
 
@@ -685,6 +736,113 @@
 
 
   
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("EObj32zGPmfzzexdEpYvMFyS-gzGzoHsz", "lfpxqWTTPoAdkXiQPfrgycx0");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
 
   
 
