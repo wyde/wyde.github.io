@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://wyde.github.io/2017/10/03/Python-Markdown-Resume-Generator/</loc>
+    
+    <lastmod>2017-10-03T23:35:56.395Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://wyde.github.io/2017/09/29/How-to-Mount-Storage-Array-via-iSCSI/</loc>
+    
+    <lastmod>2017-10-03T23:35:28.026Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://wyde.github.io/2017/09/19/Crawler-RESTful-API-Data-Visualization/</loc>
+    
+    <lastmod>2017-10-03T23:34:50.204Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://wyde.github.io/2017/09/23/How-to-Deploy-Hexo-on-Github-Pages/</loc>
     
     <lastmod>2017-10-03T23:32:05.118Z</lastmod>
@@ -9,30 +30,9 @@
   </url>
   
   <url>
-    <loc>https://wyde.github.io/2017/09/19/Crawler-RESTful-API-Data-Visualization/</loc>
-    
-    <lastmod>2017-10-03T23:31:18.536Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://wyde.github.io/2017/10/04/Setting-up-Cloud9-Dev-Environment/</loc>
     
     <lastmod>2017-10-03T23:08:04.681Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://wyde.github.io/2017/10/03/Python-Markdown-Resume-Generator/</loc>
-    
-    <lastmod>2017-10-03T14:13:10.924Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://wyde.github.io/2017/09/29/How-to-Mount-Storage-Array-via-iSCSI/</loc>
-    
-    <lastmod>2017-09-29T17:03:53.363Z</lastmod>
     
   </url>
   

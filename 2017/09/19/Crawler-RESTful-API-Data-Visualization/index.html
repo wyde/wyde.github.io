@@ -71,18 +71,18 @@
 
 
 
-<meta name="description" content="爬蟲、RESTful API、資料視覺化TL;DR 寫了一個簡單可用的 prototype ，把抓資料、存資料、呈現資料和資料視覺化這幾件事兜起來，作為自己未來如果要作資料科學專案的腳手架，也 open source 給大家鞭一鞭台灣 368 鄉鎮市區天氣預報 RESTful api 說明文件 背景之前有需要用到台灣 368 鄉鎮市區的天氣預報，查了政府資料開放平台，有編號 9307 和 9309">
+<meta name="description" content="爬蟲、RESTful API、資料視覺化 TL;DR 寫了一個簡單可用的 prototype ，把抓資料、存資料、呈現資料和資料視覺化這幾件事兜起來，作為自己未來如果要作資料科學專案的腳手架，也 open source 給大家鞭一鞭台灣 368 鄉鎮市區天氣預報 RESTful api 說明文件 背景之前有需要用到台灣 368 鄉鎮市區的天氣預報，查了政府資料開放平台，有編號 9307 和 930">
 <meta name="keywords" content="鄉鎮預報,氣象,API,中央氣象局,台大球場可以打嗎?,後端Python,前端D3,MySQL,DataScience">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Crawler, RESTful API &amp; Data Visualization">
 <meta property="og:url" content="https://wyde.github.io/2017/09/19/Crawler-RESTful-API-Data-Visualization/index.html">
 <meta property="og:site_name" content="Wyde&#39;s Blog">
-<meta property="og:description" content="爬蟲、RESTful API、資料視覺化TL;DR 寫了一個簡單可用的 prototype ，把抓資料、存資料、呈現資料和資料視覺化這幾件事兜起來，作為自己未來如果要作資料科學專案的腳手架，也 open source 給大家鞭一鞭台灣 368 鄉鎮市區天氣預報 RESTful api 說明文件 背景之前有需要用到台灣 368 鄉鎮市區的天氣預報，查了政府資料開放平台，有編號 9307 和 9309">
+<meta property="og:description" content="爬蟲、RESTful API、資料視覺化 TL;DR 寫了一個簡單可用的 prototype ，把抓資料、存資料、呈現資料和資料視覺化這幾件事兜起來，作為自己未來如果要作資料科學專案的腳手架，也 open source 給大家鞭一鞭台灣 368 鄉鎮市區天氣預報 RESTful api 說明文件 背景之前有需要用到台灣 368 鄉鎮市區的天氣預報，查了政府資料開放平台，有編號 9307 和 930">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2017-10-03T23:31:18.536Z">
+<meta property="og:updated_time" content="2017-10-03T23:34:50.204Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Crawler, RESTful API &amp; Data Visualization">
-<meta name="twitter:description" content="爬蟲、RESTful API、資料視覺化TL;DR 寫了一個簡單可用的 prototype ，把抓資料、存資料、呈現資料和資料視覺化這幾件事兜起來，作為自己未來如果要作資料科學專案的腳手架，也 open source 給大家鞭一鞭台灣 368 鄉鎮市區天氣預報 RESTful api 說明文件 背景之前有需要用到台灣 368 鄉鎮市區的天氣預報，查了政府資料開放平台，有編號 9307 和 9309">
+<meta name="twitter:description" content="爬蟲、RESTful API、資料視覺化 TL;DR 寫了一個簡單可用的 prototype ，把抓資料、存資料、呈現資料和資料視覺化這幾件事兜起來，作為自己未來如果要作資料科學專案的腳手架，也 open source 給大家鞭一鞭台灣 368 鄉鎮市區天氣預報 RESTful api 說明文件 背景之前有需要用到台灣 368 鄉鎮市區的天氣預報，查了政府資料開放平台，有編號 9307 和 930">
 
 
 
@@ -314,7 +314,8 @@
       
 
       
-        <h1 id="爬蟲、RESTful-API、資料視覺化"><a href="#爬蟲、RESTful-API、資料視覺化" class="headerlink" title="爬蟲、RESTful API、資料視覺化"></a><center>爬蟲、RESTful API、資料視覺化</center></h1><p>TL;DR 寫了一個簡單可用的 prototype ，把抓資料、存資料、呈現資料和資料視覺化這幾件事兜起來，作為自己未來如果要作資料科學專案的腳手架，也 <a href="https://github.com/wyde/town368" target="_blank" rel="external">open source</a> 給大家鞭一鞭<br><a href="https://wyde.github.io/town368">台灣 368 鄉鎮市區天氣預報 RESTful api 說明文件</a></p>
+        <h1 id="爬蟲、RESTful-API、資料視覺化"><a href="#爬蟲、RESTful-API、資料視覺化" class="headerlink" title="爬蟲、RESTful API、資料視覺化"></a><center>爬蟲、RESTful API、資料視覺化</center></h1><p><br></p>
+<p>TL;DR 寫了一個簡單可用的 prototype ，把抓資料、存資料、呈現資料和資料視覺化這幾件事兜起來，作為自己未來如果要作資料科學專案的腳手架，也 <a href="https://github.com/wyde/town368" target="_blank" rel="external">open source</a> 給大家鞭一鞭<br><a href="https://wyde.github.io/town368">台灣 368 鄉鎮市區天氣預報 RESTful api 說明文件</a></p>
 <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>之前有需要用到台灣 368 鄉鎮市區的天氣預報，查了政府資料開放平台，有編號 9307 和 9309 的下列兩筆</p>
 <ul>
 <li><a href="https://data.gov.tw/dataset/9307" target="_blank" rel="external">鄉鎮天氣預報-台灣未來2天天氣預報</a></li>

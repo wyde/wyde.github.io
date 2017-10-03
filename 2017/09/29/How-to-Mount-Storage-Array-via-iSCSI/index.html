@@ -71,18 +71,18 @@
 
 
 
-<meta name="description" content="透過 iSCSI 連結 disk array最近把兩台 Dell PowerEdge R610 透過 iSCSI(IP-SAN) 走 10GBase-T/RJ45 掛上 Dell PowerVault MD3800i，簡單地說就是 server 需要大容量的儲存空間，又不想要太貴的光纖介面，折衷一下。 iSCSI 不只可以用在 disk array 和 server 之間的連接，也不一定要 10G">
+<meta name="description" content="透過 iSCSI 連結 disk array 最近把兩台 Dell PowerEdge R610 透過 iSCSI(IP-SAN) 走 10GBase-T/RJ45 掛上 Dell PowerVault MD3800i，簡單地說就是 server 需要大容量的儲存空間，又不想要太貴的光纖介面，折衷一下。 iSCSI 不只可以用在 disk array 和 server 之間的連接，也不一定要 10">
 <meta property="og:type" content="article">
 <meta property="og:title" content="How to Mount Storage Array via iSCSI">
 <meta property="og:url" content="https://wyde.github.io/2017/09/29/How-to-Mount-Storage-Array-via-iSCSI/index.html">
 <meta property="og:site_name" content="Wyde&#39;s Blog">
-<meta property="og:description" content="透過 iSCSI 連結 disk array最近把兩台 Dell PowerEdge R610 透過 iSCSI(IP-SAN) 走 10GBase-T/RJ45 掛上 Dell PowerVault MD3800i，簡單地說就是 server 需要大容量的儲存空間，又不想要太貴的光纖介面，折衷一下。 iSCSI 不只可以用在 disk array 和 server 之間的連接，也不一定要 10G">
+<meta property="og:description" content="透過 iSCSI 連結 disk array 最近把兩台 Dell PowerEdge R610 透過 iSCSI(IP-SAN) 走 10GBase-T/RJ45 掛上 Dell PowerVault MD3800i，簡單地說就是 server 需要大容量的儲存空間，又不想要太貴的光纖介面，折衷一下。 iSCSI 不只可以用在 disk array 和 server 之間的連接，也不一定要 10">
 <meta property="og:locale" content="zh-tw">
 <meta property="og:image" content="https://i.imgur.com/Y5yEliJ.png">
-<meta property="og:updated_time" content="2017-09-29T17:03:53.363Z">
+<meta property="og:updated_time" content="2017-10-03T23:35:28.026Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="How to Mount Storage Array via iSCSI">
-<meta name="twitter:description" content="透過 iSCSI 連結 disk array最近把兩台 Dell PowerEdge R610 透過 iSCSI(IP-SAN) 走 10GBase-T/RJ45 掛上 Dell PowerVault MD3800i，簡單地說就是 server 需要大容量的儲存空間，又不想要太貴的光纖介面，折衷一下。 iSCSI 不只可以用在 disk array 和 server 之間的連接，也不一定要 10G">
+<meta name="twitter:description" content="透過 iSCSI 連結 disk array 最近把兩台 Dell PowerEdge R610 透過 iSCSI(IP-SAN) 走 10GBase-T/RJ45 掛上 Dell PowerVault MD3800i，簡單地說就是 server 需要大容量的儲存空間，又不想要太貴的光纖介面，折衷一下。 iSCSI 不只可以用在 disk array 和 server 之間的連接，也不一定要 10">
 <meta name="twitter:image" content="https://i.imgur.com/Y5yEliJ.png">
 
 
@@ -315,7 +315,8 @@
       
 
       
-        <h2 id="透過-iSCSI-連結-disk-array"><a href="#透過-iSCSI-連結-disk-array" class="headerlink" title="透過 iSCSI 連結 disk array"></a>透過 iSCSI 連結 disk array</h2><p>最近把兩台 Dell PowerEdge R610 透過 iSCSI(IP-SAN) 走 10GBase-T/RJ45 掛上 Dell PowerVault MD3800i，簡單地說就是 server 需要大容量的儲存空間，又不想要太貴的光纖介面，折衷一下。 iSCSI 不只可以用在 disk array 和 server 之間的連接，也不一定要 10G ，用一般 server 也可以挖一塊硬碟空間透過 ip 層來掛給另一台機器用。被掛的機器上要設定 iSCSI target ，掛的機器上要設定 iSCSI client，由於 MD3800i 的 iSCSI target 是透過 Dell 的 PowerVault Modular Disk Storage Manager(MDSM) 軟體來管理，所以這邊就不提 iSCSI target 怎麼 initialize ，以下教學假設 MD3800i 或 disk array 已做好 raid 、 切好 virtual disk 、 disk group</p>
+        <h1 id="透過-iSCSI-連結-disk-array"><a href="#透過-iSCSI-連結-disk-array" class="headerlink" title="透過 iSCSI 連結 disk array"></a><center>透過 iSCSI 連結 disk array</center></h1><p><br></p>
+<p>最近把兩台 Dell PowerEdge R610 透過 iSCSI(IP-SAN) 走 10GBase-T/RJ45 掛上 Dell PowerVault MD3800i，簡單地說就是 server 需要大容量的儲存空間，又不想要太貴的光纖介面，折衷一下。 iSCSI 不只可以用在 disk array 和 server 之間的連接，也不一定要 10G ，用一般 server 也可以挖一塊硬碟空間透過 ip 層來掛給另一台機器用。被掛的機器上要設定 iSCSI target ，掛的機器上要設定 iSCSI client，由於 MD3800i 的 iSCSI target 是透過 Dell 的 PowerVault Modular Disk Storage Manager(MDSM) 軟體來管理，所以這邊就不提 iSCSI target 怎麼 initialize ，以下教學假設 MD3800i 或 disk array 已做好 raid 、 切好 virtual disk 、 disk group</p>
 <h2 id="實驗環境"><a href="#實驗環境" class="headerlink" title="實驗環境"></a>實驗環境</h2><p>Prerequisite: </p>
 <ul>
 <li>disk array 上的硬碟共 4TB * 12，4 顆作 raid 10 約 7T ，8 顆作 raid 10 ，約 14 T (自行依需求配置)</li>
@@ -571,7 +572,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#透過-iSCSI-連結-disk-array"><span class="nav-number">1.</span> <span class="nav-text">透過 iSCSI 連結 disk array</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#實驗環境"><span class="nav-number">2.</span> <span class="nav-text">實驗環境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝步驟"><span class="nav-number">3.</span> <span class="nav-text">安裝步驟</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#client-端-server1"><span class="nav-number">3.1.</span> <span class="nav-text">client 端: server1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#target-端"><span class="nav-number">3.2.</span> <span class="nav-text">target 端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#client-端"><span class="nav-number">3.3.</span> <span class="nav-text">client 端</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#透過-iSCSI-連結-disk-array"><span class="nav-number">1.</span> <span class="nav-text">透過 iSCSI 連結 disk array</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#實驗環境"><span class="nav-number">1.1.</span> <span class="nav-text">實驗環境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝步驟"><span class="nav-number">1.2.</span> <span class="nav-text">安裝步驟</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#client-端-server1"><span class="nav-number">1.2.1.</span> <span class="nav-text">client 端: server1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#target-端"><span class="nav-number">1.2.2.</span> <span class="nav-text">target 端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#client-端"><span class="nav-number">1.2.3.</span> <span class="nav-text">client 端</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
