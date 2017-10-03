@@ -55,7 +55,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Github Pages," />
+  <meta name="keywords" content="c9,setup,開發環境,起手式," />
 
 
 
@@ -71,20 +71,18 @@
 
 
 
-<meta name="description" content="在 Github Pages 上部署專案說明文件這幾天部署 town368 學了不少細碎的知識，下次要用肯定會忘，只好來記個 Project Site on Github Pages在 Github 上部署專案的說明文件，目前有兩種方式  master branch 在 master branch 下的 ./docs   果斷選擇第二種(本 blog 則是用第一種方式發佈)，這樣在專案的主資料下可">
-<meta name="keywords" content="Github Pages">
+<meta name="description" content="配置 Cloud9 開發環境 好像是之前在看 freecodecamp 的時候知道了 Cloud9 ，很久沒碰 freecodecamp ，但 Cloud9 就一直用到現在。用 freecodecamp 的經驗值得再書一篇我心目中的程式教育應該長怎樣，不過…以後再說吧 這篇紀錄一下我怎麼折騰 Cloud9 的開發環境，之前在安裝 Hexo 那篇有說過， c9 基本上可以視為免費雲端的 Ubuntu">
+<meta name="keywords" content="c9,setup,開發環境,起手式">
 <meta property="og:type" content="article">
-<meta property="og:title" content="How to Deploy a Project Site on Github Pages">
-<meta property="og:url" content="https://wyde.github.io/2017/09/25/How-to-Deploy-a-Project-Site-on-Github-Pages/index.html">
+<meta property="og:title" content="Setting up Cloud9 Dev Environment">
+<meta property="og:url" content="https://wyde.github.io/2017/10/04/Setting-up-Cloud9-Dev-Environment/index.html">
 <meta property="og:site_name" content="Wyde&#39;s Blog">
-<meta property="og:description" content="在 Github Pages 上部署專案說明文件這幾天部署 town368 學了不少細碎的知識，下次要用肯定會忘，只好來記個 Project Site on Github Pages在 Github 上部署專案的說明文件，目前有兩種方式  master branch 在 master branch 下的 ./docs   果斷選擇第二種(本 blog 則是用第一種方式發佈)，這樣在專案的主資料下可">
+<meta property="og:description" content="配置 Cloud9 開發環境 好像是之前在看 freecodecamp 的時候知道了 Cloud9 ，很久沒碰 freecodecamp ，但 Cloud9 就一直用到現在。用 freecodecamp 的經驗值得再書一篇我心目中的程式教育應該長怎樣，不過…以後再說吧 這篇紀錄一下我怎麼折騰 Cloud9 的開發環境，之前在安裝 Hexo 那篇有說過， c9 基本上可以視為免費雲端的 Ubuntu">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:image" content="https://i.imgur.com/xP6YU0o.png">
-<meta property="og:updated_time" content="2017-09-25T13:09:42.823Z">
+<meta property="og:updated_time" content="2017-10-03T23:08:04.681Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="How to Deploy a Project Site on Github Pages">
-<meta name="twitter:description" content="在 Github Pages 上部署專案說明文件這幾天部署 town368 學了不少細碎的知識，下次要用肯定會忘，只好來記個 Project Site on Github Pages在 Github 上部署專案的說明文件，目前有兩種方式  master branch 在 master branch 下的 ./docs   果斷選擇第二種(本 blog 則是用第一種方式發佈)，這樣在專案的主資料下可">
-<meta name="twitter:image" content="https://i.imgur.com/xP6YU0o.png">
+<meta name="twitter:title" content="Setting up Cloud9 Dev Environment">
+<meta name="twitter:description" content="配置 Cloud9 開發環境 好像是之前在看 freecodecamp 的時候知道了 Cloud9 ，很久沒碰 freecodecamp ，但 Cloud9 就一直用到現在。用 freecodecamp 的經驗值得再書一篇我心目中的程式教育應該長怎樣，不過…以後再說吧 這篇紀錄一下我怎麼折騰 Cloud9 的開發環境，之前在安裝 Hexo 那篇有說過， c9 基本上可以視為免費雲端的 Ubuntu">
 
 
 
@@ -114,13 +112,13 @@
 
 
 
-  <link rel="canonical" href="https://wyde.github.io/2017/09/25/How-to-Deploy-a-Project-Site-on-Github-Pages/"/>
+  <link rel="canonical" href="https://wyde.github.io/2017/10/04/Setting-up-Cloud9-Dev-Environment/"/>
 
 
 
 
 
-  <title>How to Deploy a Project Site on Github Pages | Wyde's Blog</title>
+  <title>Setting up Cloud9 Dev Environment | Wyde's Blog</title>
   
 
 
@@ -227,7 +225,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://wyde.github.io/2017/09/25/How-to-Deploy-a-Project-Site-on-Github-Pages/">
+    <link itemprop="mainEntityOfPage" href="https://wyde.github.io/2017/10/04/Setting-up-Cloud9-Dev-Environment/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Wyde Wu">
@@ -244,7 +242,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">How to Deploy a Project Site on Github Pages</h2>
+          <h2 class="post-title" itemprop="name headline">Setting up Cloud9 Dev Environment</h2>
         
 
         <div class="post-meta">
@@ -256,8 +254,8 @@
               
                 <span class="post-meta-item-text">發表於</span>
               
-              <time title="創建於" itemprop="dateCreated datePublished" datetime="2017-09-25T19:13:21+08:00">
-                2017-09-25
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2017-10-04T05:53:59+08:00">
+                2017-10-04
               </time>
             
 
@@ -275,9 +273,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/09/25/How-to-Deploy-a-Project-Site-on-Github-Pages/#comments" itemprop="discussionUrl">
+                <a href="/2017/10/04/Setting-up-Cloud9-Dev-Environment/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/09/25/How-to-Deploy-a-Project-Site-on-Github-Pages/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/10/04/Setting-up-Cloud9-Dev-Environment/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -285,7 +283,7 @@
 
           
           
-             <span id="/2017/09/25/How-to-Deploy-a-Project-Site-on-Github-Pages/" class="leancloud_visitors" data-flag-title="How to Deploy a Project Site on Github Pages">
+             <span id="/2017/10/04/Setting-up-Cloud9-Dev-Environment/" class="leancloud_visitors" data-flag-title="Setting up Cloud9 Dev Environment">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -316,22 +314,32 @@
       
 
       
-        <h2 id="在-Github-Pages-上部署專案說明文件"><a href="#在-Github-Pages-上部署專案說明文件" class="headerlink" title="在 Github Pages 上部署專案說明文件"></a>在 Github Pages 上部署專案說明文件</h2><p>這幾天部署 <a href="https://wyde.github.io/town368">town368</a> 學了不少細碎的知識，下次要用肯定會忘，只好來記個</p>
-<h2 id="Project-Site-on-Github-Pages"><a href="#Project-Site-on-Github-Pages" class="headerlink" title="Project Site on Github Pages"></a>Project Site on Github Pages</h2><p>在 Github 上部署專案的說明文件，目前有兩種方式</p>
-<ol>
-<li>master branch</li>
-<li>在 master branch 下的 ./docs</li>
-</ol>
-<p><img src="https://i.imgur.com/xP6YU0o.png" alt=""></p>
-<p>果斷選擇第二種(本 blog 則是用第一種方式發佈)，這樣在專案的主資料下可以保留說明文件的 source (markdown)檔，同時做 source 的版本管理和靜態發佈，如以下範例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">.</div><div class="line">├── &lt;main project&gt;</div><div class="line">├── docs</div><div class="line">│   └── &lt;MkDocs 生成的靜態網站文件s&gt;</div><div class="line">└── mkdocs</div><div class="line">    ├── docs</div><div class="line">    │   └── &lt;你的 project 說明文件s&gt;.md</div><div class="line">    └── mkdocs.yml</div></pre></td></tr></table></figure></p>
-<p>(像<a href="https://hexo.io/zh-tw/docs/deployment.html" target="_blank" rel="external">Hexo 一鍵部署</a> 的 <code>hexo deploy</code> 上去就直接是 master branch ，還要另外開一個 repo 管 source…有沒有更方便的辦法還在想呢)</p>
-<h2 id="選擇-Project-Documentation-系統"><a href="#選擇-Project-Documentation-系統" class="headerlink" title="選擇 Project Documentation 系統"></a>選擇 Project Documentation 系統</h2><p>果斷選擇 <a href="http://www.mkdocs.org/" target="_blank" rel="external">MkDocs</a> ，可以配合非常熱門的佈景主題： readthedocs (built-in)。其它的 theme 可以參考 <a href="https://github.com/mkdocs/mkdocs/wiki/MkDocs-Themes" target="_blank" rel="external">community wiki</a> 。我個人是比較喜歡 <a href="https://github.com/squidfunk/mkdocs-material" target="_blank" rel="external">Material 主題</a>的左右欄設計，不會像 readthedocs 到大螢幕上就整個版本偏左…甚至我就是為了這個 theme 用 MkDocs 的，其它常用的文件工具還有 <a href="http://www.sphinx-doc.org" target="_blank" rel="external">Sphinx</a></p>
-<p>先裝 MkDocs 再裝 theme: Material<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ cd &lt;project directory&gt;</div><div class="line">$ pip install mkdocs mkdocs-material</div><div class="line">$ mkdocs new docs &amp;&amp; cd docs</div><div class="line">$ vim mkdocs.yml</div></pre></td></tr></table></figure></p>
-<p>修改這一行 `theme: ‘material’<br><a href="https://wyde.github.io/town368">直接看作完的 demo</a></p>
-<h2 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ mkdocs serve -a $IP:$PORT # 起測試 server</div><div class="line">$ mkdocs build # 生成要發佈的靜態網站</div></pre></td></tr></table></figure>
-<h3 id="新增與編輯文件"><a href="#新增與編輯文件" class="headerlink" title="新增與編輯文件"></a>新增與編輯文件</h3><p>source (markdown)檔在 ./docs 裡，一開始只有 index.md ，如果要新增頁面，直接新增一個 *.md 檔，然後修改 mkdocs.yml ，例如我新增了一個 about.md ，接著在 mkdocs.yml 裡<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">pages:</div><div class="line">    - [&apos;index.md&apos;, &apos;Home&apos;]</div><div class="line">    - [&apos;about.md&apos;, &apos;About&apos;]</div></pre></td></tr></table></figure></p>
-<h3 id="坑"><a href="#坑" class="headerlink" title="坑"></a>坑</h3><p>預設的靜態文件會產生在 ./site ，可是我們希望它 render 的時候是在 ../docs ，這樣到時候 Github Pages 才會在正確的資料夾找到我們的靜態資料，所以要修改一下 mkdocs.yml <code>site_dir:&#39;../docs&#39;</code>，然後就可以 <code>rm -rf ./site</code></p>
-<h3 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h3><p>MkDocs 有提供<a href="http://www.mkdocs.org/#deploying" target="_blank" rel="external">一鍵部署</a>，不過因為我把靜態資料夾改到原本專案的 ./docs 下，就直接用 master branch 管理就好，目前這樣寫小專案的文件還蠻方便的</p>
+        <h2 id="配置-Cloud9-開發環境"><a href="#配置-Cloud9-開發環境" class="headerlink" title="配置 Cloud9 開發環境"></a><center>配置 Cloud9 開發環境</center></h2><p><br></p>
+<p>好像是之前在看 <a href="https://www.freecodecamp.org/" target="_blank" rel="external">freecodecamp</a> 的時候知道了 <a href="https://c9.io" target="_blank" rel="external">Cloud9</a> ，很久沒碰 freecodecamp ，但 Cloud9 就一直用到現在。用 freecodecamp 的經驗值得再書一篇我心目中的程式教育應該長怎樣，不過…以後再說吧</p>
+<p>這篇紀錄一下我怎麼折騰 Cloud9 的開發環境，之前在<a href="https://wyde.github.io/2017/09/23/How-to-Deploy-Hexo-on-Github-Pages/#more">安裝 Hexo 那篇</a>有說過， c9 基本上可以視為免費雲端的 Ubuntu 14.04 container + IDE ，當然身為 vim 黨不需要 IDE ，而且我的瀏覽器通常都會裝 cVim ，用瀏覽器寫扣快捷鍵常常會被抓走，不過開發個人的 web 小 project 還算夠用。在辦公室、在家裡一開瀏覽器就可以接上原本的 session 也很方便。最大的優點是如果要嘗試我的 tutorial 可以馬上使用一模一樣的環境，而且是免費的。最大的缺點是我不會用 Ubuntu 14.04 當作 production 的部署環境</p>
+<p>先寫一波手動的程序，有時間再來自動化</p>
+<h2 id="先更新系統和時區"><a href="#先更新系統和時區" class="headerlink" title="先更新系統和時區"></a>先更新系統和時區</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get update</div><div class="line">$ sudo dpkg-reconfigure tzdata # (跟著 menu 選時區)</div><div class="line"></div><div class="line">$ cat /etc/timezone</div><div class="line">Asia/Taipei</div></pre></td></tr></table></figure>
+<h2 id="切換使用者"><a href="#切換使用者" class="headerlink" title="切換使用者"></a>切換使用者</h2><p>不知道為什麼 c9 的預設配置會 chroot 給使用者 ubuntu ， bash 卻顯示 c9 的 user name ，<code>$ id</code>一下還蠻不解的，於是我都會先新創使用者 webuser ，以利一致性與部署</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ sudo adduser webuser</div><div class="line">(跟著 prompt 輸入兩波新密碼)</div><div class="line"></div><div class="line">$ sudo gpasswd -a webuser sudo # 加入 sudo 群組</div></pre></td></tr></table></figure>
+<p>然後新使用者的 .bashrc 和 .vimrc 都蠻難用的，雖然平常工作機我會用 zsh + oh my zsh ，不過 c9 空間有限(看看右上角的 meter)，所以這邊我會給可工作的最小配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo wget https://cdn.rawgit.com/wyde/467c9d52b5f87c8914cb3e2b5e776e2d/raw/a2655490772f21c8e656391577d2ee6d5b878f08/gistfile1.txt -O /home/webuser/.bashrc; \</div><div class="line">sudo wget https://cdn.rawgit.com/wyde/1a0623616218ccfa04579ba5608e61ff/raw/9f247244197c3eb0a02c7d04f5be81ffebc92e87/gistfile1.txt -O /home/webuser/.vimrc</div></pre></td></tr></table></figure>
+<p>這裡 .vimrc 只設定行號和四格空白的縮進，設定好了就可以開始使用新的 user 身份<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ su webuser</div><div class="line">$ cd ~</div></pre></td></tr></table></figure></p>
+<h2 id="設定-ssh-key"><a href="#設定-ssh-key" class="headerlink" title="設定 ssh key"></a>設定 ssh key</h2><p>這裡就比較見仁見智了，因為要把 private key 放在這個 container 裡，多少有點風險，自行斟酌吧，我是生了一對 c9 和 github 專用的 key ，掉了就算了，個人 side project 其他地方也有備份</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ mkdir ~/.ssh &amp;&amp; chmod 700 ~/.ssh</div><div class="line">$ touch ~/.ssh/&lt;private key&gt; &amp;&amp; chmod 600 ~/.ssh/&lt;private key&gt;</div><div class="line">$ vim ~/.ssh/&lt;private key&gt; # 直接貼上 private key</div></pre></td></tr></table></figure>
+<p>然後把 key 加入 ssh-agent 測試一波<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ eval &quot;$(ssh-agent -s)&quot;</div><div class="line">$ ssh-add ~/.ssh/&lt;private key&gt;</div><div class="line">$ ssh -T git@github.com</div><div class="line">Hi &lt;github username&gt;, Youve successfully authenticated, but GitHub does not provide shell access.</div></pre></td></tr></table></figure></p>
+<p>看到這行就算加完了</p>
+<p>以上是 general 的設定，接下來根據不同語言、工具的開發需求稍微紀錄設定方式</p>
+<h2 id="Python-3-3-4"><a href="#Python-3-3-4" class="headerlink" title="Python 3 (3.4)"></a>Python 3 (3.4)</h2><p>預設的 python 還是 2.7.6 ，我打算升到 3 ，然後在 virtualenv 裡面開發，然後懶得用 wrapper 了，覺得 container 裡面基本只會執行一個單純的 project ，就不用多設定一層</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ sudo pip install pip --upgrade</div><div class="line">$ sudo pip install virtualenv</div><div class="line">$ virtualenv -p python3 ~/.env # 還是放在隱藏目錄下順手</div><div class="line">$ source ~/.env/bin/activate</div><div class="line">(.env) $ python --version</div><div class="line">Python 3.4.3</div></pre></td></tr></table></figure>
+<p>以後 tutorial 就懶得多寫一個 (.env) 了，執行 python project 的基本就不再特別標註</p>
+<h2 id="Node-js-v6-11-3"><a href="#Node-js-v6-11-3" class="headerlink" title="Node.js (v6.11.3)"></a>Node.js (v6.11.3)</h2><p>自從從 freecodecamp drop out 就沒在用 node 開發東西了，這裡的設置主要是為了 Hexo ，不過在這大前端時代感覺就會玩到，至少 server side 我是不會想用啦</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ cd /tmp</div><div class="line">$ curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -</div><div class="line">$ sudo apt-get install -y nodejs</div><div class="line">$ node --version</div><div class="line">v6.11.3</div><div class="line"></div><div class="line">$ cd -</div></pre></td></tr></table></figure>
+<h2 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h2><ul>
+<li>設置 Jupyter</li>
+<li>setup MySQL</li>
+<li>setup Redis</li>
+<li>setup PostgreSQL</li>
+</ul>
 
       
     </div>
@@ -349,7 +357,13 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Github-Pages/" rel="tag"># Github Pages</a>
+            <a href="/tags/c9/" rel="tag"># c9</a>
+          
+            <a href="/tags/setup/" rel="tag"># setup</a>
+          
+            <a href="/tags/開發環境/" rel="tag"># 開發環境</a>
+          
+            <a href="/tags/起手式/" rel="tag"># 起手式</a>
           
         </div>
       
@@ -362,8 +376,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/09/23/How-to-Deploy-Hexo-on-Github-Pages/" rel="next" title="How to Deploy Hexo on Github Pages">
-                <i class="fa fa-chevron-left"></i> How to Deploy Hexo on Github Pages
+              <a href="/2017/10/03/Python-Markdown-Resume-Generator/" rel="next" title="Python Markdown Resume Generator">
+                <i class="fa fa-chevron-left"></i> Python Markdown Resume Generator
               </a>
             
           </div>
@@ -371,10 +385,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/09/29/How-to-Mount-Storage-Array-via-iSCSI/" rel="prev" title="How to Mount Storage Array via iSCSI">
-                How to Mount Storage Array via iSCSI <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -519,7 +529,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#在-Github-Pages-上部署專案說明文件"><span class="nav-number">1.</span> <span class="nav-text">在 Github Pages 上部署專案說明文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Project-Site-on-Github-Pages"><span class="nav-number">2.</span> <span class="nav-text">Project Site on Github Pages</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#選擇-Project-Documentation-系統"><span class="nav-number">3.</span> <span class="nav-text">選擇 Project Documentation 系統</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本操作"><span class="nav-number">4.</span> <span class="nav-text">基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#新增與編輯文件"><span class="nav-number">4.1.</span> <span class="nav-text">新增與編輯文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#坑"><span class="nav-number">4.2.</span> <span class="nav-text">坑</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#部署"><span class="nav-number">4.3.</span> <span class="nav-text">部署</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#配置-Cloud9-開發環境"><span class="nav-number">1.</span> <span class="nav-text">配置 Cloud9 開發環境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#先更新系統和時區"><span class="nav-number">2.</span> <span class="nav-text">先更新系統和時區</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#切換使用者"><span class="nav-number">3.</span> <span class="nav-text">切換使用者</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#設定-ssh-key"><span class="nav-number">4.</span> <span class="nav-text">設定 ssh key</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Python-3-3-4"><span class="nav-number">5.</span> <span class="nav-text">Python 3 (3.4)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Node-js-v6-11-3"><span class="nav-number">6.</span> <span class="nav-text">Node.js (v6.11.3)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TODO"><span class="nav-number">7.</span> <span class="nav-text">TODO</span></a></li></ol></div>
             
 
           </div>
@@ -665,9 +675,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'https://wyde.github.io/2017/09/25/How-to-Deploy-a-Project-Site-on-Github-Pages/';
-          this.page.identifier = '2017/09/25/How-to-Deploy-a-Project-Site-on-Github-Pages/';
-          this.page.title = 'How to Deploy a Project Site on Github Pages';
+          this.page.url = 'https://wyde.github.io/2017/10/04/Setting-up-Cloud9-Dev-Environment/';
+          this.page.identifier = '2017/10/04/Setting-up-Cloud9-Dev-Environment/';
+          this.page.title = 'Setting up Cloud9 Dev Environment';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://wyde.disqus.com/embed.js';
