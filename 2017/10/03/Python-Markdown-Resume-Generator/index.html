@@ -80,7 +80,7 @@
 <meta property="og:description" content="Python 阿宅履歷產生器最近剛好一直折騰 Python 、 Markdown 、 靜態網頁之間的小作品，免不了要碰 CSS ，往往這就是效能瓶頸啊，難就難在這個美感， div 擺弄半天。這跟今天的主題也有關，前兩天看了 ptt 一篇履歷寫作相關的文章，想了一下肥宅工程師如我履歷應該長怎樣，  從上一篇文章看到的範例 關於 MIT 履歷的範本的報導  然後是  MIT 履歷範本它本人 Five">
 <meta property="og:locale" content="zh-tw">
 <meta property="og:image" content="https://i.imgur.com/rJY8K7w.png">
-<meta property="og:updated_time" content="2017-10-03T13:51:41.194Z">
+<meta property="og:updated_time" content="2017-10-03T13:55:11.798Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python Markdown Resume Generator">
 <meta name="twitter:description" content="Python 阿宅履歷產生器最近剛好一直折騰 Python 、 Markdown 、 靜態網頁之間的小作品，免不了要碰 CSS ，往往這就是效能瓶頸啊，難就難在這個美感， div 擺弄半天。這跟今天的主題也有關，前兩天看了 ptt 一篇履歷寫作相關的文章，想了一下肥宅工程師如我履歷應該長怎樣，  從上一篇文章看到的範例 關於 MIT 履歷的範本的報導  然後是  MIT 履歷範本它本人 Five">
@@ -316,7 +316,7 @@
       
 
       
-        <h1 id="Python-阿宅履歷產生器"><a href="#Python-阿宅履歷產生器" class="headerlink" title="Python 阿宅履歷產生器"></a>Python 阿宅履歷產生器</h1><p>最近剛好一直折騰 Python 、 Markdown 、 靜態網頁之間的小作品，免不了要碰 CSS ，往往這就是效能瓶頸啊，難就難在這個美感， div 擺弄半天。這跟今天的主題也有關，前兩天看了 <a href="https://www.ptt.cc/bbs/studyabroad/M.1506792069.A.449.html" target="_blank" rel="external">ptt 一篇履歷寫作相關的文章</a>，想了一下肥宅工程師如我履歷應該長怎樣，</p>
+        <h1 id="Python-阿宅履歷產生器"><a href="#Python-阿宅履歷產生器" class="headerlink" title="Python 阿宅履歷產生器"></a>Python 阿宅履歷產生器</h1><p><br><br>最近剛好一直折騰 Python 、 Markdown 、 靜態網頁之間的小作品，免不了要碰 CSS ，往往這就是效能瓶頸啊，難就難在這個美感， div 擺弄半天。這跟今天的主題也有關，前兩天看了 <a href="https://www.ptt.cc/bbs/studyabroad/M.1506792069.A.449.html" target="_blank" rel="external">ptt 一篇履歷寫作相關的文章</a>，想了一下肥宅工程師如我履歷應該長怎樣，</p>
 <ul>
 <li><a href="https://careercup.com/resume" target="_blank" rel="external">從上一篇文章看到的範例</a></li>
 <li><a href="http://www.storm.mg/lifestyle/280401" target="_blank" rel="external">關於 MIT 履歷的範本的報導</a></li>
@@ -342,18 +342,13 @@
 <li><a href="https://jbt.github.io/markdown-editor/" target="_blank" rel="external">Markdown Editor</a></li>
 <li><a href="https://github.com/hackmdio/hackmd" target="_blank" rel="external">hackmd</a></li>
 </ul>
-<h2 id="開發筆記"><a href="#開發筆記" class="headerlink" title="開發筆記"></a>開發筆記</h2><p>理想很豐滿，現實很骨感，我只想先符合我的需求就好，找了 python 中號稱 render markdown 最快的 mistune 就直接開擼。這種前端工作起手式都先 Cloud9 一波</p>
+<h2 id="開發筆記"><a href="#開發筆記" class="headerlink" title="開發筆記"></a>開發筆記</h2><p>理想很豐滿，現實很骨感，我只想先符合我的需求就好，找了 python 中號稱 render markdown 最快的 <a href="https://github.com/lepture/mistune" target="_blank" rel="external">mistune</a> 就直接開擼。這種前端工作起手式都先 Cloud9 一波</p>
 <p>…</p>
 <p>好了，擼完了 (就這麼點 code 是能擼多久)，直接看<a href="https://wyde.github.io/md-resume-generator/">成果</a>，思路很簡單，markdown 轉 HTML ，再直接用 css 修飾，懶得點直接看截圖</p>
 <p>Markdown 長<a href="https://raw.githubusercontent.com/wyde/md-resume-generator/master/source/resume.md" target="_blank" rel="external">這樣</a></p>
 <p>生成 HTML 後預覽列印長這樣<br><img src="https://i.imgur.com/rJY8K7w.png" alt=""></p>
 <p>基本上就是 MIT 履歷範本第一個的樣式， resume.md 階層不改， css 樣式改變就可以再套別的版型 (歡迎 PR 工程人履歷的 css 版啊)，以下是我自己的 headings 階層，有興趣發 PR 補 css 的同學可以參考一下：</p>
-<blockquote>
-<p>: 地址、聯絡方式<br>H1: 名字<br>H2: 大分項的標題，如(Education 、 Employment)<br>H3: 分述子項標題<br>h4: 分述子項副標題</p>
-<ul>
-<li>*: 地點、時間</li>
-</ul>
-</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&gt;: 地址、聯絡方式 </div><div class="line">H1: 名字</div><div class="line">H2: 大分項的標題，如(Education 、 Employment)</div><div class="line">H3: 分述子項標題</div><div class="line">h4: 分述子項副標題</div><div class="line">* *: 地點、時間</div></pre></td></tr></table></figure>
 <h2 id="todo"><a href="#todo" class="headerlink" title="todo"></a>todo</h2><ul>
 <li>轉 PDF</li>
 <li>生更多 css</li>
