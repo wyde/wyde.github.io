@@ -71,18 +71,18 @@
 
 
 
-<meta name="description" content="利用 Hexo 和 Github Pages 建立 blog第一篇文章不可免俗地來介紹這個 blog 怎麼建起來的，最陽春的那種 :) 結果不小心手殘誤刪，這篇無法當第一篇了，才發現 hexo deploy 只有 push public 裡 render 完的網頁，原本以為會連 markdown 都上傳，看來要用另一個 repo 管理 markdown 的 source ，難怪有人還會再接 CI(">
+<meta name="description" content="利用 Hexo 和 Github Pages 建立 blog 第一篇文章不可免俗地來介紹這個 blog 怎麼建起來的，最陽春的那種 :) 結果不小心手殘誤刪，這篇無法當第一篇了，才發現 hexo deploy 只有 push public 裡 render 完的網頁，原本以為會連 markdown 都上傳，看來要用另一個 repo 管理 markdown 的 source ，難怪有人還會再接 CI">
 <meta name="keywords" content="Github Pages,Hexo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="How to Deploy Hexo on Github Pages">
 <meta property="og:url" content="https://wyde.github.io/2017/09/23/How-to-Deploy-Hexo-on-Github-Pages/index.html">
 <meta property="og:site_name" content="Wyde&#39;s Blog">
-<meta property="og:description" content="利用 Hexo 和 Github Pages 建立 blog第一篇文章不可免俗地來介紹這個 blog 怎麼建起來的，最陽春的那種 :) 結果不小心手殘誤刪，這篇無法當第一篇了，才發現 hexo deploy 只有 push public 裡 render 完的網頁，原本以為會連 markdown 都上傳，看來要用另一個 repo 管理 markdown 的 source ，難怪有人還會再接 CI(">
+<meta property="og:description" content="利用 Hexo 和 Github Pages 建立 blog 第一篇文章不可免俗地來介紹這個 blog 怎麼建起來的，最陽春的那種 :) 結果不小心手殘誤刪，這篇無法當第一篇了，才發現 hexo deploy 只有 push public 裡 render 完的網頁，原本以為會連 markdown 都上傳，看來要用另一個 repo 管理 markdown 的 source ，難怪有人還會再接 CI">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2017-10-03T14:15:12.741Z">
+<meta property="og:updated_time" content="2017-10-03T23:32:05.118Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="How to Deploy Hexo on Github Pages">
-<meta name="twitter:description" content="利用 Hexo 和 Github Pages 建立 blog第一篇文章不可免俗地來介紹這個 blog 怎麼建起來的，最陽春的那種 :) 結果不小心手殘誤刪，這篇無法當第一篇了，才發現 hexo deploy 只有 push public 裡 render 完的網頁，原本以為會連 markdown 都上傳，看來要用另一個 repo 管理 markdown 的 source ，難怪有人還會再接 CI(">
+<meta name="twitter:description" content="利用 Hexo 和 Github Pages 建立 blog 第一篇文章不可免俗地來介紹這個 blog 怎麼建起來的，最陽春的那種 :) 結果不小心手殘誤刪，這篇無法當第一篇了，才發現 hexo deploy 只有 push public 裡 render 完的網頁，原本以為會連 markdown 都上傳，看來要用另一個 repo 管理 markdown 的 source ，難怪有人還會再接 CI">
 
 
 
@@ -314,30 +314,31 @@
       
 
       
-        <h2 id="利用-Hexo-和-Github-Pages-建立-blog"><a href="#利用-Hexo-和-Github-Pages-建立-blog" class="headerlink" title="利用 Hexo 和 Github Pages 建立 blog"></a>利用 Hexo 和 Github Pages 建立 blog</h2><p><del>第一篇文章不可免俗地來介紹這個 blog 怎麼建起來的，最陽春的那種 :)</del></p>
+        <h1 id="利用-Hexo-和-Github-Pages-建立-blog"><a href="#利用-Hexo-和-Github-Pages-建立-blog" class="headerlink" title="利用 Hexo 和 Github Pages 建立 blog"></a><center>利用 Hexo 和 Github Pages 建立 blog</center></h1><p><br></p>
+<p><del>第一篇文章不可免俗地來介紹這個 blog 怎麼建起來的，最陽春的那種 :)</del></p>
 <p>結果不小心手殘誤刪，這篇無法當第一篇了，才發現 hexo deploy 只有 push public 裡 render 完的網頁，原本以為會連 markdown 都上傳，看來要用另一個 repo 管理 markdown 的 source ，難怪有人還會再接 CI(Continous Integration) 的工具，這樣寫完 markdown 就直接生成網站了，這次先簡單地寫一下架設步驟，因為是在雲端 IDE 上處理，所以不論什麼 OS 的使用者都能 remote 免費使用</p>
 <p>主要有三個部分，</p>
 <ol>
-<li>Cloud9 設置免費的 Ubuntu 14.04 的開發環境</li>
+<li>設置 Node.js 的開發環境</li>
 <li>安裝與設定 Hexo 與 NexT theme</li>
 <li>編輯完推上 Github Pages</li>
 </ol>
 <p>之前在考慮 Pelican 、 Hugo 、 Hexo ，聽說了 Pelican 開發較不活躍且 render 速度慢， Hugo 配置較麻煩，就採用了 Hexo ，這些只是聽說，沒有實測…</p>
 <p>身為 Python 愛好者，希望有 Python + Jinja2 寫的靜態網站產生器同時又兼具美觀和易用性…這次架 Hexo 的感覺真的蠻快蠻方便的</p>
-<h2 id="Cloud9-簡易設置"><a href="#Cloud9-簡易設置" class="headerlink" title="Cloud9 簡易設置"></a>Cloud9 簡易設置</h2><p>這裡可以不用 Cloud9 ，我用起來主要就是免費、方便、到處都可用，而且本機用什麼 OS 都可以</p>
-<p>Cloud9 自稱是雲端 IDE ，我都當作免洗的 Linux container(Ubuntu 14.04) 來用，我在上面做大部分的 web 開發與測試，往後會再寫一篇關於 c9 開發環境的設置，這邊先簡略的寫一下，依 Hexo 的需求，就是裝一個 Nodejs 的環境，有很多種裝法，我們這次用 Nodejs 官方教學直接用 apt-get 來裝</p>
-<p>開一個 Cloud9 的空白 Ubuntu 14.04</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get update</div><div class="line">$ sudo dpkg-reconfigure tzdata # 設置時區</div><div class="line"></div><div class="line"># 安裝 node</div><div class="line">$ cd /tmp</div><div class="line">$ curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -</div><div class="line">$ sudo apt-get install -y nodejs</div><div class="line">$ node --version</div><div class="line">v6.11.3</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="Node-js-setup"><a href="#Node-js-setup" class="headerlink" title="Node.js setup"></a>Node.js setup</h2><p>我習慣在 linux 上工作，這邊的開發都在一個雲端 container(Ubuntu 14.04) 上工作，好處不管用 Mac 或 Windows 都可以用瀏覽器登入免費使用，網址在<a href="https://c9.io/" target="_blank" rel="external">這</a>，使用教學在<a href="https://wyde.github.io/2017/10/04/Setting-up-Cloud9-Dev-Environment">這</a>，當然如果自己有習慣的工作環境只要 node 有裝起來就可以繼續裝 Hexo</p>
+<hr>
 <h2 id="安裝-Hexo"><a href="#安裝-Hexo" class="headerlink" title="安裝 Hexo"></a>安裝 Hexo</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ sudo npm install -g hexo-cli</div><div class="line">$ hexo</div><div class="line">(列出 Hexo 常用指令，表示成功安裝)</div></pre></td></tr></table></figure>
 <p>我們打算拿 Github Pages 當個人的 blog，於是目錄就直接開 <code>&lt;your github account&gt;.github.io</code></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ cd ~</div><div class="line">$ mkdir &lt;your github account&gt;.github.io &amp;&amp; cd &lt;your github account&gt;.github.io</div><div class="line">$ hexo init</div><div class="line">$ npm install</div><div class="line">$ hexo s -p $PORT</div></pre></td></tr></table></figure>
-<p>(起了 hexo 的測試 server，如果要關掉就 Ctrl + C)<br>另開瀏覽器分頁，可以在 <code>https://&lt;c9 project name&gt;-&lt;c9 user name&gt;.c9users.io</code>看到 Hexo 的 hello-world ，這樣 Hexo 基本上就裝完了</p>
-<p>然後安裝個 theme ，我選的是 next<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git clone https://github.com/iissnan/hexo-theme-next themes/next</div><div class="line">$ vim _config.yml</div></pre></td></tr></table></figure></p>
+<p>(起了 hexo 的測試 server，如果要關掉就 Ctrl + C)<br>另開瀏覽器分頁，可以在 <code>https://&lt;c9 project name&gt;-&lt;c9 user name&gt;.c9users.io</code>看到 Hexo 的 hello-world，如果是在本機上開發，那瀏覽器就開 <code>localhost</code> 吧，這樣 Hexo 基本上就裝完了</p>
+<p>安裝 theme ，我選的是 NexT<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git clone https://github.com/iissnan/hexo-theme-next themes/next</div><div class="line">$ vim _config.yml</div></pre></td></tr></table></figure></p>
 <p>修改 theme 的設定值為 next</p>
 <ul>
 <li>修改 Hexo 本身的設定要在 ./_config.yml</li>
 <li>修改 Next 的主題設定要在 ./theme/next/_config.yml</li>
 </ul>
+<hr>
 <h2 id="Github-Pages-設定"><a href="#Github-Pages-設定" class="headerlink" title="Github Pages 設定"></a>Github Pages 設定</h2><ol>
 <li>如果沒有，先申請一個 Github 帳號</li>
 <li>開一個新的 repo 叫 <your github="" account="">.github.io</your></li>
@@ -364,6 +365,7 @@
 <h2 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h2><ul>
 <li>社群分享</li>
 <li>打賞</li>
+<li>模板.md</li>
 </ul>
 
       
@@ -505,7 +507,7 @@
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-count">19</span>
                 <span class="site-state-item-name">標籤</span>
               
             </div>
@@ -554,7 +556,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#利用-Hexo-和-Github-Pages-建立-blog"><span class="nav-number">1.</span> <span class="nav-text">利用 Hexo 和 Github Pages 建立 blog</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cloud9-簡易設置"><span class="nav-number">2.</span> <span class="nav-text">Cloud9 簡易設置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝-Hexo"><span class="nav-number">3.</span> <span class="nav-text">安裝 Hexo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Github-Pages-設定"><span class="nav-number">4.</span> <span class="nav-text">Github Pages 設定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Third-Party-Integration"><span class="nav-number">5.</span> <span class="nav-text">Third Party Integration</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TODO"><span class="nav-number">6.</span> <span class="nav-text">TODO</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#利用-Hexo-和-Github-Pages-建立-blog"><span class="nav-number">1.</span> <span class="nav-text">利用 Hexo 和 Github Pages 建立 blog</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Node-js-setup"><span class="nav-number">1.1.</span> <span class="nav-text">Node.js setup</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝-Hexo"><span class="nav-number">1.2.</span> <span class="nav-text">安裝 Hexo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Github-Pages-設定"><span class="nav-number">1.3.</span> <span class="nav-text">Github Pages 設定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Third-Party-Integration"><span class="nav-number">1.4.</span> <span class="nav-text">Third Party Integration</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TODO"><span class="nav-number">1.5.</span> <span class="nav-text">TODO</span></a></li></ol></li></ol></div>
             
 
           </div>
