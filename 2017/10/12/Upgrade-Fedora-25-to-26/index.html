@@ -78,7 +78,7 @@
 <meta property="og:site_name" content="Wyde&#39;s Blog">
 <meta property="og:description" content="Fedora 25 升級到 26 開箱了一台 workstation ，原本要裝 f26 server ，裝到 f25 server 去了，所以就多了這篇 XD (設定網路的)坑裝完 f25 ，馬上就遇到坑，設好 ip (直接改 /etc/sysconfig/network-scripts/ifcfg-&amp;lt;interface name&amp;gt;)，連線正常，要 $sudo dnf update">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2017-10-12T11:11:11.352Z">
+<meta property="og:updated_time" content="2017-10-12T14:13:00.882Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Upgrade Fedora 25 to 26">
 <meta name="twitter:description" content="Fedora 25 升級到 26 開箱了一台 workstation ，原本要裝 f26 server ，裝到 f25 server 去了，所以就多了這篇 XD (設定網路的)坑裝完 f25 ，馬上就遇到坑，設好 ip (直接改 /etc/sysconfig/network-scripts/ifcfg-&amp;lt;interface name&amp;gt;)，連線正常，要 $sudo dnf update">
@@ -318,7 +318,7 @@
 <h2 id="設定網路的-坑"><a href="#設定網路的-坑" class="headerlink" title="(設定網路的)坑"></a>(設定網路的)坑</h2><p>裝完 f25 ，馬上就遇到坑，設好 ip (直接改 <code>/etc/sysconfig/network-scripts/ifcfg-&lt;interface name&gt;</code>)，連線正常，要 <code>$sudo dnf update</code> 卻出現 <code>錯誤：Failed to synchronize cache for repo &#39;updates&#39;</code> </p>
 <ul>
 <li>用 <code>$ sudo dnf update --refresh -vvv</code> 發現有這行錯誤 <code>[Could not resolve host: mirrors.fedoraproject.org].</code> </li>
-<li>檢查一下 <code>/etc/resolv.conf</code>，原來 NetworkManger 會去改 /etc/resolv.conf，overwrite 成 DHCP 拿到的 domain</li>
+<li>檢查一下 <code>/etc/resolv.conf</code>，原來 NetworkManger 會去改 /etc/resolv.conf，overwrite 成 DHCP 拿到的 domain， nameserver 被洗掉就不能 resolve 鏡像站的 address </li>
 <li>解決方法： <code>sudo vi /etc/NetworkManager/NetworkManager.conf</code>在 <code>[main]</code> 下加一句 <code>dns:none</code></li>
 </ul>
 <p>參考：<a href="https://unix.stackexchange.com/questions/90035/how-to-set-dns-resolver-in-fedora-using-network-manager" target="_blank" rel="external">限制 NetworkManger 不要改 /etc/resolv.conf 的 dns server 設定</a></p>
@@ -326,8 +326,13 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo dnf install NetworkManager-tui -y</div></pre></td></tr></table></figure>
 <p>裝好 nmtui 之後我就把 <code>dns:none</code> 那行拔掉了，直接 <code>$ sudo nmtui</code> 把網路設定重新順一下，也 ignore ipv6</p>
 <hr>
-<h2 id="f25-to-f26"><a href="#f25-to-f26" class="headerlink" title="f25 to f26"></a>f25 to f26</h2><p>按照<a href="https://fedoraproject.org/wiki/DNF_system_upgrade" target="_blank" rel="external">教學</a>，很順利的升到了 f26 ，文件沒什麼問題，就是每一行安裝可以加個 <code>-y</code> 參數節省時間，升級完檢查一下版號</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ cat /etc/fedora-release</div><div class="line">Fedora release 26 (Twenty Six)</div></pre></td></tr></table></figure>
+<h2 id="f25-to-f26"><a href="#f25-to-f26" class="headerlink" title="f25 to f26"></a>f25 to f26</h2><p>按照<a href="https://fedoraproject.org/wiki/DNF_system_upgrade" target="_blank" rel="external">教學</a>，很順利的升到了 f26 ，文件沒什麼問題，就是每一行安裝可以加個 <code>-y</code> 參數默認同意以節省時間<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ sudo dnf upgrade --refresh -y</div><div class="line">$ sudo dnf install dnf-plugin-system-upgrade -y</div><div class="line">$ sudo dnf system-upgrade download --refresh --releasever=26 -y</div><div class="line">$ sudo dnf system-upgrade reboot</div></pre></td></tr></table></figure></p>
+<p>升級完檢查一下版號<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ cat /etc/fedora-release</div><div class="line">Fedora release 26 (Twenty Six)</div></pre></td></tr></table></figure></p>
+<h2 id="其它小習慣"><a href="#其它小習慣" class="headerlink" title="其它小習慣"></a>其它小習慣</h2><h3 id="SELINUX"><a href="#SELINUX" class="headerlink" title="SELINUX"></a>SELINUX</h3><p>然後我是習慣把 selinux 關掉，利用 sed 的搜尋(search)並取代(replace)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo sed -i &apos;s/SELINUX=enforcing/SELINUX=disabled/g&apos; /etc/selinux/config</div><div class="line">$ sudo reboot</div></pre></td></tr></table></figure></p>
+<p>重新開機之後 <code>$ sestatus</code> 確定是不是 disabled</p>
+<h3 id="sshd-config"><a href="#sshd-config" class="headerlink" title="sshd_config"></a>sshd_config</h3><p>至少把 RootLogin 拿掉<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo sed -i &apos;s/PermitRootLogin\ yes/PermitRootLogin\ no/g&apos; /etc/ssh/sshd_config</div><div class="line">$ sudo systemctl restart sshd.service</div></pre></td></tr></table></figure></p>
+<p>public key 設好的話 <code>PasswordAuthentication yes</code> 也可以設為 <code>no</code></p>
+<p>還有很多設定像是 fail2ban 、 vimrc 、 bashrc 之類的…以後再寫，這兩項先做，SELINUX 也沒那麼不值得用，就是我嫌煩</p>
 <p>結果主要的部分反而比較簡單…只是又再熟悉了一下網路設定的部分</p>
 
       
@@ -506,7 +511,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Fedora-25-升級到-26"><span class="nav-number">1.</span> <span class="nav-text">Fedora 25 升級到 26</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#設定網路的-坑"><span class="nav-number">1.1.</span> <span class="nav-text">(設定網路的)坑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#f25-to-f26"><span class="nav-number">1.2.</span> <span class="nav-text">f25 to f26</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Fedora-25-升級到-26"><span class="nav-number">1.</span> <span class="nav-text">Fedora 25 升級到 26</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#設定網路的-坑"><span class="nav-number">1.1.</span> <span class="nav-text">(設定網路的)坑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#f25-to-f26"><span class="nav-number">1.2.</span> <span class="nav-text">f25 to f26</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其它小習慣"><span class="nav-number">1.3.</span> <span class="nav-text">其它小習慣</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SELINUX"><span class="nav-number">1.3.1.</span> <span class="nav-text">SELINUX</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sshd-config"><span class="nav-number">1.3.2.</span> <span class="nav-text">sshd_config</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
