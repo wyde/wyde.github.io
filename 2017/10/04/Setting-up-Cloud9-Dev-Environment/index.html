@@ -79,7 +79,7 @@
 <meta property="og:site_name" content="Wyde&#39;s Blog">
 <meta property="og:description" content="配置 Cloud9 開發環境 好像是之前在看 freecodecamp 的時候知道了 Cloud9 ，很久沒碰 freecodecamp ，但 Cloud9 就一直用到現在。用 freecodecamp 的經驗值得再書一篇我心目中的程式教育應該長怎樣，不過…以後再說吧 這篇紀錄一下我怎麼折騰 Cloud9 的開發環境，之前在安裝 Hexo 那篇有說過， c9 基本上可以視為免費雲端的 Ubuntu">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2017-10-03T23:08:04.681Z">
+<meta property="og:updated_time" content="2017-10-13T23:48:17.243Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Setting up Cloud9 Dev Environment">
 <meta name="twitter:description" content="配置 Cloud9 開發環境 好像是之前在看 freecodecamp 的時候知道了 Cloud9 ，很久沒碰 freecodecamp ，但 Cloud9 就一直用到現在。用 freecodecamp 的經驗值得再書一篇我心目中的程式教育應該長怎樣，不過…以後再說吧 這篇紀錄一下我怎麼折騰 Cloud9 的開發環境，之前在安裝 Hexo 那篇有說過， c9 基本上可以視為免費雲端的 Ubuntu">
@@ -326,6 +326,7 @@
 <p>這裡 .vimrc 只設定行號和四格空白的縮進，設定好了就可以開始使用新的 user 身份<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ su webuser</div><div class="line">$ cd ~</div></pre></td></tr></table></figure></p>
 <h2 id="設定-ssh-key"><a href="#設定-ssh-key" class="headerlink" title="設定 ssh key"></a>設定 ssh key</h2><p>這裡就比較見仁見智了，因為要把 private key 放在這個 container 裡，多少有點風險，自行斟酌吧，我是生了一對 c9 和 github 專用的 key ，掉了就算了，個人 side project 其他地方也有備份</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ mkdir ~/.ssh &amp;&amp; chmod 700 ~/.ssh</div><div class="line">$ touch ~/.ssh/&lt;private key&gt; &amp;&amp; chmod 600 ~/.ssh/&lt;private key&gt;</div><div class="line">$ vim ~/.ssh/&lt;private key&gt; # 直接貼上 private key</div></pre></td></tr></table></figure>
+<p>(如果要新增 key pair)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ssh-keygen -t rsa -b 4096 -C &quot;your_email@example.com&quot;</div></pre></td></tr></table></figure></p>
 <p>然後把 key 加入 ssh-agent 測試一波<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ eval &quot;$(ssh-agent -s)&quot;</div><div class="line">$ ssh-add ~/.ssh/&lt;private key&gt;</div><div class="line">$ ssh -T git@github.com</div><div class="line">Hi &lt;github username&gt;, Youve successfully authenticated, but GitHub does not provide shell access.</div></pre></td></tr></table></figure></p>
 <p>看到這行就算加完了</p>
 <p>以上是 general 的設定，接下來根據不同語言、工具的開發需求稍微紀錄設定方式</p>
@@ -471,7 +472,7 @@
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">文章</span>
               </a>
             </div>
@@ -484,7 +485,7 @@
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-count">33</span>
                 <span class="site-state-item-name">標籤</span>
               
             </div>

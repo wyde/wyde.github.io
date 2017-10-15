@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-tw,en,default">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="Prh0dJbvt-zwGE-LNDAOSQYuJs0RmkgAi40IKxhDpSU" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="KVM,CentOS 7,Kickstart,virt-install,vmhost,virtual machine,system administration,ta217,虛擬機,基礎建設," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="在 Linux KVM 虛擬化平台上自動安裝虛擬機 目標讀者：有幾台機器需要跑服務又沒什麼預算的網管、對套裝軟體或圖形化介面感到排斥的 CentOS 主機管理者 這篇算是上一篇的延伸，實體機 RAM 和硬碟插滿滿的，當然就要開 VM 來跑服務啦，除非是效能考慮必須用整台實體機的資源。當初自學虛擬化平台也是一個大坑啊… x86 上的 VMWare、VirtualBox、KVM 都碰過了， Xen 還">
+<meta name="keywords" content="KVM,CentOS 7,Kickstart,virt-install,vmhost,virtual machine,system administration,ta217,虛擬機,基礎建設">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How to Install VM on Linux KVM Virtualization Host using Kickstart File">
+<meta property="og:url" content="https://wyde.github.io/2017/10/15/How-to-Install-VM-on-Linux-KVM-Virtualization-Host-using-Kickstart-File/index.html">
+<meta property="og:site_name" content="Wyde&#39;s Blog">
+<meta property="og:description" content="在 Linux KVM 虛擬化平台上自動安裝虛擬機 目標讀者：有幾台機器需要跑服務又沒什麼預算的網管、對套裝軟體或圖形化介面感到排斥的 CentOS 主機管理者 這篇算是上一篇的延伸，實體機 RAM 和硬碟插滿滿的，當然就要開 VM 來跑服務啦，除非是效能考慮必須用整台實體機的資源。當初自學虛擬化平台也是一個大坑啊… x86 上的 VMWare、VirtualBox、KVM 都碰過了， Xen 還">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:updated_time" content="2017-10-15T15:30:19.795Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="How to Install VM on Linux KVM Virtualization Host using Kickstart File">
+<meta name="twitter:description" content="在 Linux KVM 虛擬化平台上自動安裝虛擬機 目標讀者：有幾台機器需要跑服務又沒什麼預算的網管、對套裝軟體或圖形化介面感到排斥的 CentOS 主機管理者 這篇算是上一篇的延伸，實體機 RAM 和硬碟插滿滿的，當然就要開 VM 來跑服務啦，除非是效能考慮必須用整台實體機的資源。當初自學虛擬化平台也是一個大坑啊… x86 上的 VMWare、VirtualBox、KVM 都碰過了， Xen 還">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"hide","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://wyde.github.io/2017/10/15/How-to-Install-VM-on-Linux-KVM-Virtualization-Host-using-Kickstart-File/"/>
+
+
+
+
+
+  <title>How to Install VM on Linux KVM Virtualization Host using Kickstart File | Wyde's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-tw">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Wyde's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            歸檔
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://wyde.github.io/2017/10/15/How-to-Install-VM-on-Linux-KVM-Virtualization-Host-using-Kickstart-File/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Wyde Wu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wyde's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">How to Install VM on Linux KVM Virtualization Host using Kickstart File</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2017-10-15T20:09:16+08:00">
+                2017-10-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/10/15/How-to-Install-VM-on-Linux-KVM-Virtualization-Host-using-Kickstart-File/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/10/15/How-to-Install-VM-on-Linux-KVM-Virtualization-Host-using-Kickstart-File/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/10/15/How-to-Install-VM-on-Linux-KVM-Virtualization-Host-using-Kickstart-File/" class="leancloud_visitors" data-flag-title="How to Install VM on Linux KVM Virtualization Host using Kickstart File">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">閱讀次數&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="在-Linux-KVM-虛擬化平台上自動安裝虛擬機"><a href="#在-Linux-KVM-虛擬化平台上自動安裝虛擬機" class="headerlink" title="在 Linux KVM 虛擬化平台上自動安裝虛擬機"></a><center>在 Linux KVM 虛擬化平台上自動安裝虛擬機</center></h1><p><br></p>
+<p>目標讀者：有幾台機器需要跑服務又沒什麼預算的網管、對套裝軟體或圖形化介面感到排斥的 CentOS 主機管理者</p>
+<p>這篇算是<a href="https://wyde.github.io/2017/10/13/How-to-Mount-a-Second-Drive-Managed-by-LVM/">上一篇</a>的延伸，實體機 RAM 和硬碟插滿滿的，當然就要開 VM 來跑服務啦，除非是效能考慮必須用整台實體機的資源。當初自學虛擬化平台也是一個大坑啊… x86 上的 VMWare、VirtualBox、KVM 都碰過了， Xen 還沒玩過…感想是，如果在個人電腦上要開虛擬機做實驗，推薦 VirtualBox + Vagrant ，安裝方便又有 command line 可以使用，不過現在 Vagrant 好像已經不紅了… server 上推薦使用 KVM ，免費開源又可以用 scripts 進行大量客製化</p>
+<p>有關 KVM 的介紹我懶得打了，可參考<a href="http://www.lijyyh.com/2015/12/linux-kvm-set-up-linux-kvm.html" target="_blank" rel="external">這篇</a>，我只會紀錄實作筆記。使用 KVM 在沒有圖形化介面的 server 上開 VM 有很多種方法，我只列幾種</p>
+<ol>
+<li>virt manager，例如<a href="http://linux.vbird.org/linux_basic/0157installcentos7.php" target="_blank" rel="external">鳥哥的教學</a></li>
+<li>virt-install with graphic ，再跑一個 vnc server </li>
+<li>virt-install 用文字的交互式介面輸入參數</li>
+<li>virt-clone 另一個現在的 domain 再進該 VM 改參數</li>
+<li>virt-install 讀 VM 的 xml 設定檔</li>
+<li>virt-install with kickstart file</li>
+</ol>
+<p>基本上如果要大量地開、重複地開、自動化地開、按照心中定製的樣子的開，選項 1-4 就要先刪掉了，選項 5 我沒試過， xml 讀起來眼睛很花，所以我使用選項 6 的方式。網路上找到用 virt-install 的教學大多是 2 或 3，甚至很多 scripts 我都懷疑有沒有測試過…以下 scripts 都是測過真的能用的</p>
+<h2 id="實驗環境"><a href="#實驗環境" class="headerlink" title="實驗環境"></a>實驗環境</h2><ul>
+<li>Virtualization Host：CentOS 7</li>
+<li>Guest VM：CentOS 7 (redhat 系的理論上都可以用 kickstart)</li>
+<li>目錄結構：<ul>
+<li><code>/image/iso</code> 放在 CentOS 7 Everything 的 iso 檔，可從<a href="http://isoredirect.centos.org/centos/7/isos/x86_64/CentOS-7-x86_64-Everything-1708.iso" target="_blank" rel="external">這裡</a>下載</li>
+<li><code>/image/qcow2</code> 下掛放 qcow2 映象檔</li>
+<li><code>/home/ops/vmhost-manager</code> 放管理用的 script 和 kickstart file</li>
+</ul>
+</li>
+</ul>
+<h2 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h2><ol>
+<li>Virtualization Host 的硬體設定和套件安裝</li>
+<li>挖一塊 qcow2 的 image</li>
+<li>整理 kickstart file ，輸入網路…等的參數</li>
+<li>virt-install</li>
+</ol>
+<h3 id="vmhost-設定和套件安裝"><a href="#vmhost-設定和套件安裝" class="headerlink" title="vmhost 設定和套件安裝"></a>vmhost 設定和套件安裝</h3><p>快速安裝套件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo yum install -y qemu-kvm qemu-img libvirt libvirt-client virt-install bridge-utils</div></pre></td></tr></table></figure></p>
+<ol>
+<li>先確定 cpu 有支援虛擬化，<code>$ grep -E &#39;(vmx|svm)&#39; /proc/cpuinfo</code> 看有沒有出現 vmx 或  svm 的字，也可以下 <code>$ sudo virt-host-validate</code> 檢查是否虛擬化 ready ，準備工作可以參考<a href="https://godleon.github.io/blog/2016/07/27/QEMU-KVM-In-CentOS7-GettingStart" target="_blank" rel="external">這篇</a></li>
+<li>在安裝 vmhost 的 OS 時， software selection 就要選擇 Virtualization Host -&gt; Virtualization Platform ，可以安裝與設定環境的很多麻煩</li>
+<li>確定虛擬機映象檔要掛的目錄下有足夠的空間，本篇範例是掛在 <code>/image</code> 下</li>
+<li>設定 network 的 bridge 模式，因為我們的虛擬機要自己拿 ip 對外連線，或至少要在內網能與其它機器互相溝通，就不能選擇 NAT 或 isolate 的模式，這邊可以手動設定 <code>/etc/sysconfig/network-scripts/ifcfg-&lt;xxx&gt;</code> 把原來 host 機器上的 interface 橋接出來，或是簡單一點，使用 <code>$ sudo nmtui</code> 以 NetworkManager 來進行設定，如果沒有 bridge 選項，先查看 <code>bridge-utils</code> 安裝了沒</li>
+</ol>
+<h3 id="qemu-img"><a href="#qemu-img" class="headerlink" title="qemu-img"></a>qemu-img</h3><p>qcow2 的格式可以看<a href="https://www.ibm.com/developerworks/cn/linux/1409_qiaoly_qemuimgages/index.html" target="_blank" rel="external">IBM 的介紹</a>，這邊開了一個 50G 的 qcow2 文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo qemu-img create -f qcow2 /image/qcow2/vm-testing.qcow2 50G</div></pre></td></tr></table></figure></p>
+<h3 id="kickstart-file"><a href="#kickstart-file" class="headerlink" title="kickstart file"></a>kickstart file</h3><p>雖然很長，不過還蠻重要，就全部用 gist 的連結貼上來了，每個安裝完的 CentOS 7 在 <code>/root/anaconda-ks.cfg</code> 都會有這台機器安裝時的 kickstart 範例，蠻有參考性的，下面的範例要注意幾個地方</p>
+<ul>
+<li>disk 的 device name 預設是 vda 不是 sda，用 sda 會報錯</li>
+<li>network 設了兩個 interface ，對應到 host 上面要有兩個相同網段的 bridge，這邊的數量依需求調整<ul>
+<li>guest vm eth0 &lt;-&gt; host os br1</li>
+<li>guest vm eth1 &lt;-&gt; host os br2</li>
+</ul>
+</li>
+<li>我不喜歡寫太複雜的 kickstart file ，雖然他功能很強大，不過我把 kickstart 這邊的角色設定在能夠把基本的 os 、 network 、 rootpw 帶起來就好，其他的 config management ，我傾向交給 ansible、puppet 一類的管理工具來處理，生起來的 os 乾乾淨淨就好</li>
+</ul>
+<script src="https://gist.github.com/wyde/5da0c89a81a844339119e715c9ec38b9.js"></script>
+
+<h3 id="virt-install"><a href="#virt-install" class="headerlink" title="virt-install"></a>virt-install</h3><p>這邊的參數要跟前兩步配合</p>
+<ul>
+<li>disk size 要跟 qemu-img create 時的大小一樣</li>
+<li>network 的數量要跟 kickstart 合得起來</li>
+</ul>
+<p>virt-install 有些參數功能跟 kickstart file 是 overlap 的，例如兩者都可以設 ip ，我自己的原則是網路的部分給 kickstart 設，virt-install 的參數越少越好，不然很長…可以參考以下範例自己寫 scripts</p>
+<p>要特別注意</p>
+<ul>
+<li><code>--initrd-inject</code> 和 <code>--extrs-args</code> 裡 ks file 的寫法，前者要寫完整的路徑(和檔名)，後者只要寫檔名</li>
+<li>用<code>--extra-args</code> 之後，如果 iso 位置前面的參數是 <code>--cdrom</code> 的話會報錯，必須用 <code>--location</code></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">NAME=vm-testing</div><div class="line">KSNAME=$NAME.cfg</div><div class="line">DISKSIZE=50G </div><div class="line"></div><div class="line">virt-install \</div><div class="line">    --name $NAME \</div><div class="line">    --vcpus 1 \</div><div class="line">    --ram 1024 \</div><div class="line">    --disk path=/image/qcow2/$NAME.qcow2 \</div><div class="line">    --disk size=DISKSIZE \</div><div class="line">    --os-variant rhel7 \</div><div class="line">    --network=bridge:br1 \</div><div class="line">    --network=bridge:br2 \</div><div class="line">    --nographics \</div><div class="line">    --initrd-inject /home/ops/hostmanager/kickstart/$KSNAME \</div><div class="line">    --extra-args &quot;ks=file:/$KSNAME console=tty0 console=ttyS0,115200n8&quot; \</div><div class="line">    --location=/image/iso/CentOS-7-x86_64-Everything-1708.iso</div></pre></td></tr></table></figure>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li>這邊推薦必備的參考資料就是 redhat 官方的<a href="https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/pdf/Virtualization_Deployment_and_Administration_Guide/Red_Hat_Enterprise_Linux-7-Virtualization_Deployment_and_Administration_Guide-en-US.pdf" target="_blank" rel="external">Red Hat Enterprise Linux 7 - Virtualization Deployment and Administration Guide </a> 這比網路上獅子的鬃毛要可靠多了，5xx 頁拿來當參考書</li>
+<li>嫌樓上太長的也可以看 4x 頁，一樣是官方連結的 concept <a href="https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/pdf/Virtualization_Getting_Started_Guide/Red_Hat_Enterprise_Linux-7-Virtualization_Getting_Started_Guide-en-US.pdf" target="_blank" rel="external">Red Hat Enterprise Linux 7 - Virtualization Getting Started Guide</a></li>
+<li>整個流程還有很多可以自動化的部分，正在開發 scripts ，有興趣可看 <a href="https://github.com/wyde/vmhost-manager" target="_blank" rel="external">github:vmhost-manager</a></li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/KVM/" rel="tag"># KVM</a>
+          
+            <a href="/tags/CentOS-7/" rel="tag"># CentOS 7</a>
+          
+            <a href="/tags/Kickstart/" rel="tag"># Kickstart</a>
+          
+            <a href="/tags/virt-install/" rel="tag"># virt-install</a>
+          
+            <a href="/tags/vmhost/" rel="tag"># vmhost</a>
+          
+            <a href="/tags/virtual-machine/" rel="tag"># virtual machine</a>
+          
+            <a href="/tags/system-administration/" rel="tag"># system administration</a>
+          
+            <a href="/tags/ta217/" rel="tag"># ta217</a>
+          
+            <a href="/tags/虛擬機/" rel="tag"># 虛擬機</a>
+          
+            <a href="/tags/基礎建設/" rel="tag"># 基礎建設</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/13/How-to-Mount-a-Second-Drive-Managed-by-LVM/" rel="next" title="How to Mount a Second Drive Managed by LVM">
+                <i class="fa fa-chevron-left"></i> How to Mount a Second Drive Managed by LVM
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          
+            <p class="site-author-name" itemprop="name">Wyde Wu</p>
+            <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives/">
+            
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">文章</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">標籤</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wyde" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:wyde@csie.ntu.edu.tw" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#在-Linux-KVM-虛擬化平台上自動安裝虛擬機"><span class="nav-number">1.</span> <span class="nav-text">在 Linux KVM 虛擬化平台上自動安裝虛擬機</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#實驗環境"><span class="nav-number">1.1.</span> <span class="nav-text">實驗環境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#流程"><span class="nav-number">1.2.</span> <span class="nav-text">流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#vmhost-設定和套件安裝"><span class="nav-number">1.2.1.</span> <span class="nav-text">vmhost 設定和套件安裝</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#qemu-img"><span class="nav-number">1.2.2.</span> <span class="nav-text">qemu-img</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#kickstart-file"><span class="nav-number">1.2.3.</span> <span class="nav-text">kickstart file</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#virt-install"><span class="nav-number">1.2.4.</span> <span class="nav-text">virt-install</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">1.3.</span> <span class="nav-text">Reference</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wyde Wu</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主題 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://wyde.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://wyde.github.io/2017/10/15/How-to-Install-VM-on-Linux-KVM-Virtualization-Host-using-Kickstart-File/';
+          this.page.identifier = '2017/10/15/How-to-Install-VM-on-Linux-KVM-Virtualization-Host-using-Kickstart-File/';
+          this.page.title = 'How to Install VM on Linux KVM Virtualization Host using Kickstart File';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://wyde.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("EObj32zGPmfzzexdEpYvMFyS-gzGzoHsz", "lfpxqWTTPoAdkXiQPfrgycx0");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

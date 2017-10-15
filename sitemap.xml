@@ -2,9 +2,37 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://wyde.github.io/2017/10/15/How-to-Install-VM-on-Linux-KVM-Virtualization-Host-using-Kickstart-File/</loc>
+    
+    <lastmod>2017-10-15T15:30:19.795Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://wyde.github.io/2017/10/13/How-to-Mount-a-Second-Drive-Managed-by-LVM/</loc>
     
-    <lastmod>2017-10-13T18:09:24.513Z</lastmod>
+    <lastmod>2017-10-15T15:30:01.547Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://wyde.github.io/2017/09/29/How-to-Mount-Storage-Array-via-iSCSI/</loc>
+    
+    <lastmod>2017-10-15T15:29:51.922Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://wyde.github.io/2017/10/04/Setting-up-Cloud9-Dev-Environment/</loc>
+    
+    <lastmod>2017-10-13T23:48:17.243Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://wyde.github.io/2017/09/25/How-to-Deploy-a-Project-Site-on-Github-Pages/</loc>
+    
+    <lastmod>2017-10-13T23:44:15.066Z</lastmod>
     
   </url>
   
@@ -23,13 +51,6 @@
   </url>
   
   <url>
-    <loc>https://wyde.github.io/2017/09/29/How-to-Mount-Storage-Array-via-iSCSI/</loc>
-    
-    <lastmod>2017-10-03T23:35:28.026Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://wyde.github.io/2017/09/19/Crawler-RESTful-API-Data-Visualization/</loc>
     
     <lastmod>2017-10-03T23:34:50.204Z</lastmod>
@@ -40,20 +61,6 @@
     <loc>https://wyde.github.io/2017/09/23/How-to-Deploy-Hexo-on-Github-Pages/</loc>
     
     <lastmod>2017-10-03T23:32:05.118Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://wyde.github.io/2017/10/04/Setting-up-Cloud9-Dev-Environment/</loc>
-    
-    <lastmod>2017-10-03T23:08:04.681Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://wyde.github.io/2017/09/25/How-to-Deploy-a-Project-Site-on-Github-Pages/</loc>
-    
-    <lastmod>2017-09-25T13:09:42.823Z</lastmod>
     
   </url>
   
