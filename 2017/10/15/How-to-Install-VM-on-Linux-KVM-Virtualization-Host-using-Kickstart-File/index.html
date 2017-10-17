@@ -79,7 +79,7 @@
 <meta property="og:site_name" content="Wyde&#39;s Blog">
 <meta property="og:description" content="在 Linux KVM 虛擬化平台上自動安裝虛擬機 目標讀者：有幾台機器需要跑服務又沒什麼預算的網管、對套裝軟體或圖形化介面感到排斥的 CentOS 主機管理者 這篇算是上一篇的延伸，實體機 RAM 和硬碟插滿滿的，當然就要開 VM 來跑服務啦，除非是效能考慮必須用整台實體機的資源。當初自學虛擬化平台也是一個大坑啊… x86 上的 VMWare、VirtualBox、KVM 都碰過了， Xen 還">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2017-10-15T15:30:19.795Z">
+<meta property="og:updated_time" content="2017-10-17T17:26:39.821Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="How to Install VM on Linux KVM Virtualization Host using Kickstart File">
 <meta name="twitter:description" content="在 Linux KVM 虛擬化平台上自動安裝虛擬機 目標讀者：有幾台機器需要跑服務又沒什麼預算的網管、對套裝軟體或圖形化介面感到排斥的 CentOS 主機管理者 這篇算是上一篇的延伸，實體機 RAM 和硬碟插滿滿的，當然就要開 VM 來跑服務啦，除非是效能考慮必須用整台實體機的資源。當初自學虛擬化平台也是一個大坑啊… x86 上的 VMWare、VirtualBox、KVM 都碰過了， Xen 還">
@@ -360,6 +360,7 @@
 </ul>
 </li>
 <li>我不喜歡寫太複雜的 kickstart file ，雖然他功能很強大，不過我把 kickstart 這邊的角色設定在能夠把基本的 os 、 network 、 rootpw 帶起來就好，其他的 config management ，我傾向交給 ansible、puppet 一類的管理工具來處理，生起來的 os 乾乾淨淨就好</li>
+<li>如果要檢查 kickstart 的 .cfg 是不是合法，可以安裝 <code>$ sudo yum install -y pykickstart</code> ，然後 <code>$ /usr/bin/ksvalidator &lt;ks.cfg&gt;</code></li>
 </ul>
 <script src="https://gist.github.com/wyde/5da0c89a81a844339119e715c9ec38b9.js"></script>
 
@@ -373,11 +374,13 @@
 <ul>
 <li><code>--initrd-inject</code> 和 <code>--extrs-args</code> 裡 ks file 的寫法，前者要寫完整的路徑(和檔名)，後者只要寫檔名</li>
 <li>用<code>--extra-args</code> 之後，如果 iso 位置前面的參數是 <code>--cdrom</code> 的話會報錯，必須用 <code>--location</code></li>
+<li>$VAR 請自行代入參數，不需要加雙引號，可以參考文末 Github repo 上的 scripts</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">NAME=vm-testing</div><div class="line">KSNAME=$NAME.cfg</div><div class="line">DISKSIZE=50G </div><div class="line"></div><div class="line">virt-install \</div><div class="line">    --name $NAME \</div><div class="line">    --vcpus 1 \</div><div class="line">    --ram 1024 \</div><div class="line">    --disk path=/image/qcow2/$NAME.qcow2 \</div><div class="line">    --disk size=DISKSIZE \</div><div class="line">    --os-variant rhel7 \</div><div class="line">    --network=bridge:br1 \</div><div class="line">    --network=bridge:br2 \</div><div class="line">    --nographics \</div><div class="line">    --initrd-inject /home/ops/hostmanager/kickstart/$KSNAME \</div><div class="line">    --extra-args &quot;ks=file:/$KSNAME console=tty0 console=ttyS0,115200n8&quot; \</div><div class="line">    --location=/image/iso/CentOS-7-x86_64-Everything-1708.iso</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">virt-install \</div><div class="line">    --name $NAME \</div><div class="line">    --vcpus 1 \</div><div class="line">    --ram 1024 \</div><div class="line">    --disk path=$DISKPATH,size=$DISKSIZE \</div><div class="line">    --os-variant rhel7 \</div><div class="line">    --network=bridge:$BR1 \</div><div class="line">    --network=bridge:$BR2 \</div><div class="line">    --nographics \</div><div class="line">    --initrd-inject $KSPATH \</div><div class="line">    --extra-args &quot;ks=file:/$KSNAME console=tty0 console=ttyS0,115200n8&quot; \</div><div class="line">    --location=$ISOPATH \</div><div class="line">    --autostart \</div><div class="line">    --noautoconsole # without connect to console automatically</div></pre></td></tr></table></figure>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
 <li>這邊推薦必備的參考資料就是 redhat 官方的<a href="https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/pdf/Virtualization_Deployment_and_Administration_Guide/Red_Hat_Enterprise_Linux-7-Virtualization_Deployment_and_Administration_Guide-en-US.pdf" target="_blank" rel="external">Red Hat Enterprise Linux 7 - Virtualization Deployment and Administration Guide </a> 這比網路上獅子的鬃毛要可靠多了，5xx 頁拿來當參考書</li>
 <li>嫌樓上太長的也可以看 4x 頁，一樣是官方連結的 concept <a href="https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/pdf/Virtualization_Getting_Started_Guide/Red_Hat_Enterprise_Linux-7-Virtualization_Getting_Started_Guide-en-US.pdf" target="_blank" rel="external">Red Hat Enterprise Linux 7 - Virtualization Getting Started Guide</a></li>
+<li><a href="https://www.ibm.com/support/knowledgecenter/en/linuxonibm/liaat/liaatvirtinstalloptions.htm" target="_blank" rel="external">virt-install 參數的參考</a></li>
 <li>整個流程還有很多可以自動化的部分，正在開發 scripts ，有興趣可看 <a href="https://github.com/wyde/vmhost-manager" target="_blank" rel="external">github:vmhost-manager</a></li>
 </ul>
 
@@ -532,7 +535,7 @@
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">標籤</span>
               
             </div>

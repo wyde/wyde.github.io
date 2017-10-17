@@ -79,7 +79,7 @@
 <meta property="og:site_name" content="Wyde&#39;s Blog">
 <meta property="og:description" content="配置 Cloud9 開發環境 好像是之前在看 freecodecamp 的時候知道了 Cloud9 ，很久沒碰 freecodecamp ，但 Cloud9 就一直用到現在。用 freecodecamp 的經驗值得再書一篇我心目中的程式教育應該長怎樣，不過…以後再說吧 這篇紀錄一下我怎麼折騰 Cloud9 的開發環境，之前在安裝 Hexo 那篇有說過， c9 基本上可以視為免費雲端的 Ubuntu">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2017-10-13T23:48:17.243Z">
+<meta property="og:updated_time" content="2017-10-15T16:58:59.194Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Setting up Cloud9 Dev Environment">
 <meta name="twitter:description" content="配置 Cloud9 開發環境 好像是之前在看 freecodecamp 的時候知道了 Cloud9 ，很久沒碰 freecodecamp ，但 Cloud9 就一直用到現在。用 freecodecamp 的經驗值得再書一篇我心目中的程式教育應該長怎樣，不過…以後再說吧 這篇紀錄一下我怎麼折騰 Cloud9 的開發環境，之前在安裝 Hexo 那篇有說過， c9 基本上可以視為免費雲端的 Ubuntu">
@@ -335,6 +335,11 @@
 <p>以後 tutorial 就懶得多寫一個 (.env) 了，執行 python project 的基本就不再特別標註</p>
 <h2 id="Node-js-v6-11-3"><a href="#Node-js-v6-11-3" class="headerlink" title="Node.js (v6.11.3)"></a>Node.js (v6.11.3)</h2><p>自從從 freecodecamp drop out 就沒在用 node 開發東西了，這裡的設置主要是為了 Hexo ，不過在這大前端時代感覺就會玩到，至少 server side 我是不會想用啦</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ cd /tmp</div><div class="line">$ curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -</div><div class="line">$ sudo apt-get install -y nodejs</div><div class="line">$ node --version</div><div class="line">v6.11.3</div><div class="line"></div><div class="line">$ cd -</div></pre></td></tr></table></figure>
+<hr>
+<p>(2017-10-16)</p>
+<h2 id="initial-push-to-Github"><a href="#initial-push-to-Github" class="headerlink" title="initial push to Github"></a>initial push to Github</h2><h3 id="licence"><a href="#licence" class="headerlink" title="licence"></a>licence</h3><p>可以直接從網頁介面選擇：參考 <a href="https://choosealicense.com/" target="_blank" rel="external">Choose an open source license</a></p>
+<h3 id="新增-README-md-的-template"><a href="#新增-README-md-的-template" class="headerlink" title="新增 README.md 的 template"></a>新增 README.md 的 template</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ cd &lt;project directory&gt;</div><div class="line">$ wget https://cdn.rawgit.com/wyde/e951a99f6eec2cbeae99bbd9b530873d/raw/83bc4294cafe5a74c977fbf9c27acb2fbe390570/readme-template.md -O README.md</div></pre></td></tr></table></figure>
+<h3 id="initial-push"><a href="#initial-push" class="headerlink" title="initial push"></a>initial push</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ cd &lt;project directory&gt;</div><div class="line">$ git init</div><div class="line">$ git commit -m &quot;initial commit&quot;</div><div class="line">$ git remote add origin git@github.com:&lt;github account&gt;/&lt;repo name&gt;.git</div><div class="line">$ git push -u origin master</div></pre></td></tr></table></figure>
 <h2 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h2><ul>
 <li>設置 Jupyter</li>
 <li>setup MySQL</li>
@@ -485,7 +490,7 @@
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">標籤</span>
               
             </div>
@@ -534,7 +539,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#配置-Cloud9-開發環境"><span class="nav-number">1.</span> <span class="nav-text">配置 Cloud9 開發環境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#先更新系統和時區"><span class="nav-number">2.</span> <span class="nav-text">先更新系統和時區</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#切換使用者"><span class="nav-number">3.</span> <span class="nav-text">切換使用者</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#設定-ssh-key"><span class="nav-number">4.</span> <span class="nav-text">設定 ssh key</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Python-3-3-4"><span class="nav-number">5.</span> <span class="nav-text">Python 3 (3.4)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Node-js-v6-11-3"><span class="nav-number">6.</span> <span class="nav-text">Node.js (v6.11.3)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TODO"><span class="nav-number">7.</span> <span class="nav-text">TODO</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#配置-Cloud9-開發環境"><span class="nav-number">1.</span> <span class="nav-text">配置 Cloud9 開發環境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#先更新系統和時區"><span class="nav-number">2.</span> <span class="nav-text">先更新系統和時區</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#切換使用者"><span class="nav-number">3.</span> <span class="nav-text">切換使用者</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#設定-ssh-key"><span class="nav-number">4.</span> <span class="nav-text">設定 ssh key</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Python-3-3-4"><span class="nav-number">5.</span> <span class="nav-text">Python 3 (3.4)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Node-js-v6-11-3"><span class="nav-number">6.</span> <span class="nav-text">Node.js (v6.11.3)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#initial-push-to-Github"><span class="nav-number">7.</span> <span class="nav-text">initial push to Github</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#licence"><span class="nav-number">7.1.</span> <span class="nav-text">licence</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新增-README-md-的-template"><span class="nav-number">7.2.</span> <span class="nav-text">新增 README.md 的 template</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#initial-push"><span class="nav-number">7.3.</span> <span class="nav-text">initial push</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TODO"><span class="nav-number">8.</span> <span class="nav-text">TODO</span></a></li></ol></div>
             
 
           </div>
