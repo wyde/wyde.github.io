@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://wyde.github.io/2017/10/23/How-to-Execute-Remote-Command-via-ssh/</loc>
+    
+    <lastmod>2017-10-23T09:53:18.580Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://wyde.github.io/2017/10/15/How-to-Install-VM-on-Linux-KVM-Virtualization-Host-using-Kickstart-File/</loc>
     
     <lastmod>2017-10-19T11:13:18.721Z</lastmod>
