@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://wyde.github.io/2017/10/30/Setting-up-Python-3-Virtual-Environment-on-CentOS-7/</loc>
+    
+    <lastmod>2017-10-30T14:02:15.705Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://wyde.github.io/2017/10/23/How-to-Execute-Remote-Command-via-ssh/</loc>
     
     <lastmod>2017-10-23T09:53:18.580Z</lastmod>
