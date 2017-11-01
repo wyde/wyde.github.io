@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://wyde.github.io/2017/09/29/How-to-Mount-Storage-Array-via-iSCSI/</loc>
+    
+    <lastmod>2017-11-01T06:50:11.241Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://wyde.github.io/2017/11/01/Minikube-hello-world-on-Ubuntu-16-04/</loc>
+    
+    <lastmod>2017-11-01T06:49:42.560Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://wyde.github.io/2017/10/30/Setting-up-Python-3-Virtual-Environment-on-CentOS-7/</loc>
     
     <lastmod>2017-10-31T09:29:09.474Z</lastmod>
@@ -33,13 +47,6 @@
     <loc>https://wyde.github.io/2017/10/13/How-to-Mount-a-Second-Drive-Managed-by-LVM/</loc>
     
     <lastmod>2017-10-15T15:30:01.547Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://wyde.github.io/2017/09/29/How-to-Mount-Storage-Array-via-iSCSI/</loc>
-    
-    <lastmod>2017-10-15T15:29:51.922Z</lastmod>
     
   </url>
   

@@ -55,7 +55,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="system administration,ta217,機房管理,iSCSI," />
+  <meta name="keywords" content="ta217,system administration,iSCSI,機房管理," />
 
 
 
@@ -72,7 +72,7 @@
 
 
 <meta name="description" content="透過 iSCSI 連結 disk array 最近把兩台 Dell PowerEdge R610 透過 iSCSI(IP-SAN) 走 10GBase-T/RJ45 掛上 Dell PowerVault MD3800i，簡單地說就是 server 需要大容量的儲存空間，又不想要太貴的光纖介面，折衷一下。 iSCSI 不只可以用在 disk array 和 server 之間的連接，也不一定要 10">
-<meta name="keywords" content="system administration,ta217,機房管理,iSCSI">
+<meta name="keywords" content="ta217,system administration,iSCSI,機房管理">
 <meta property="og:type" content="article">
 <meta property="og:title" content="How to Mount Storage Array via iSCSI">
 <meta property="og:url" content="https://wyde.github.io/2017/09/29/How-to-Mount-Storage-Array-via-iSCSI/index.html">
@@ -80,7 +80,7 @@
 <meta property="og:description" content="透過 iSCSI 連結 disk array 最近把兩台 Dell PowerEdge R610 透過 iSCSI(IP-SAN) 走 10GBase-T/RJ45 掛上 Dell PowerVault MD3800i，簡單地說就是 server 需要大容量的儲存空間，又不想要太貴的光纖介面，折衷一下。 iSCSI 不只可以用在 disk array 和 server 之間的連接，也不一定要 10">
 <meta property="og:locale" content="zh-tw">
 <meta property="og:image" content="https://i.imgur.com/Y5yEliJ.png">
-<meta property="og:updated_time" content="2017-10-15T15:29:51.922Z">
+<meta property="og:updated_time" content="2017-11-01T06:50:11.241Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="How to Mount Storage Array via iSCSI">
 <meta name="twitter:description" content="透過 iSCSI 連結 disk array 最近把兩台 Dell PowerEdge R610 透過 iSCSI(IP-SAN) 走 10GBase-T/RJ45 掛上 Dell PowerVault MD3800i，簡單地說就是 server 需要大容量的儲存空間，又不想要太貴的光纖介面，折衷一下。 iSCSI 不只可以用在 disk array 和 server 之間的連接，也不一定要 10">
@@ -375,7 +375,7 @@
 </table>
 <p>Goal: 依照架構圖，透過 iSCSI 各掛上一顆 Virtual Disk，這個架構的好處是每台 server 的 10G 網卡兩個 port 各接 disk array 的一個 controller ，可以避免單點失效，在 client 端就要設 multipath 告訴系統這兩張卡看到的 iSCSI storage 是同一顆</p>
 <h2 id="安裝步驟"><a href="#安裝步驟" class="headerlink" title="安裝步驟"></a>安裝步驟</h2><p>安裝時會在 client 和 target 之間交錯，這裡以 server1 作例子， server2 請如法炮製，但是要換 ip</p>
-<h3 id="client-端-server1"><a href="#client-端-server1" class="headerlink" title="client 端: server1"></a>client 端: server1</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ sudo yum update</div><div class="line">$ sudo yum install epel-release iscsi-initiator-utils</div><div class="line">$ sudo iscsiadm -m discovery -t st -p 192.168.130.20</div><div class="line">$ sudo iscsiadm -m discovery -t st -p 192.168.130.15</div></pre></td></tr></table></figure>
+<h3 id="client-端-server1"><a href="#client-端-server1" class="headerlink" title="client 端: server1"></a>client 端: server1</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ sudo yum update</div><div class="line">$ sudo yum install epel-release iscsi-initiator-utils</div><div class="line">$ sudo iscsiadm -m discovery -t st -p 192.168.130.20</div><div class="line">$ sudo iscsiadm -m discovery -t st -p 192.168.131.15</div></pre></td></tr></table></figure>
 <p>檢查一下，把不屬於 server1 的 portal 砍掉<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ sudo iscsiadm -m node</div><div class="line">$ sudo iscsiadm -m node -o delete -T iqn.1984-05.com.dell:powervault.md3800i.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx --portal 192.168.130.20:3260,1</div><div class="line">$ sudo iscsiadm -m node -o delete -T iqn.1984-05.com.dell:powervault.md3800i.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx --portal 192.168.130.15:3260,2</div></pre></td></tr></table></figure></p>
 <p>登入，如果需要登出，結尾 l-&gt;u<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo iscsiadm -m node -T iqn.1984-05.com.dell:powervault.md3800i.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx --portal 192.168.130.20:3260,1 -l</div><div class="line">$ sudo iscsiadm -m node -T iqn.1984-05.com.dell:powervault.md3800i.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx --portal 192.168.131.15:3260,2 -l</div></pre></td></tr></table></figure></p>
 <h3 id="target-端"><a href="#target-端" class="headerlink" title="target 端"></a>target 端</h3><ul>
@@ -409,13 +409,13 @@
       
         <div class="post-tags">
           
-            <a href="/tags/system-administration/" rel="tag"># system administration</a>
-          
             <a href="/tags/ta217/" rel="tag"># ta217</a>
           
-            <a href="/tags/機房管理/" rel="tag"># 機房管理</a>
+            <a href="/tags/system-administration/" rel="tag"># system administration</a>
           
             <a href="/tags/iSCSI/" rel="tag"># iSCSI</a>
+          
+            <a href="/tags/機房管理/" rel="tag"># 機房管理</a>
           
         </div>
       
@@ -523,7 +523,7 @@
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">文章</span>
               </a>
             </div>
