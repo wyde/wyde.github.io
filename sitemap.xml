@@ -2,16 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://wyde.github.io/2017/09/29/How-to-Mount-Storage-Array-via-iSCSI/</loc>
+    <loc>https://wyde.github.io/2017/09/23/How-to-Deploy-Hexo-on-Github-Pages/</loc>
     
-    <lastmod>2017-11-01T06:50:11.241Z</lastmod>
+    <lastmod>2017-11-02T16:11:05.020Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://wyde.github.io/2017/11/01/Minikube-hello-world-on-Ubuntu-16-04/</loc>
     
-    <lastmod>2017-11-01T06:49:42.560Z</lastmod>
+    <lastmod>2017-11-01T08:55:44.641Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://wyde.github.io/2017/09/29/How-to-Mount-Storage-Array-via-iSCSI/</loc>
+    
+    <lastmod>2017-11-01T06:50:11.241Z</lastmod>
     
   </url>
   
@@ -75,13 +82,6 @@
     <loc>https://wyde.github.io/2017/09/19/Crawler-RESTful-API-Data-Visualization/</loc>
     
     <lastmod>2017-10-03T23:34:50.204Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://wyde.github.io/2017/09/23/How-to-Deploy-Hexo-on-Github-Pages/</loc>
-    
-    <lastmod>2017-10-03T23:32:05.118Z</lastmod>
     
   </url>
   
