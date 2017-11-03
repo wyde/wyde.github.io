@@ -55,7 +55,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="PDFminer,extract PDF,text coordinate," />
+  <meta name="keywords" content="Nvidia 1080Ti GPU,Fedora," />
 
 
 
@@ -71,18 +71,21 @@
 
 
 
-<meta name="description" content="如何取出 PDF 裡的文字與其座標 今天遇到一個小任務，要把一票 PDF 特定區域的文字抓下來，有幾個剛需  區域沒有統一的欄位名稱 缺乏可識別特徵只知道是英數字組合 那些 PDF 有好幾個版型，希望一開始能用人工做一個版，後續批次套用 該處的文字應該還是標準的 text 非手寫  …嗯，說真的是難以理解的需求，我一開始的想法是這樣：  PDF 轉圖片用 OpenCV 手動標記做 mask 截取一">
-<meta name="keywords" content="PDFminer,extract PDF,text coordinate">
+<meta name="description" content="在 Fedora 上安裝 Nvidia 1080Ti GPU 顯卡驅動  Nvidia 1080TI GPU * 2 (記得要 1000 w 的電源) Fedora 26  過程蠻簡單的，就是把 fedora 預設的 nouveau 關掉之後灌 n 家自己的驅動，各個教學都差不多，可以參考  [挖礦] Nvidia 挖 Monero(XMR) on Fedora 25 Fedora 27/26/2">
+<meta name="keywords" content="Nvidia 1080Ti GPU,Fedora">
 <meta property="og:type" content="article">
-<meta property="og:title" content="How to Extract Text and its Coordinates from PDF">
-<meta property="og:url" content="https://wyde.github.io/2017/11/03/How-to-Extract-Text-and-its-Coordinates-from-PDF/index.html">
+<meta property="og:title" content="How to Install Nvidia 1080Ti GPU Driver On Fedora">
+<meta property="og:url" content="https://wyde.github.io/2017/11/03/How-to-Install-Nvidia-1080Ti-GPU-Driver-on-Fedora/index.html">
 <meta property="og:site_name" content="Wyde&#39;s Blog">
-<meta property="og:description" content="如何取出 PDF 裡的文字與其座標 今天遇到一個小任務，要把一票 PDF 特定區域的文字抓下來，有幾個剛需  區域沒有統一的欄位名稱 缺乏可識別特徵只知道是英數字組合 那些 PDF 有好幾個版型，希望一開始能用人工做一個版，後續批次套用 該處的文字應該還是標準的 text 非手寫  …嗯，說真的是難以理解的需求，我一開始的想法是這樣：  PDF 轉圖片用 OpenCV 手動標記做 mask 截取一">
+<meta property="og:description" content="在 Fedora 上安裝 Nvidia 1080Ti GPU 顯卡驅動  Nvidia 1080TI GPU * 2 (記得要 1000 w 的電源) Fedora 26  過程蠻簡單的，就是把 fedora 預設的 nouveau 關掉之後灌 n 家自己的驅動，各個教學都差不多，可以參考  [挖礦] Nvidia 挖 Monero(XMR) on Fedora 25 Fedora 27/26/2">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2017-11-02T19:14:45.547Z">
+<meta property="og:image" content="https://i.imgur.com/cg6KvgL.png">
+<meta property="og:image" content="https://i.imgur.com/RcKpQl8.png">
+<meta property="og:updated_time" content="2017-11-03T09:00:01.299Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="How to Extract Text and its Coordinates from PDF">
-<meta name="twitter:description" content="如何取出 PDF 裡的文字與其座標 今天遇到一個小任務，要把一票 PDF 特定區域的文字抓下來，有幾個剛需  區域沒有統一的欄位名稱 缺乏可識別特徵只知道是英數字組合 那些 PDF 有好幾個版型，希望一開始能用人工做一個版，後續批次套用 該處的文字應該還是標準的 text 非手寫  …嗯，說真的是難以理解的需求，我一開始的想法是這樣：  PDF 轉圖片用 OpenCV 手動標記做 mask 截取一">
+<meta name="twitter:title" content="How to Install Nvidia 1080Ti GPU Driver On Fedora">
+<meta name="twitter:description" content="在 Fedora 上安裝 Nvidia 1080Ti GPU 顯卡驅動  Nvidia 1080TI GPU * 2 (記得要 1000 w 的電源) Fedora 26  過程蠻簡單的，就是把 fedora 預設的 nouveau 關掉之後灌 n 家自己的驅動，各個教學都差不多，可以參考  [挖礦] Nvidia 挖 Monero(XMR) on Fedora 25 Fedora 27/26/2">
+<meta name="twitter:image" content="https://i.imgur.com/cg6KvgL.png">
 
 
 
@@ -112,13 +115,13 @@
 
 
 
-  <link rel="canonical" href="https://wyde.github.io/2017/11/03/How-to-Extract-Text-and-its-Coordinates-from-PDF/"/>
+  <link rel="canonical" href="https://wyde.github.io/2017/11/03/How-to-Install-Nvidia-1080Ti-GPU-Driver-on-Fedora/"/>
 
 
 
 
 
-  <title>How to Extract Text and its Coordinates from PDF | Wyde's Blog</title>
+  <title>How to Install Nvidia 1080Ti GPU Driver On Fedora | Wyde's Blog</title>
   
 
 
@@ -225,7 +228,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://wyde.github.io/2017/11/03/How-to-Extract-Text-and-its-Coordinates-from-PDF/">
+    <link itemprop="mainEntityOfPage" href="https://wyde.github.io/2017/11/03/How-to-Install-Nvidia-1080Ti-GPU-Driver-on-Fedora/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Wyde Wu">
@@ -242,7 +245,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">How to Extract Text and its Coordinates from PDF</h2>
+          <h2 class="post-title" itemprop="name headline">How to Install Nvidia 1080Ti GPU Driver On Fedora</h2>
         
 
         <div class="post-meta">
@@ -254,7 +257,7 @@
               
                 <span class="post-meta-item-text">發表於</span>
               
-              <time title="創建於" itemprop="dateCreated datePublished" datetime="2017-11-03T03:14:45+08:00">
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2017-11-03T16:54:04+08:00">
                 2017-11-03
               </time>
             
@@ -273,9 +276,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/11/03/How-to-Extract-Text-and-its-Coordinates-from-PDF/#comments" itemprop="discussionUrl">
+                <a href="/2017/11/03/How-to-Install-Nvidia-1080Ti-GPU-Driver-on-Fedora/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/11/03/How-to-Extract-Text-and-its-Coordinates-from-PDF/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/11/03/How-to-Install-Nvidia-1080Ti-GPU-Driver-on-Fedora/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -283,7 +286,7 @@
 
           
           
-             <span id="/2017/11/03/How-to-Extract-Text-and-its-Coordinates-from-PDF/" class="leancloud_visitors" data-flag-title="How to Extract Text and its Coordinates from PDF">
+             <span id="/2017/11/03/How-to-Install-Nvidia-1080Ti-GPU-Driver-on-Fedora/" class="leancloud_visitors" data-flag-title="How to Install Nvidia 1080Ti GPU Driver On Fedora">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -314,46 +317,60 @@
       
 
       
-        <h1 id="如何取出-PDF-裡的文字與其座標"><a href="#如何取出-PDF-裡的文字與其座標" class="headerlink" title="如何取出 PDF 裡的文字與其座標"></a><center>如何取出 PDF 裡的文字與其座標</center></h1><p><br></p>
-<p>今天遇到一個小任務，要把一票 PDF 特定區域的文字抓下來，有幾個剛需</p>
+        <h1 id="在-Fedora-上安裝-Nvidia-1080Ti-GPU-顯卡驅動"><a href="#在-Fedora-上安裝-Nvidia-1080Ti-GPU-顯卡驅動" class="headerlink" title="在 Fedora 上安裝 Nvidia 1080Ti GPU 顯卡驅動"></a><center>在 Fedora 上安裝 Nvidia 1080Ti GPU 顯卡驅動</center></h1><p><br></p>
 <ul>
-<li>區域沒有統一的欄位名稱</li>
-<li>缺乏可識別特徵只知道是英數字組合</li>
-<li>那些 PDF 有好幾個版型，希望一開始能用人工做一個版，後續批次套用</li>
-<li>該處的文字應該還是標準的 text 非手寫</li>
+<li>Nvidia 1080TI GPU * 2 (記得要 1000 w 的電源)</li>
+<li>Fedora 26</li>
 </ul>
-<p>…嗯，說真的是難以理解的需求，我一開始的想法是這樣：</p>
+<p>過程蠻簡單的，就是把 fedora 預設的 nouveau 關掉之後灌 n 家自己的驅動，各個教學都差不多，可以參考</p>
+<ul>
+<li><a href="https://www.ptt.cc/bbs/DigiCurrency/M.1499059041.A.ECA.html" target="_blank" rel="external">[挖礦] Nvidia 挖 Monero(XMR) on Fedora 25</a></li>
+<li><a href="https://www.if-not-true-then-false.com/2015/fedora-nvidia-guide/" target="_blank" rel="external">Fedora 27/26/25 nVidia Drivers Install Guide</a></li>
+<li><p><a href="http://docs.nvidia.com/cuda/cuda-installation-guide-linux/" target="_blank" rel="external">NVIDIA CUDA Installation Guide for Linux</a></p>
+</li>
+<li><p>改設定檔之前先備份</p>
+</li>
+<li>能讓 installer 自己改設定就不手動</li>
+</ul>
+<p>我的原則是這樣，以下就開始安裝吧</p>
 <ol>
-<li>PDF 轉圖片用 OpenCV 手動標記做 mask</li>
-<li>截取一小塊來 OCR</li>
-<li>文字輸出， done</li>
+<li>裝套件</li>
 </ol>
-<p>代誌毋係憨人所想欸亞你乾擔，然後某生統強者說有一個套件叫 PDFMiner，可以拿到他需要的 text 的 location ，就來試用一下</p>
-<h2 id="環境與安裝"><a href="#環境與安裝" class="headerlink" title="環境與安裝"></a>環境與安裝</h2><ul>
-<li>OS: Fedora 26</li>
-<li>Python 3.5 以下 (這很重要，一開始裝到 3.6 的 virtualenv 浪費很多時間)</li>
-</ul>
-<p>首先建立 virtual environment ，可依自己的習慣或是我<a href="https://wyde.github.io/2017/10/30/Setting-up-Python-3-Virtual-Environment-on-CentOS-7/">之前的筆記</a>，理論上 python 2.7 的套件也可適用，不過我會用 python 3 的語法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pip install pdfminer.six</div></pre></td></tr></table></figure>
-<h2 id="測試"><a href="#測試" class="headerlink" title="測試"></a>測試</h2><p>上網隨便找一個簡單的 PDF 文件測試，裝完 PDFminer 之後，根據<a href="https://media.readthedocs.org/pdf/pdfminer-docs/latest/pdfminer-docs.pdf" target="_blank" rel="external">官方文件</a>，有兩支 scripts 可以用</p>
-<ul>
-<li>pdf2text.py<blockquote>
-<p>pdf2txt.py extracts text contents from a PDF file.</p>
-</blockquote>
+<p>官方建議裝這些<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo dnf update</div><div class="line">$ sudo dnf install -y kernel-devel-$(uname -r) kernel-headers-$(uname -r) gcc</div></pre></td></tr></table></figure></p>
+<p>不過我這些也裝了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo dnf install -y dkms acpid libglvnd-glx libglvnd-opengl libglvnd-devel pkgconfig</div></pre></td></tr></table></figure></p>
+<ol>
+<li>下載驅動並關掉 nouveau<br>verify GPU 的資訊<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ lspci | grep -i nvidia</div><div class="line">01:00.0 VGA compatible controller: NVIDIA Corporation GP102 [GeForce GTX 1080 Ti] (rev a1)</div><div class="line">01:00.1 Audio device: NVIDIA Corporation GP102 HDMI Audio Controller (rev a1)</div><div class="line">02:00.0 VGA compatible controller: NVIDIA Corporation GP102 [GeForce GTX 1080 Ti] (rev a1)</div><div class="line">02:00.1 Audio device: NVIDIA Corporation GP102 HDMI Audio Controller (rev a1)</div></pre></td></tr></table></figure>
 </li>
-<li>dumppdf.py<blockquote>
-<p>dumppdf.py dumps the internal contents of a PDF file in pseudo-XML format. This program is primarily for<br>debugging purposes, but it’s also possible to extract some meaningful contents (such as images).</p>
+</ol>
+<p>顯示系統資訊<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ uname -m &amp;&amp; cat /etc/*release | head -n 1</div><div class="line">x86_64</div><div class="line">Fedora release 26 (Twenty Six)</div></pre></td></tr></table></figure></p>
+<p>依照 GPU 和系統資訊上<a href="http://www.nvidia.com/Download/Find.aspx?lang=en-us" target="_blank" rel="external">官方網站查詢顯卡驅動</a><br><img src="https://i.imgur.com/cg6KvgL.png" alt=""></p>
+<p>找到該驅動下載的<a href="http://www.nvidia.com/download/driverResults.aspx/125399/en-us" target="_blank" rel="external">說明頁面</a>並下載，我裝的是 387.12 版本<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ wget http://us.download.nvidia.com/XFree86/Linux-x86_64/387.12/NVIDIA-Linux-x86_64-387.12.run -P ~</div><div class="line">$ chmod +x ~/NVIDIA-Linux-*.run</div><div class="line">$ sudo ~/NVIDIA-Linux-x86_64-387.12.run</div></pre></td></tr></table></figure></p>
+<p>這邊會出現安裝程式，就一路 yes ，nvidia-installer 會建立 <code>/etc/modprobe.d/nvidia-installer-disable-nouveau.conf</code> ，把 fedora 預設的<a href="https://zh.wikipedia.org/wiki/Nouveau" target="_blank" rel="external">開源顯卡驅動 nouveau </a>關掉</p>
+<ol>
+<li>修改 grub 開機選項</li>
+</ol>
+<p><code>$ sudo vim /etc/sysconfig/grub</code> ，找到 GRUB_CMDLINE_LINUX 這行，最行加上 <code>rd.driver.blacklist=nouveau</code>，在我機器上長這樣<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">GRUB_CMDLINE_LINUX=&quot;rd.lvm.lv=fedora/root rd.lvm.lv=fedora/swap rhgb quiet rd.driver.blacklist=nouveau&quot;</div></pre></td></tr></table></figure></p>
+<p>然後根據參考資料1，</p>
+<blockquote>
+<p>如果是BIOS開機，執行 $ sudo grub2-mkconfig -o /boot/grub2/grub.cfg<br>如果是UEFI開機，執行 $ sudo grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg<br>(不確定的話就看哪個檔案存在，通常不會兩個都存在)</p>
 </blockquote>
+<p>新一點的機器應該都支援 UEFI 了</p>
+<ol>
+<li><p>移除 nouveau</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo dnf remove xorg-x11-drv-nouveau</div></pre></td></tr></table></figure>
 </li>
-</ul>
-<p>不過這邊有個小坑就是 scripts 的開頭是 <code>#!/usr/bin/env python</code> ，不是我們虛擬環境的 python ，所以直接拿掉這行，下面直接改用 ~/.env 裡的 python 來執行</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ wget http://unec.edu.az/application/uploads/2014/12/pdf-sample.pdf -P .</div><div class="line">$ python ~/.env/bin/pdf2txt.py pdf-sample.pdf -o pdf-sample.html</div></pre></td></tr></table></figure>
-<p>然後用文字編輯器或瀏覽器都可以打開 <code>pdf-sample.html</code> 看看</p>
-<hr>
-<h2 id="開工"><a href="#開工" class="headerlink" title="開工"></a>開工</h2><p>我們的目標是列出每個文字方塊(LTTextBoxHorizontal) 的座標參數與文字內容， code 沒幾行，主要也是參考官方文件和<a href="https://stackoverflow.com/questions/31819862/python-pdf-mining-get-position-of-text-on-every-line" target="_blank" rel="external">這篇討論</a>，不過官方文件的範例 code 要斟酌使用， <code>PDFResourceManager</code> 應該是在  <code>pdf.miner.pdfinterp</code> 裡，不是在 <code>pdfminer.converter</code> 裡</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">from pdfminer.layout import LAParams</div><div class="line">from pdfminer.converter import PDFPageAggregator</div><div class="line">from pdfminer.pdfinterp import PDFResourceManager, PDFPageInterpreter</div><div class="line">from pdfminer.pdfpage import PDFPage</div><div class="line">from pdfminer.layout import LTTextBoxHorizontal</div><div class="line"></div><div class="line">document = open(&apos;pdf-sample.pdf&apos;, &apos;rb&apos;)</div><div class="line">rsrcmgr = PDFResourceManager()</div><div class="line">laparams = LAParams()</div><div class="line">device = PDFPageAggregator(rsrcmgr, laparams=laparams)</div><div class="line">interpreter = PDFPageInterpreter(rsrcmgr, device)</div><div class="line"></div><div class="line">for page in PDFPage.get_pages(document):</div><div class="line">    interpreter.process_page(page)</div><div class="line">    layout = device.get_result()</div><div class="line">    for element in layout:</div><div class="line">        if isinstance(element, LTTextBoxHorizontal):</div><div class="line">            obj = element._objs[0]</div><div class="line">            print(&quot;x_cor: %.2f &quot; % obj.bbox[0])</div><div class="line">            print(&quot;y_cor: %.2f&quot; % obj.bbox[1])</div><div class="line">            print(&quot;length: %.2f&quot; % obj.bbox[2])</div><div class="line">            print(&quot;height: %.2f&quot; % obj.bbox[3])</div><div class="line">            print(&quot;text: &quot;, obj.get_text().replace(&apos;\n&apos;,&apos;&apos;))</div><div class="line">            print(&quot;--------------------&quot;)</div></pre></td></tr></table></figure>
-<p>執行的輸出大致長這樣<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">$ python convert.py </div><div class="line">x_cor: 213.76 </div><div class="line">y_cor: 754.08</div><div class="line">length: 381.90</div><div class="line">height: 774.07</div><div class="line">text:  Adobe Acrobat PDF Files</div><div class="line">--------------------</div><div class="line">x_cor: 89.92 </div><div class="line">y_cor: 726.73</div><div class="line">length: 505.64</div><div class="line">height: 742.50</div><div class="line">text:  Adobe® Portable Document Format (PDF) is a universal file format that preserves all</div><div class="line">--------------------</div></pre></td></tr></table></figure></p>
-<p>可以對照<a href="http://unec.edu.az/application/uploads/2014/12/pdf-sample.pdf" target="_blank" rel="external">原來的 PDF 範本</a>來看結果，PDFminer 還有許多強大的功能，除了可以取得 text 座標與內容，圖片的座標也可以，有機會再來試試</p>
+<li><p>備份舊的開機映象檔，準備用新的開機</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo mv /boot/initramfs-$(uname -r).img /boot/initramfs-$(uname -r)-nouveau.img</div><div class="line">$ sudo dracut /boot/initramfs-$(uname -r).img $(uname -r)</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>(optional) 6. 設定開機為文字模式<br>因為我這台工作站本來就是純文字模式，如果是拿來當桌機，有進 x windows 的話，這邊先用純文字開機，裝完驅動再調回來<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo systemctl set-default multi-user.target</div><div class="line">$ sudo reboot</div></pre></td></tr></table></figure></p>
+<ol>
+<li>完成安裝與檢成顯示資訊<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo ~/NVIDIA-Linux-x86_64-387.12.run</div><div class="line">$ nvidia-smi</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>如果可以看到類似的畫面，那就裝完啦，有做第6步的同學可以再調回 level 5 開機<br><img src="https://i.imgur.com/RcKpQl8.png" alt=""></p>
+<p>(optional) 8. 有做 6. 的同學<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo systemctl set-default graphical.target</div><div class="line">$ sudo reboot</div></pre></td></tr></table></figure></p>
+<p>Done</p>
 
       
     </div>
@@ -371,11 +388,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/PDFminer/" rel="tag"># PDFminer</a>
+            <a href="/tags/Nvidia-1080Ti-GPU/" rel="tag"># Nvidia 1080Ti GPU</a>
           
-            <a href="/tags/extract-PDF/" rel="tag"># extract PDF</a>
-          
-            <a href="/tags/text-coordinate/" rel="tag"># text coordinate</a>
+            <a href="/tags/Fedora/" rel="tag"># Fedora</a>
           
         </div>
       
@@ -388,8 +403,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/11/01/Minikube-hello-world-on-Ubuntu-16-04/" rel="next" title="Minikube hello world on Ubuntu 16.04">
-                <i class="fa fa-chevron-left"></i> Minikube hello world on Ubuntu 16.04
+              <a href="/2017/11/03/How-to-Extract-Text-and-its-Coordinates-from-PDF/" rel="next" title="How to Extract Text and its Coordinates from PDF">
+                <i class="fa fa-chevron-left"></i> How to Extract Text and its Coordinates from PDF
               </a>
             
           </div>
@@ -397,10 +412,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/11/03/How-to-Install-Nvidia-1080Ti-GPU-Driver-on-Fedora/" rel="prev" title="How to Install Nvidia 1080Ti GPU Driver On Fedora">
-                How to Install Nvidia 1080Ti GPU Driver On Fedora <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -545,7 +556,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#如何取出-PDF-裡的文字與其座標"><span class="nav-number">1.</span> <span class="nav-text">如何取出 PDF 裡的文字與其座標</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#環境與安裝"><span class="nav-number">1.1.</span> <span class="nav-text">環境與安裝</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#測試"><span class="nav-number">1.2.</span> <span class="nav-text">測試</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#開工"><span class="nav-number">1.3.</span> <span class="nav-text">開工</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#在-Fedora-上安裝-Nvidia-1080Ti-GPU-顯卡驅動"><span class="nav-number">1.</span> <span class="nav-text">在 Fedora 上安裝 Nvidia 1080Ti GPU 顯卡驅動</span></a></li></ol></div>
             
 
           </div>
@@ -691,9 +702,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'https://wyde.github.io/2017/11/03/How-to-Extract-Text-and-its-Coordinates-from-PDF/';
-          this.page.identifier = '2017/11/03/How-to-Extract-Text-and-its-Coordinates-from-PDF/';
-          this.page.title = 'How to Extract Text and its Coordinates from PDF';
+          this.page.url = 'https://wyde.github.io/2017/11/03/How-to-Install-Nvidia-1080Ti-GPU-Driver-on-Fedora/';
+          this.page.identifier = '2017/11/03/How-to-Install-Nvidia-1080Ti-GPU-Driver-on-Fedora/';
+          this.page.title = 'How to Install Nvidia 1080Ti GPU Driver On Fedora';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://wyde.disqus.com/embed.js';
