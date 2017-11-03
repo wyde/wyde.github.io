@@ -81,7 +81,7 @@
 <meta property="og:locale" content="zh-tw">
 <meta property="og:image" content="https://i.imgur.com/cg6KvgL.png">
 <meta property="og:image" content="https://i.imgur.com/RcKpQl8.png">
-<meta property="og:updated_time" content="2017-11-03T09:00:01.299Z">
+<meta property="og:updated_time" content="2017-11-03T09:38:22.283Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="How to Install Nvidia 1080Ti GPU Driver On Fedora">
 <meta name="twitter:description" content="在 Fedora 上安裝 Nvidia 1080Ti GPU 顯卡驅動  Nvidia 1080TI GPU * 2 (記得要 1000 w 的電源) Fedora 26  過程蠻簡單的，就是把 fedora 預設的 nouveau 關掉之後灌 n 家自己的驅動，各個教學都差不多，可以參考  [挖礦] Nvidia 挖 Monero(XMR) on Fedora 25 Fedora 27/26/2">
@@ -326,50 +326,39 @@
 <ul>
 <li><a href="https://www.ptt.cc/bbs/DigiCurrency/M.1499059041.A.ECA.html" target="_blank" rel="external">[挖礦] Nvidia 挖 Monero(XMR) on Fedora 25</a></li>
 <li><a href="https://www.if-not-true-then-false.com/2015/fedora-nvidia-guide/" target="_blank" rel="external">Fedora 27/26/25 nVidia Drivers Install Guide</a></li>
-<li><p><a href="http://docs.nvidia.com/cuda/cuda-installation-guide-linux/" target="_blank" rel="external">NVIDIA CUDA Installation Guide for Linux</a></p>
-</li>
-<li><p>改設定檔之前先備份</p>
-</li>
+<li><a href="http://docs.nvidia.com/cuda/cuda-installation-guide-linux/" target="_blank" rel="external">NVIDIA CUDA Installation Guide for Linux</a></li>
+</ul>
+<p>參考別人的安裝過程中，我的原則是這樣</p>
+<ul>
+<li>改設定檔之前先備份</li>
 <li>能讓 installer 自己改設定就不手動</li>
 </ul>
-<p>我的原則是這樣，以下就開始安裝吧</p>
-<ol>
-<li>裝套件</li>
-</ol>
+<p>a. 裝套件</p>
 <p>官方建議裝這些<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo dnf update</div><div class="line">$ sudo dnf install -y kernel-devel-$(uname -r) kernel-headers-$(uname -r) gcc</div></pre></td></tr></table></figure></p>
 <p>不過我這些也裝了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo dnf install -y dkms acpid libglvnd-glx libglvnd-opengl libglvnd-devel pkgconfig</div></pre></td></tr></table></figure></p>
-<ol>
-<li>下載驅動並關掉 nouveau<br>verify GPU 的資訊<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ lspci | grep -i nvidia</div><div class="line">01:00.0 VGA compatible controller: NVIDIA Corporation GP102 [GeForce GTX 1080 Ti] (rev a1)</div><div class="line">01:00.1 Audio device: NVIDIA Corporation GP102 HDMI Audio Controller (rev a1)</div><div class="line">02:00.0 VGA compatible controller: NVIDIA Corporation GP102 [GeForce GTX 1080 Ti] (rev a1)</div><div class="line">02:00.1 Audio device: NVIDIA Corporation GP102 HDMI Audio Controller (rev a1)</div></pre></td></tr></table></figure>
-</li>
-</ol>
+<hr>
+<p>b. 下載驅動並關掉 nouveau<br>verify GPU 的資訊<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ lspci | grep -i nvidia</div><div class="line">01:00.0 VGA compatible controller: NVIDIA Corporation GP102 [GeForce GTX 1080 Ti] (rev a1)</div><div class="line">01:00.1 Audio device: NVIDIA Corporation GP102 HDMI Audio Controller (rev a1)</div><div class="line">02:00.0 VGA compatible controller: NVIDIA Corporation GP102 [GeForce GTX 1080 Ti] (rev a1)</div><div class="line">02:00.1 Audio device: NVIDIA Corporation GP102 HDMI Audio Controller (rev a1)</div></pre></td></tr></table></figure></p>
 <p>顯示系統資訊<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ uname -m &amp;&amp; cat /etc/*release | head -n 1</div><div class="line">x86_64</div><div class="line">Fedora release 26 (Twenty Six)</div></pre></td></tr></table></figure></p>
 <p>依照 GPU 和系統資訊上<a href="http://www.nvidia.com/Download/Find.aspx?lang=en-us" target="_blank" rel="external">官方網站查詢顯卡驅動</a><br><img src="https://i.imgur.com/cg6KvgL.png" alt=""></p>
 <p>找到該驅動下載的<a href="http://www.nvidia.com/download/driverResults.aspx/125399/en-us" target="_blank" rel="external">說明頁面</a>並下載，我裝的是 387.12 版本<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ wget http://us.download.nvidia.com/XFree86/Linux-x86_64/387.12/NVIDIA-Linux-x86_64-387.12.run -P ~</div><div class="line">$ chmod +x ~/NVIDIA-Linux-*.run</div><div class="line">$ sudo ~/NVIDIA-Linux-x86_64-387.12.run</div></pre></td></tr></table></figure></p>
 <p>這邊會出現安裝程式，就一路 yes ，nvidia-installer 會建立 <code>/etc/modprobe.d/nvidia-installer-disable-nouveau.conf</code> ，把 fedora 預設的<a href="https://zh.wikipedia.org/wiki/Nouveau" target="_blank" rel="external">開源顯卡驅動 nouveau </a>關掉</p>
-<ol>
-<li>修改 grub 開機選項</li>
-</ol>
+<hr>
+<p>c. 修改 grub 開機選項</p>
 <p><code>$ sudo vim /etc/sysconfig/grub</code> ，找到 GRUB_CMDLINE_LINUX 這行，最行加上 <code>rd.driver.blacklist=nouveau</code>，在我機器上長這樣<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">GRUB_CMDLINE_LINUX=&quot;rd.lvm.lv=fedora/root rd.lvm.lv=fedora/swap rhgb quiet rd.driver.blacklist=nouveau&quot;</div></pre></td></tr></table></figure></p>
 <p>然後根據參考資料1，</p>
 <blockquote>
 <p>如果是BIOS開機，執行 $ sudo grub2-mkconfig -o /boot/grub2/grub.cfg<br>如果是UEFI開機，執行 $ sudo grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg<br>(不確定的話就看哪個檔案存在，通常不會兩個都存在)</p>
 </blockquote>
 <p>新一點的機器應該都支援 UEFI 了</p>
-<ol>
-<li><p>移除 nouveau</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo dnf remove xorg-x11-drv-nouveau</div></pre></td></tr></table></figure>
-</li>
-<li><p>備份舊的開機映象檔，準備用新的開機</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo mv /boot/initramfs-$(uname -r).img /boot/initramfs-$(uname -r)-nouveau.img</div><div class="line">$ sudo dracut /boot/initramfs-$(uname -r).img $(uname -r)</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>(optional) 6. 設定開機為文字模式<br>因為我這台工作站本來就是純文字模式，如果是拿來當桌機，有進 x windows 的話，這邊先用純文字開機，裝完驅動再調回來<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo systemctl set-default multi-user.target</div><div class="line">$ sudo reboot</div></pre></td></tr></table></figure></p>
-<ol>
-<li>完成安裝與檢成顯示資訊<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo ~/NVIDIA-Linux-x86_64-387.12.run</div><div class="line">$ nvidia-smi</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>如果可以看到類似的畫面，那就裝完啦，有做第6步的同學可以再調回 level 5 開機<br><img src="https://i.imgur.com/RcKpQl8.png" alt=""></p>
-<p>(optional) 8. 有做 6. 的同學<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo systemctl set-default graphical.target</div><div class="line">$ sudo reboot</div></pre></td></tr></table></figure></p>
+<hr>
+<p>d. 移除 nouveau<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo dnf remove xorg-x11-drv-nouveau</div></pre></td></tr></table></figure></p>
+<hr>
+<p>e. 備份舊的開機映象檔，準備用新的開機<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo mv /boot/initramfs-$(uname -r).img /boot/initramfs-$(uname -r)-nouveau.img</div><div class="line">$ sudo dracut /boot/initramfs-$(uname -r).img $(uname -r)</div></pre></td></tr></table></figure></p>
+<p>(optional) f. 設定開機為文字模式<br>因為我這台工作站本來就是純文字模式，如果是拿來當桌機，有進 x windows 的話，這邊先用純文字開機，裝完驅動再調回來<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo systemctl set-default multi-user.target</div><div class="line">$ sudo reboot</div></pre></td></tr></table></figure></p>
+<hr>
+<p>g. 完成安裝與檢成顯示資訊<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo ~/NVIDIA-Linux-x86_64-387.12.run</div><div class="line">$ nvidia-smi</div></pre></td></tr></table></figure></p>
+<p>如果可以看到類似的畫面，那就裝完啦，有做 f 的同學可以再調回 level 5 開機<br><img src="https://i.imgur.com/RcKpQl8.png" alt=""></p>
+<p>(optional) h. 有做 f. 的同學<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo systemctl set-default graphical.target</div><div class="line">$ sudo reboot</div></pre></td></tr></table></figure></p>
 <p>Done</p>
 
       
