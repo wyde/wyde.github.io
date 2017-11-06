@@ -55,7 +55,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Deep Learning Rig,Nvidida 1080Ti," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -71,21 +71,17 @@
 
 
 
-<meta name="description" content="100k 搭建個人深度學習機 先附上沒插卡的 ASUS STRIX Z270F GAMING 主機板玉照一張 硬體規格 CPU: Intel Core I7-7700K / 4.2G 風扇: INTEL BXTS15A M/B: ASUS STRIX Z270F GAMING RAM: Kingston 16G DDR4 2400 * 4 = 64G SSD: Kingston 240G M.2">
-<meta name="keywords" content="Deep Learning Rig,Nvidida 1080Ti">
+<meta name="description" content="Linux xfs 檔案系統下增長 LVM 空間 原本 f25 /dev/fedora/root 有 15G ，裝 cuda8.0 也要 13G 上下，只好來 enlarge Overview能夠線上 enlarge/extend 有幾個條件：a. 該 partition 是 LVMb. PV、VG 還有空間，也就是該 LVM 的上一層和上上一層都有空間可以增加，如果不夠可能要先增加實體硬碟 如">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Building up Personal Deep Learning Rig in 3000 US Dollar">
-<meta property="og:url" content="https://wyde.github.io/2017/11/05/Building-up-Personal-Deep-Learning-Rig-in-3000-US-Dollar/index.html">
+<meta property="og:title" content="How to Extend LVM in Linux">
+<meta property="og:url" content="https://wyde.github.io/2017/11/06/How-to-Extend-LVM-under-Linux-XFS-Filesystem/index.html">
 <meta property="og:site_name" content="Wyde&#39;s Blog">
-<meta property="og:description" content="100k 搭建個人深度學習機 先附上沒插卡的 ASUS STRIX Z270F GAMING 主機板玉照一張 硬體規格 CPU: Intel Core I7-7700K / 4.2G 風扇: INTEL BXTS15A M/B: ASUS STRIX Z270F GAMING RAM: Kingston 16G DDR4 2400 * 4 = 64G SSD: Kingston 240G M.2">
+<meta property="og:description" content="Linux xfs 檔案系統下增長 LVM 空間 原本 f25 /dev/fedora/root 有 15G ，裝 cuda8.0 也要 13G 上下，只好來 enlarge Overview能夠線上 enlarge/extend 有幾個條件：a. 該 partition 是 LVMb. PV、VG 還有空間，也就是該 LVM 的上一層和上上一層都有空間可以增加，如果不夠可能要先增加實體硬碟 如">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:image" content="https://i.imgur.com/7mkBlHE.png">
-<meta property="og:image" content="https://i.imgur.com/RcKpQl8.png">
-<meta property="og:updated_time" content="2017-11-05T06:02:06.028Z">
+<meta property="og:updated_time" content="2017-11-06T07:39:03.846Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Building up Personal Deep Learning Rig in 3000 US Dollar">
-<meta name="twitter:description" content="100k 搭建個人深度學習機 先附上沒插卡的 ASUS STRIX Z270F GAMING 主機板玉照一張 硬體規格 CPU: Intel Core I7-7700K / 4.2G 風扇: INTEL BXTS15A M/B: ASUS STRIX Z270F GAMING RAM: Kingston 16G DDR4 2400 * 4 = 64G SSD: Kingston 240G M.2">
-<meta name="twitter:image" content="https://i.imgur.com/7mkBlHE.png">
+<meta name="twitter:title" content="How to Extend LVM in Linux">
+<meta name="twitter:description" content="Linux xfs 檔案系統下增長 LVM 空間 原本 f25 /dev/fedora/root 有 15G ，裝 cuda8.0 也要 13G 上下，只好來 enlarge Overview能夠線上 enlarge/extend 有幾個條件：a. 該 partition 是 LVMb. PV、VG 還有空間，也就是該 LVM 的上一層和上上一層都有空間可以增加，如果不夠可能要先增加實體硬碟 如">
 
 
 
@@ -115,13 +111,13 @@
 
 
 
-  <link rel="canonical" href="https://wyde.github.io/2017/11/05/Building-up-Personal-Deep-Learning-Rig-in-3000-US-Dollar/"/>
+  <link rel="canonical" href="https://wyde.github.io/2017/11/06/How-to-Extend-LVM-under-Linux-XFS-Filesystem/"/>
 
 
 
 
 
-  <title>Building up Personal Deep Learning Rig in 3000 US Dollar | Wyde's Blog</title>
+  <title>How to Extend LVM in Linux | Wyde's Blog</title>
   
 
 
@@ -228,7 +224,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://wyde.github.io/2017/11/05/Building-up-Personal-Deep-Learning-Rig-in-3000-US-Dollar/">
+    <link itemprop="mainEntityOfPage" href="https://wyde.github.io/2017/11/06/How-to-Extend-LVM-under-Linux-XFS-Filesystem/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Wyde Wu">
@@ -245,7 +241,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">Building up Personal Deep Learning Rig in 3000 US Dollar</h2>
+          <h2 class="post-title" itemprop="name headline">How to Extend LVM in Linux</h2>
         
 
         <div class="post-meta">
@@ -257,8 +253,8 @@
               
                 <span class="post-meta-item-text">發表於</span>
               
-              <time title="創建於" itemprop="dateCreated datePublished" datetime="2017-11-05T14:02:05+08:00">
-                2017-11-05
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2017-11-06T15:16:07+08:00">
+                2017-11-06
               </time>
             
 
@@ -276,9 +272,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/11/05/Building-up-Personal-Deep-Learning-Rig-in-3000-US-Dollar/#comments" itemprop="discussionUrl">
+                <a href="/2017/11/06/How-to-Extend-LVM-under-Linux-XFS-Filesystem/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/11/05/Building-up-Personal-Deep-Learning-Rig-in-3000-US-Dollar/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/11/06/How-to-Extend-LVM-under-Linux-XFS-Filesystem/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -286,7 +282,7 @@
 
           
           
-             <span id="/2017/11/05/Building-up-Personal-Deep-Learning-Rig-in-3000-US-Dollar/" class="leancloud_visitors" data-flag-title="Building up Personal Deep Learning Rig in 3000 US Dollar">
+             <span id="/2017/11/06/How-to-Extend-LVM-under-Linux-XFS-Filesystem/" class="leancloud_visitors" data-flag-title="How to Extend LVM in Linux">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -317,58 +313,26 @@
       
 
       
-        <h1 id="100k-搭建個人深度學習機"><a href="#100k-搭建個人深度學習機" class="headerlink" title="100k 搭建個人深度學習機"></a><center>100k 搭建個人深度學習機</center></h1><p><br></p>
-<p>先附上沒插卡的 ASUS STRIX Z270F GAMING 主機板玉照一張<br><img src="https://i.imgur.com/7mkBlHE.png" alt=""></p>
-<h2 id="硬體規格"><a href="#硬體規格" class="headerlink" title="硬體規格"></a>硬體規格</h2><ul>
-<li>CPU: Intel Core I7-7700K / 4.2G</li>
-<li>風扇: INTEL BXTS15A</li>
-<li>M/B: ASUS STRIX Z270F GAMING</li>
-<li>RAM: Kingston 16G DDR4 2400 * 4 = 64G</li>
-<li>SSD: Kingston 240G M.2 2280</li>
-<li>VGA: ASUS TURBO-GTX1080TI-11G * 2</li>
-<li>DVDRW: SATA</li>
-<li>POWER: 1000W, Cooler Master V1000 80Plus 金牌</li>
-<li>殼: Cooler Master CM6900III</li>
-<li>HD: WD (紅標?) 3TB</li>
-</ul>
-<hr>
-<h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>我的目標是 硬體組好、 Hello Tensorflow 跑起來，host OS 會使用 fedora，<a href="https://www.tensorflow.org/install/install_linux" target="_blank" rel="external">官方教學只有 Ubuntu</a> 的，大概是覺得 Ubnuntu 是最多人用的發行版，但還是可以參考一下，至於為什麼用 fedora ，純粹就是個人偏好 RPM</p>
-<p>tf 用 python 環境安裝方式主要有 5 種，然後 Python 又分 2.7 和 3.x，排列組合一下吧…</p>
+        <h1 id="Linux-xfs-檔案系統下增長-LVM-空間"><a href="#Linux-xfs-檔案系統下增長-LVM-空間" class="headerlink" title=" Linux xfs 檔案系統下增長 LVM 空間"></a><center> Linux xfs 檔案系統下增長 LVM 空間</center></h1><p><br></p>
+<p>原本 f25 /dev/fedora/root 有 15G ，裝 cuda8.0 也要 13G 上下，只好來 enlarge</p>
+<h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>能夠線上 enlarge/extend 有幾個條件：<br>a. 該 partition 是 LVM<br>b. PV、VG 還有空間，也就是該 LVM 的上一層和上上一層都有空間可以增加，如果不夠可能要先增加實體硬碟</p>
+<p>如何 Mount LVM ，可以看之前的筆記<a href="https://wyde.github.io/2017/10/13/How-to-Mount-a-Second-Drive-Managed-by-LVM/#more">用 LVM 管理 CentOS 7 掛載的資料碟</a></p>
+<p>關於 a 點可以用 <code>$ lsblk -l</code> 來確認， b 的話可以用 <code>$ pvs</code>、<code>$ vgs</code>、<code>$ lvs</code>來一步步確認空間是否足夠，幸運的是我做了 200G 的系統碟，只有用到 15G ，如果要 extend <code>/</code> 至 30G ，空間顯然還夠</p>
+<p>步驟會是</p>
+<ol>
+<li>extend LVM</li>
+<li>extend file system</li>
+</ol>
+<h2 id="Extend-LVM"><a href="#Extend-LVM" class="headerlink" title="Extend LVM"></a>Extend LVM</h2><p>lvextend 前<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ sudo lvs</div><div class="line">LV   VG     Attr       LSize  Pool Origin Data%  Meta%  Move Log Cpy%Sync Convert</div><div class="line">root fedora -wi-ao---- 15.00g</div></pre></td></tr></table></figure></p>
+<p><code>lvextend</code> 的參數</p>
 <ul>
-<li>virtualenv</li>
-<li>“native” pip</li>
-<li>Docker</li>
-<li>Anaconda</li>
-<li>install from source</li>
+<li><code>-l</code> 可接 PE 數量或剩餘空間的百分比</li>
+<li><code>-L</code> 可接容量單位<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo lvextend -L+15G /dev/fedora/root</div></pre></td></tr></table></figure>
+</li>
 </ul>
-<p>因為要來寫 <a href="https://github.com/tensorflow/tensorflow/tree/master/tensorflow/examples/udacity" target="_blank" rel="external">ud730</a> 的作業當作練習(天啊我超 lag)，作業是以 docker 的方式給的，所以一開始的安裝方式就會以 docker 的方式處理。稍微看了一下<a href="https://www.tensorflow.org/install/install_linux#InstallingDocker" target="_blank" rel="external">官方教學</a>，所以順序大概會是</p>
-<ul>
-<li>裝 GPU 驅動</li>
-<li>裝 Docker CE(Community Edititon) for Fedora</li>
-<li>裝 nvidia-docker](<a href="https://github.com/NVIDIA/nvidia-docker" target="_blank" rel="external">https://github.com/NVIDIA/nvidia-docker</a></li>
-<li>跑 Hello World</li>
-</ul>
-<p>後來我也把 virtualenv 的方式裝了一遍，在本文最下面</p>
-<hr>
-<h2 id="裝-GPU-驅動"><a href="#裝-GPU-驅動" class="headerlink" title="裝 GPU 驅動"></a>裝 GPU 驅動</h2><p>放進來篇幅太長，請參考我上一篇筆記<a href="https://wyde.github.io/2017/11/03/How-to-Install-Nvidia-1080Ti-GPU-Driver-on-Fedora/">在 Fedora 上安裝 Nvidia 1080Ti 的驅動</a></p>
-<hr>
-<h2 id="裝-Docker-CE"><a href="#裝-Docker-CE" class="headerlink" title="裝 Docker CE"></a>裝 Docker CE</h2><p>可以參考<a href="https://docs.docker.com/engine/installation/linux/docker-ce/fedora/" target="_blank" rel="external">官方教學</a>，其實只有幾行，先處理一些前置作業，安裝 repo<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ sudo dnf remove docker docker-common docker-selinux docker-engine-selinux docker-engine</div><div class="line">$ sudo dnf -y install dnf-plugins-core</div><div class="line">$ sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo</div></pre></td></tr></table></figure></p>
-<p>然後安裝 docker<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ sudo dnf install -y docker-ce</div><div class="line">$ dnf list docker-ce  --showduplicates | sort -r</div><div class="line">docker-ce.x86_64               17.09.0.ce-1.fc26               docker-ce-stable</div></pre></td></tr></table></figure></p>
-<p>官方建議在 production 系統上應該要安裝同一版本的 docker-ce，所以安裝時要給版本參數<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ sudo dnf -y install docker-ce-17.09.0.ce-1.fc26</div><div class="line">$ sudo systemctl start docker; sudo systemctl enable docker</div><div class="line">$ sudo docker run hello-world</div></pre></td></tr></table></figure></p>
-<p>應該會看到歡迎訊息，如果不想用了要解除安裝<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo dnf remove docker-ce</div><div class="line">$ sudo rm -rf /var/lib/docke</div></pre></td></tr></table></figure></p>
-<hr>
-<h2 id="裝-nvidia-docker"><a href="#裝-nvidia-docker" class="headerlink" title="裝 nvidia-docker"></a>裝 nvidia-docker</h2><p>官方教學在 <a href="https://github.com/NVIDIA/nvidia-docker" target="_blank" rel="external">nvidia-docker github 的 README.md </a>上</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"># Install nvidia-docker and nvidia-docker-plugin</div><div class="line">$ wget -P /tmp https://github.com/NVIDIA/nvidia-docker/releases/download/v1.0.1/nvidia-docker-1.0.1-1.x86_64.rpm</div><div class="line">$ sudo rpm -i /tmp/nvidia-docker*.rpm &amp;&amp; rm /tmp/nvidia-docker*.rpm</div><div class="line">$ sudo systemctl start nvidia-docker</div><div class="line"></div><div class="line"># Test nvidia-smi</div><div class="line">$ nvidia-docker run --rm nvidia/cuda nvidia-smi</div></pre></td></tr></table></figure>
-<p>最後一行 # Test nvidia-smi 會跟 <code>$ nvidia-smi</code> 有一樣的輸出，就是裝 GPU driver 時曾經出現的這張<br><img src="https://i.imgur.com/RcKpQl8.png" alt=""></p>
-<hr>
-<h2 id="Hello-Tensorflow"><a href="#Hello-Tensorflow" class="headerlink" title="Hello Tensorflow"></a>Hello Tensorflow</h2><p>我們可以用類似下列的指令，從 <a href="https://hub.docker.com/r/tensorflow/tensorflow/tags/" target="_blank" rel="external">tensor flow 的 repo</a> 拉適合的 binary 來玩<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ nvidia-docker run -it -p &lt;hostPort:containerPort&gt; &lt;TensorFlowGPUImage&gt;</div></pre></td></tr></table></figure></p>
-<p>測試是否安裝完成，<a href="https://www.tensorflow.org/install/install_linux#ValidateYourInstallation" target="_blank" rel="external">validate your installation</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">$ docker run -it gcr.io/tensorflow/tensorflow bash</div><div class="line">Unable to find image &apos;gcr.io/tensorflow/tensorflow:latest&apos; locally</div><div class="line">latest: Pulling from tensorflow/tensorflow</div><div class="line">f6fa9a861b90: Pull complete </div><div class="line">da7318603015: Pull complete </div><div class="line">6a8bd10c9278: Pull complete </div><div class="line">d5a40291440f: Pull complete </div><div class="line">bbdd8a83c0f1: Pull complete </div><div class="line">abeb898c5fe7: Pull complete </div><div class="line">d66940709c30: Pull complete </div><div class="line">44835d776a0b: Pull complete </div><div class="line">6ec5364eed97: Pull complete </div><div class="line">3ff1cc6e638b: Pull complete </div><div class="line">56aa69af61b9: Pull complete </div><div class="line">982e3b05055e: Pull complete </div><div class="line">Digest: sha256:581e048541034a6992d85cfd37fd36e8085d34142bcb7f57a2a680dc96e38f7e</div><div class="line">Status: Downloaded newer image for gcr.io/tensorflow/tensorflow:latest</div><div class="line">root@47a80733b08c:/notebooks#</div></pre></td></tr></table></figure></p>
-<p>進入 docker 之後，進入 python interactive shell<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; import tensorflow as tf</div><div class="line">&gt;&gt;&gt; hello = tf.constant(&apos;Hello, TensorFlow!&apos;)</div><div class="line">&gt;&gt;&gt; sess = tf.Session()</div><div class="line">&gt;&gt;&gt; print(sess.run(hello))</div><div class="line">Hello, TensorFlow!</div></pre></td></tr></table></figure></p>
-<p>這樣就裝完了，tensorflow in docker 的安裝完成，可以從以下兩種方式來入門深度學習</p>
-<ul>
-<li><a href="https://github.com/tensorflow/tensorflow/tree/master/tensorflow/examples/udacity" target="_blank" rel="external">Udacity deep-learning–ud730</a>  </li>
-<li><a href="https://www.tensorflow.org/get_started/get_started" target="_blank" rel="external">Getting Started with Tensorflow</a></li>
-</ul>
+<p>lvextend 後<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ sudo lvs</div><div class="line">LV   VG     Attr       LSize  Pool Origin Data%  Meta%  Move Log Cpy%Sync Convert</div><div class="line">root fedora -wi-ao---- 30.00g</div></pre></td></tr></table></figure></p>
+<h2 id="extend-file-system"><a href="#extend-file-system" class="headerlink" title="extend file system"></a>extend file system</h2><p>由於 f25+ 、 CentOS 7 已是 xfs file system， <code>resize2fs</code> 只對 ext 家族適用，這裡我們要用 <code>xfs_growfs</code> 指令，如果不加參數就是把剩下的(LVM)空間撐滿<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">$ sudo xfs_growfs /dev/fedora/root </div><div class="line">meta-data=/dev/mapper/fedora-root isize=512    agcount=4, agsize=983040 blks</div><div class="line">         =                       sectsz=512   attr=2, projid32bit=1</div><div class="line">         =                       crc=1        finobt=1 spinodes=0 rmapbt=0</div><div class="line">         =                       reflink=0</div><div class="line">data     =                       bsize=4096   blocks=3932160, imaxpct=25</div><div class="line">         =                       sunit=0      swidth=0 blks</div><div class="line">naming   =version 2              bsize=4096   ascii-ci=0 ftype=1</div><div class="line">log      =internal               bsize=4096   blocks=2560, version=2</div><div class="line">         =                       sectsz=512   sunit=0 blks, lazy-count=1</div><div class="line">realtime =none                   extsz=4096   blocks=0, rtextents=0</div><div class="line">data blocks changed from 3932160 to 7864320</div></pre></td></tr></table></figure></p>
+<p>可以看到 data blocks 從 3932160 增加到 7864320，也可以用 <code>xfs_info</code> 指令查看 xfs 的狀況及大小</p>
 
       
     </div>
@@ -384,14 +348,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/Deep-Learning-Rig/" rel="tag"># Deep Learning Rig</a>
-          
-            <a href="/tags/Nvidida-1080Ti/" rel="tag"># Nvidida 1080Ti</a>
-          
-        </div>
-      
 
       
       
@@ -401,8 +357,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/11/03/How-to-Install-Nvidia-1080Ti-GPU-Driver-on-Fedora/" rel="next" title="How to Install Nvidia 1080Ti GPU Driver On Fedora">
-                <i class="fa fa-chevron-left"></i> How to Install Nvidia 1080Ti GPU Driver On Fedora
+              <a href="/2017/11/05/Building-up-Personal-Deep-Learning-Rig-in-3000-US-Dollar/" rel="next" title="Building up Personal Deep Learning Rig in 3000 US Dollar">
+                <i class="fa fa-chevron-left"></i> Building up Personal Deep Learning Rig in 3000 US Dollar
               </a>
             
           </div>
@@ -410,10 +366,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/11/06/How-to-Extend-LVM-under-Linux-XFS-Filesystem/" rel="prev" title="How to Extend LVM in Linux">
-                How to Extend LVM in Linux <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -558,7 +510,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#100k-搭建個人深度學習機"><span class="nav-number">1.</span> <span class="nav-text">100k 搭建個人深度學習機</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#硬體規格"><span class="nav-number">1.1.</span> <span class="nav-text">硬體規格</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Overview"><span class="nav-number">1.2.</span> <span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#裝-GPU-驅動"><span class="nav-number">1.3.</span> <span class="nav-text">裝 GPU 驅動</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#裝-Docker-CE"><span class="nav-number">1.4.</span> <span class="nav-text">裝 Docker CE</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#裝-nvidia-docker"><span class="nav-number">1.5.</span> <span class="nav-text">裝 nvidia-docker</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hello-Tensorflow"><span class="nav-number">1.6.</span> <span class="nav-text">Hello Tensorflow</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Linux-xfs-檔案系統下增長-LVM-空間"><span class="nav-number">1.</span> <span class="nav-text"> Linux xfs 檔案系統下增長 LVM 空間</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Overview"><span class="nav-number">1.1.</span> <span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Extend-LVM"><span class="nav-number">1.2.</span> <span class="nav-text">Extend LVM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#extend-file-system"><span class="nav-number">1.3.</span> <span class="nav-text">extend file system</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -704,9 +656,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'https://wyde.github.io/2017/11/05/Building-up-Personal-Deep-Learning-Rig-in-3000-US-Dollar/';
-          this.page.identifier = '2017/11/05/Building-up-Personal-Deep-Learning-Rig-in-3000-US-Dollar/';
-          this.page.title = 'Building up Personal Deep Learning Rig in 3000 US Dollar';
+          this.page.url = 'https://wyde.github.io/2017/11/06/How-to-Extend-LVM-under-Linux-XFS-Filesystem/';
+          this.page.identifier = '2017/11/06/How-to-Extend-LVM-under-Linux-XFS-Filesystem/';
+          this.page.title = 'How to Extend LVM in Linux';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://wyde.disqus.com/embed.js';
