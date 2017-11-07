@@ -71,21 +71,21 @@
 
 
 
-<meta name="description" content="在 Ubuntu 16.04 的 Virtualenv 裡安裝 Tensorflow with GPUTL;DR 安裝 Tensorflow 要麼直接用 docker ，要麼用 ubuntu，我會先說怎麼在 Fedora 25 26 上踩坑，最後用 Ubuntu 16.04 安裝成功的過程前情提要：之前已經寫了一個100k 搭建深度學習個人環境，用 f26 + docker 裝得順順的，想說順手來">
+<meta name="description" content="在 Ubuntu 16.04 的 Virtualenv 裡安裝 Tensorflow with GPUTL;DR 安裝 Tensorflow 要麼直接用 docker ，要麼用 ubuntu，我會先說怎麼在 Fedora 25 26 上踩坑，最後用 Ubuntu 16.04 安裝成功的過程 #重灌的乾淨ubuntu #不用先手動裝驅動 #簡單快速不易失敗 #使用官方套件與教學前情提要：之前已經寫了">
 <meta name="keywords" content="ubuntu16.04,python3.5,virtualenv,tensorflow">
 <meta property="og:type" content="article">
 <meta property="og:title" content="How to Install Tensorflow with GPU in Virtualenv on Ubuntu 16.04">
 <meta property="og:url" content="https://wyde.github.io/2017/11/07/How-to-Install-Tensorflow-with-GPU-in-Virtualenv-on-Ubuntu-16-04/index.html">
-<meta property="og:site_name" content="Wyde&#39;s Blog">
-<meta property="og:description" content="在 Ubuntu 16.04 的 Virtualenv 裡安裝 Tensorflow with GPUTL;DR 安裝 Tensorflow 要麼直接用 docker ，要麼用 ubuntu，我會先說怎麼在 Fedora 25 26 上踩坑，最後用 Ubuntu 16.04 安裝成功的過程前情提要：之前已經寫了一個100k 搭建深度學習個人環境，用 f26 + docker 裝得順順的，想說順手來">
+<meta property="og:site_name" content="Locus Solus">
+<meta property="og:description" content="在 Ubuntu 16.04 的 Virtualenv 裡安裝 Tensorflow with GPUTL;DR 安裝 Tensorflow 要麼直接用 docker ，要麼用 ubuntu，我會先說怎麼在 Fedora 25 26 上踩坑，最後用 Ubuntu 16.04 安裝成功的過程 #重灌的乾淨ubuntu #不用先手動裝驅動 #簡單快速不易失敗 #使用官方套件與教學前情提要：之前已經寫了">
 <meta property="og:locale" content="zh-tw">
 <meta property="og:image" content="https://i.imgur.com/fh3SGJG.png">
 <meta property="og:image" content="https://i.imgur.com/SOlBeAA.png">
 <meta property="og:image" content="https://i.imgur.com/P51gjfs.png">
-<meta property="og:updated_time" content="2017-11-07T09:24:34.059Z">
+<meta property="og:updated_time" content="2017-11-07T09:41:38.959Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="How to Install Tensorflow with GPU in Virtualenv on Ubuntu 16.04">
-<meta name="twitter:description" content="在 Ubuntu 16.04 的 Virtualenv 裡安裝 Tensorflow with GPUTL;DR 安裝 Tensorflow 要麼直接用 docker ，要麼用 ubuntu，我會先說怎麼在 Fedora 25 26 上踩坑，最後用 Ubuntu 16.04 安裝成功的過程前情提要：之前已經寫了一個100k 搭建深度學習個人環境，用 f26 + docker 裝得順順的，想說順手來">
+<meta name="twitter:description" content="在 Ubuntu 16.04 的 Virtualenv 裡安裝 Tensorflow with GPUTL;DR 安裝 Tensorflow 要麼直接用 docker ，要麼用 ubuntu，我會先說怎麼在 Fedora 25 26 上踩坑，最後用 Ubuntu 16.04 安裝成功的過程 #重灌的乾淨ubuntu #不用先手動裝驅動 #簡單快速不易失敗 #使用官方套件與教學前情提要：之前已經寫了">
 <meta name="twitter:image" content="https://i.imgur.com/fh3SGJG.png">
 
 
@@ -122,7 +122,7 @@
 
 
 
-  <title>How to Install Tensorflow with GPU in Virtualenv on Ubuntu 16.04 | Wyde's Blog</title>
+  <title>How to Install Tensorflow with GPU in Virtualenv on Ubuntu 16.04 | Locus Solus</title>
   
 
 
@@ -152,12 +152,12 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Wyde's Blog</span>
+        <span class="site-title">Locus Solus</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
       
-        <h1 class="site-subtitle" itemprop="description"></h1>
+        <h1 class="site-subtitle" itemprop="description">簡單勝於複雜，複雜勝於超複雜</h1>
       
   </div>
 
@@ -238,7 +238,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wyde's Blog">
+      <meta itemprop="name" content="Locus Solus">
     </span>
 
     
@@ -318,7 +318,8 @@
       
 
       
-        <h1 id="在-Ubuntu-16-04-的-Virtualenv-裡安裝-Tensorflow-with-GPU"><a href="#在-Ubuntu-16-04-的-Virtualenv-裡安裝-Tensorflow-with-GPU" class="headerlink" title="在 Ubuntu 16.04 的 Virtualenv 裡安裝 Tensorflow with GPU"></a><center>在 Ubuntu 16.04 的 Virtualenv 裡安裝 Tensorflow with GPU</center></h1><p><br><br>TL;DR 安裝 Tensorflow 要麼直接用 docker ，要麼用 ubuntu，我會先說怎麼在 Fedora 25 26 上踩坑，最後用 Ubuntu 16.04 安裝成功的過程<br><br><br>前情提要：之前已經寫了一個<a href="https://wyde.github.io/2017/11/05/Building-up-Personal-Deep-Learning-Rig-in-3000-US-Dollar/">100k 搭建深度學習個人環境</a>，用 f26 + docker 裝得順順的，想說順手來裝個 python virtualenv 的版本，沒想到踩到了大坑…</p>
+        <h1 id="在-Ubuntu-16-04-的-Virtualenv-裡安裝-Tensorflow-with-GPU"><a href="#在-Ubuntu-16-04-的-Virtualenv-裡安裝-Tensorflow-with-GPU" class="headerlink" title="在 Ubuntu 16.04 的 Virtualenv 裡安裝 Tensorflow with GPU"></a><center>在 Ubuntu 16.04 的 Virtualenv 裡安裝 Tensorflow with GPU</center></h1><p><br><br>TL;DR 安裝 Tensorflow 要麼直接用 docker ，要麼用 ubuntu，我會先說怎麼在 Fedora 25 26 上踩坑，最後用 Ubuntu 16.04 安裝成功的過程<br><br></p>
+<p>#重灌的乾淨ubuntu #不用先手動裝驅動 #簡單快速不易失敗 #使用官方套件與教學<br><br><br>前情提要：之前已經寫了一個<a href="https://wyde.github.io/2017/11/05/Building-up-Personal-Deep-Learning-Rig-in-3000-US-Dollar/">100k 搭建深度學習個人環境</a>，用 f26 + docker 裝得順順的，想說順手來裝個 python virtualenv 的版本，沒想到踩到了大坑…</p>
 <ul>
 <li>f26 + gcc7 + cuda9 + cudnn7 (failed)<br>  在寫這篇文章的時候，已經出了 cuda 9 和 cudnn v7.0，雖然<a href="https://negativo17.org/cuda-9-0-cudnn-7-0-and-wayland-support-in-fedora-27/" target="_blank" rel="external"> f27 也號稱要支援這兩者</a>，我還是先用 f26 試試看，殊不知 f26 預設已經到了 gcc 7，cuda 9 不支援，其實對照下面的圖，我根本不該有[在 f26 上安裝 virtualenv 版的 tf 會很順利的錯覺]…當初還花時間<a href="https://wyde.github.io/2017/10/12/Upgrade-Fedora-25-to-26/">從 f25 升到 f26</a>，我相信一定有辦法可以裝，只是都要出 f27 了，我不想折騰</li>
 <li>f25 + gcc6 + cuda9 (failed)<br>  ok，重灌成 f25 應該可以了吧，按照<a href="http://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html" target="_blank" rel="external">cuda installtion guide</a>這次 cuda 9 裝好了，殊不知測試安裝成功時報錯 <code>ImportError: libcublas.so.8.0: cannot open shared object file: No such file or directory</code>，我知道這看起來很像 <code>export LD_LIBRARY_PATH</code>之類，像是<a href="https://stackoverflow.com/questions/41746576/tensorflow-with-cuda-importerror" target="_blank" rel="external">這篇文章</a>可以解決的事，但怎麼設怎麼失敗</li>
