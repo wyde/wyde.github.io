@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-tw,en,default">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="Prh0dJbvt-zwGE-LNDAOSQYuJs0RmkgAi40IKxhDpSU" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="ubuntu16.04,python3.5,virtualenv,tensorflow," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="在 Ubuntu 16.04 的 Virtualenv 裡安裝 Tensorflow with GPUTL;DR 安裝 Tensorflow 要麼直接用 docker ，要麼用 ubuntu，我會先說怎麼在 Fedora 25 26 上踩坑，最後用 Ubuntu 16.04 安裝成功的過程前情提要：之前已經寫了一個100k 搭建深度學習個人環境，用 f26 + docker 裝得順順的，想說順手來">
+<meta name="keywords" content="ubuntu16.04,python3.5,virtualenv,tensorflow">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How to Install Tensorflow with GPU in Virtualenv on Ubuntu 16.04">
+<meta property="og:url" content="https://wyde.github.io/2017/11/07/How-to-Install-Tensorflow-with-GPU-in-Virtualenv-on-Ubuntu-16-04/index.html">
+<meta property="og:site_name" content="Wyde&#39;s Blog">
+<meta property="og:description" content="在 Ubuntu 16.04 的 Virtualenv 裡安裝 Tensorflow with GPUTL;DR 安裝 Tensorflow 要麼直接用 docker ，要麼用 ubuntu，我會先說怎麼在 Fedora 25 26 上踩坑，最後用 Ubuntu 16.04 安裝成功的過程前情提要：之前已經寫了一個100k 搭建深度學習個人環境，用 f26 + docker 裝得順順的，想說順手來">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:image" content="https://i.imgur.com/fh3SGJG.png">
+<meta property="og:image" content="https://i.imgur.com/SOlBeAA.png">
+<meta property="og:image" content="https://i.imgur.com/P51gjfs.png">
+<meta property="og:updated_time" content="2017-11-07T09:21:01.087Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="How to Install Tensorflow with GPU in Virtualenv on Ubuntu 16.04">
+<meta name="twitter:description" content="在 Ubuntu 16.04 的 Virtualenv 裡安裝 Tensorflow with GPUTL;DR 安裝 Tensorflow 要麼直接用 docker ，要麼用 ubuntu，我會先說怎麼在 Fedora 25 26 上踩坑，最後用 Ubuntu 16.04 安裝成功的過程前情提要：之前已經寫了一個100k 搭建深度學習個人環境，用 f26 + docker 裝得順順的，想說順手來">
+<meta name="twitter:image" content="https://i.imgur.com/fh3SGJG.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"hide","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://wyde.github.io/2017/11/07/How-to-Install-Tensorflow-with-GPU-in-Virtualenv-on-Ubuntu-16-04/"/>
+
+
+
+
+
+  <title>How to Install Tensorflow with GPU in Virtualenv on Ubuntu 16.04 | Wyde's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-tw">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Wyde's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            歸檔
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://wyde.github.io/2017/11/07/How-to-Install-Tensorflow-with-GPU-in-Virtualenv-on-Ubuntu-16-04/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Wyde Wu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wyde's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">How to Install Tensorflow with GPU in Virtualenv on Ubuntu 16.04</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2017-11-07T17:21:01+08:00">
+                2017-11-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/11/07/How-to-Install-Tensorflow-with-GPU-in-Virtualenv-on-Ubuntu-16-04/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/11/07/How-to-Install-Tensorflow-with-GPU-in-Virtualenv-on-Ubuntu-16-04/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/11/07/How-to-Install-Tensorflow-with-GPU-in-Virtualenv-on-Ubuntu-16-04/" class="leancloud_visitors" data-flag-title="How to Install Tensorflow with GPU in Virtualenv on Ubuntu 16.04">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">閱讀次數&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="在-Ubuntu-16-04-的-Virtualenv-裡安裝-Tensorflow-with-GPU"><a href="#在-Ubuntu-16-04-的-Virtualenv-裡安裝-Tensorflow-with-GPU" class="headerlink" title="在 Ubuntu 16.04 的 Virtualenv 裡安裝 Tensorflow with GPU"></a><center>在 Ubuntu 16.04 的 Virtualenv 裡安裝 Tensorflow with GPU</center></h1><p><br><br>TL;DR 安裝 Tensorflow 要麼直接用 docker ，要麼用 ubuntu，我會先說怎麼在 Fedora 25 26 上踩坑，最後用 Ubuntu 16.04 安裝成功的過程<br><br><br>前情提要：之前已經寫了一個<a href="https://wyde.github.io/2017/11/05/Building-up-Personal-Deep-Learning-Rig-in-3000-US-Dollar/">100k 搭建深度學習個人環境</a>，用 f26 + docker 裝得順順的，想說順手來裝個 python virtualenv 的版本，沒想到踩到了大坑…</p>
+<ul>
+<li>f26 + gcc7 + cuda9 + cudnn7 (failed)<br>  在寫這篇文章的時候，已經出了 cuda 9 和 cudnn v7.0，雖然<a href="https://negativo17.org/cuda-9-0-cudnn-7-0-and-wayland-support-in-fedora-27/" target="_blank" rel="external"> f27 也號稱要支援這兩者</a>，我還是先用 f26 試試看，殊不知 f26 預設已經到了 gcc 7，cuda 9 不支援，其實對照下面的圖，我根本不該有[在 f26 上安裝 virtualenv 版的 tf 會很順利的錯覺]…當初還花時間<a href="https://wyde.github.io/2017/10/12/Upgrade-Fedora-25-to-26/">從 f25 升到 f26</a>，我相信一定有辦法可以裝，只是都要出 f27 了，我不想折騰</li>
+<li>f25 + gcc6 + cuda9 (failed)<br>  ok，重灌成 f25 應該可以了吧，按照<a href="http://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html" target="_blank" rel="external">cuda installtion guide</a>這次 cuda 9 裝好了，殊不知測試安裝成功時報錯 <code>ImportError: libcublas.so.8.0: cannot open shared object file: No such file or directory</code>，我知道這看起來很像 <code>export LD_LIBRARY_PATH</code>之類，像是<a href="https://stackoverflow.com/questions/41746576/tensorflow-with-cuda-importerror" target="_blank" rel="external">這篇文章</a>可以解決的事，但怎麼設怎麼失敗</li>
+<li>f25 negativo17 (failed)<br>  再次重灌，然後有查到這篇文章，<a href="http://blog.mdda.net/oss/2016/11/25/nvidia-on-fedora-25" target="_blank" rel="external">Nvidia (8.0) installation for TensorFlow on Fedora 25</a>，想說雖然是 python2.7 還是試試看，裝起來進 python shell 會報 Segmentation Fault…現在想起來可能是我的 python 環境指到 python3 了，不過我想盡可能不用第三方的 repo，這次也是果斷棄坑</li>
+<li>f25 + gcc6 + cuda8 + cudnn6 (failed)<br>  再次重灌，回頭再重看一次 tensorflow 的安裝，發現它requirement 寫的是 cuda 8.0、cudnn v6.0，想說用這個版本裝裝看，在 cuda archive 裡找到 cuda8，裝完之後，好不容易找到 cudnn v6.0 的 archive(真的很隱晦的位置…)，發現官方只有提供 *.deb………要不要這麼坑，如果有 rpm 版的也許我會考慮再試一次…</li>
+</ul>
+<p><img src="https://i.imgur.com/fh3SGJG.png" alt=""></p>
+<p>最後還是裝好了，用的是以下版本</p>
+<ul>
+<li>硬體：<ul>
+<li>Nvidia 1080 Ti 兩張 with 1000W Power</li>
+<li>Intel i7 7700K</li>
+<li>ASUS STRIX Z270F</li>
+</ul>
+</li>
+<li>軟體：<ul>
+<li>Ubuntu 16.04 with kernel 4.4</li>
+<li>Python 3.5 with virtualenv</li>
+<li>Cuda 8.0</li>
+<li>cuDNN v6.0</li>
+<li>gcc 5.4</li>
+<li>tensorflow-gpu 1.4.0</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>根據 <a href="https://www.tensorflow.org/install/install_linux" target="_blank" rel="external">Tensorflow 在 Ubuntu 上的安裝教學</a> ，大概分成幾個部分，</p>
+<ul>
+<li>首先要有硬體(廢話)，然後要有一張 Compute Capability 3.0 以上的 GPU card，<a href="https://developer.nvidia.com/cuda-gpus" target="_blank" rel="external">查詢頁面</a>，可以看到 GeForce GTX 1080 Ti 是 6.1 分</li>
+<li>安裝 CUDA Toolkit 8.0 ，<a href="http://docs.nvidia.com/cuda/cuda-installation-guide-linux/#axzz4VZnqTJ2A" target="_blank" rel="external">官方安裝教學</a>，<a href="https://developer.nvidia.com/cuda-80-ga2-download-archive" target="_blank" rel="external">下載位址</a>，然後記得設 LD_LIBRARY_PATH 環境變數</li>
+<li>安裝 cuDNN v6.0 ，<a href="http://docs.nvidia.com/deeplearning/sdk/cudnn-install/index.html" target="_blank" rel="external">官方安裝教學</a>，<a href="https://developer.nvidia.com/rdp/cudnn-download" target="_blank" rel="external">下載位址(需免費登入)</a>，記得設 CUDA_HOME 環境變數</li>
+</ul>
+<p>以下分步驟</p>
+<hr>
+<h2 id="安裝-apt-套件"><a href="#安裝-apt-套件" class="headerlink" title="安裝 apt 套件"></a>安裝 apt 套件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo apt install -y gcc make linux-headers-$(uname -r) libcupti-dev</div></pre></td></tr></table></figure>
+<h2 id="下載並安裝-cuda8"><a href="#下載並安裝-cuda8" class="headerlink" title="下載並安裝 cuda8"></a>下載並安裝 cuda8</h2><p>至<a href="https://developer.nvidia.com/cuda-80-ga2-download-archive" target="_blank" rel="external">官網</a>選擇 target platform 如下圖，然後 installer type 選 runfile(local)<br><img src="https://i.imgur.com/SOlBeAA.png" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ wget https://developer.nvidia.com/compute/cuda/8.0/Prod2/local_installers/cuda_8.0.61_375.26_linux-run -P ~ # 1.4GB</div><div class="line">$ sudo sh ~/cuda_8.0.61_375.26_linux.run</div></pre></td></tr></table></figure>
+<p>全部都按 yes 或 default 就可以了，第一次可能會安裝失敗，因為 installer 要把 nouveau (開源顯卡驅動) 關掉(設定會寫在 <code>/etc/modprobe.d/nvidia-installer-disable-nouveau.conf</code>，如果有成功把 nouveau 列入 blacklist ，系統需要 reboot</p>
+<p>接著裝 patch<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ wget https://developer.nvidia.com/compute/cuda/8.0/Prod2/patches/2/cuda_8.0.61.2_linux-run -P ~ # 95.3 MB</div><div class="line">$ sudo sh ~/cuda_8.0.61.2_linux-run</div></pre></td></tr></table></figure></p>
+<p>如果前一步有裝好，這步應該很快</p>
+<hr>
+<h2 id="下載並安裝-cuDNN-v6-0"><a href="#下載並安裝-cuDNN-v6-0" class="headerlink" title="下載並安裝 cuDNN v6.0"></a>下載並安裝 cuDNN v6.0</h2><blockquote>
+<p>Prerequisites:<br>CUDA 7.5 or higher version and a GPU of compute capability 3.0 or higher are required.</p>
+</blockquote>
+<p><a href="https://developer.nvidia.com/rdp/cudnn-archive" target="_blank" rel="external">cuDNN 的 Archive </a>只有從 v6.5 開始列，我們要的 v6.0 要先申請 Nvidia Developer 的帳號，然後根據<a href="https://devtalk.nvidia.com/default/topic/1023497/no-link-to-download-cudnn-v6-or-v6-1/" target="_blank" rel="external">論壇的帖子</a>找到 <a href="https://developer.nvidia.com/rdp/cudnn-download" target="_blank" rel="external">v6.0 版本的下載位置</a>，當初也是找了一陣子，截圖紀念一下</p>
+<p><img src="https://i.imgur.com/P51gjfs.png" alt=""></p>
+<p>我下載的路徑在家目錄，這邊請隨意指定想要放的位置，下載好依序安裝即可<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ sudo dpkg -i ~/libcudnn6_6.0.21-1+cuda8.0_amd64.deb # runtime library</div><div class="line">$ sudo dpkg -i ~/libcudnn6-dev_6.0.21-1+cuda8.0_amd64.deb # developer library</div><div class="line">$ sudo dpkig -i ~/libcudnn6-doc_6.0.21-1+cuda8.0_amd64.deb # document library</div></pre></td></tr></table></figure></p>
+<hr>
+<h2 id="設定環境變數"><a href="#設定環境變數" class="headerlink" title="設定環境變數"></a>設定環境變數</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ echo /usr/local/cuda-8.0/lib64 | sudo tee -a /etc/ld.so.conf.d/cuda-8.0.conf &gt; /dev/null</div><div class="line">$ sudo ldconfig</div><div class="line">$ echo &apos;export CUDA_HOME=/usr/local/cuda-8.0&apos; &gt;&gt; ~/.bash_profile</div><div class="line">$ echo &apos;export LD_LIBRARY_PATH=$&#123;CUDA_HOME&#125;/lib64:$LD_LIBRARY_PATH&apos; &gt;&gt; ~/.bash_profile</div><div class="line">$ echo &apos;export PATH=$&#123;CUDA_HOME&#125;/bin:$&#123;PATH&#125;&apos; &gt;&gt; ~/.bash_profile</div><div class="line">$ source ~/.bash_profile</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="設定-virtualenv-並安裝-tensorflow"><a href="#設定-virtualenv-並安裝-tensorflow" class="headerlink" title="設定 virtualenv 並安裝 tensorflow"></a>設定 virtualenv 並安裝 tensorflow</h2><p>我使用 virtualenv + virtualenvwrapper 的組合建立 python3 的開發環境，由於 Ubuntu 16.04 自帶 python 3.5 ，我也跟著用 3.5，每個人建立 virtualenv 的習慣不一樣，也許有的人習慣用 native 的環境，如果要參考我的環境，可以看這篇前作，<a href="https://wyde.github.io/2017/11/07/How-to-Setup-Virtualenv-on-Ubuntu-16-04/">在 Ubuntu 16.04 上建立 Virtualenv</a>，總之 <code>$ python --version</code> 這裡要給一個 3.5，然後我們可以在 <a href="https://www.tensorflow.org/install/install_linux#the_url_of_the_tensorflow_python_package" target="_blank" rel="external">tensorflow 的安裝頁面</a>找到對應的 binary url</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ pip3 install --upgrade pip</div><div class="line">$ pip3 install --upgrade https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow_gpu-1.4.0-cp35-cp35m-linux_x86_64.whl</div></pre></td></tr></table></figure>
+<h2 id="Hello-Tensorflow"><a href="#Hello-Tensorflow" class="headerlink" title="Hello Tensorflow"></a>Hello Tensorflow</h2><p>進入 python interactive shell，按照<a href="https://www.tensorflow.org/install/install_linux#ValidateYourInstallation" target="_blank" rel="external">官網提供的 validate your installation</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">$ python</div><div class="line">Python 3.5.2 (default, Sep 14 2017, 22:51:06) </div><div class="line">[GCC 5.4.0 20160609] on linux</div><div class="line">Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.</div><div class="line">&gt;&gt;&gt; import tensorflow as tf</div><div class="line">&gt;&gt;&gt; hello = tf.constant(&apos;Hello, TensorFlow!&apos;)</div><div class="line">&gt;&gt;&gt; sess = tf.Session()</div><div class="line">2017-11-07 13:18:38.841338: I tensorflow/core/platform/cpu_feature_guard.cc:137] Your CPU supports instructions that this TensorFlow binary was not compiled to use: SSE4.1 SSE4.2 AVX AVX2 FMA</div><div class="line">2017-11-07 13:18:40.821021: E tensorflow/stream_executor/cuda/cuda_driver.cc:406] failed call to cuInit: CUDA_ERROR_NO_DEVICE</div><div class="line">2017-11-07 13:18:40.821072: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:158] retrieving CUDA diagnostic information for host: ddl</div><div class="line">2017-11-07 13:18:40.821079: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:165] hostname: ddl</div><div class="line">2017-11-07 13:18:40.821121: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:189] libcuda reported version is: 375.26.0</div><div class="line">2017-11-07 13:18:40.821138: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:369] driver version file contents: &quot;&quot;&quot;NVRM version: NVIDIA UNIX x86_64 Kernel Module  375.26  Thu Dec  8 18:36:43 PST 2016</div><div class="line">GCC version:  gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.5) </div><div class="line">&quot;&quot;&quot;</div><div class="line">2017-11-07 13:18:40.821160: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:193] kernel reported version is: 375.26.0</div><div class="line">2017-11-07 13:18:40.821165: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:300] kernel version seems to match DSO: 375.26.0</div><div class="line"></div><div class="line">&gt;&gt;&gt; print(sess.run(hello))</div><div class="line">b&apos;Hello, TensorFlow!&apos;</div></pre></td></tr></table></figure></p>
+<p>安裝完畢，比 fedora 順利多了，不愧是官方支援…接下來會裝一遍 docker 版的，預期不會遇到太大困難…吧 :)</p>
+<p><a href="https://www.tensorflow.org/get_started/get_started" target="_blank" rel="external">Getting started with Tensorflow</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ubuntu16-04/" rel="tag"># ubuntu16.04</a>
+          
+            <a href="/tags/python3-5/" rel="tag"># python3.5</a>
+          
+            <a href="/tags/virtualenv/" rel="tag"># virtualenv</a>
+          
+            <a href="/tags/tensorflow/" rel="tag"># tensorflow</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/07/How-to-Setup-Virtualenv-on-Ubuntu-16-04/" rel="next" title="How to Setup Virtualenv on Ubuntu 16.04">
+                <i class="fa fa-chevron-left"></i> How to Setup Virtualenv on Ubuntu 16.04
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          
+            <p class="site-author-name" itemprop="name">Wyde Wu</p>
+            <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives/">
+            
+                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-name">文章</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">53</span>
+                <span class="site-state-item-name">標籤</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wyde" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:wyde@csie.ntu.edu.tw" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#在-Ubuntu-16-04-的-Virtualenv-裡安裝-Tensorflow-with-GPU"><span class="nav-number">1.</span> <span class="nav-text">在 Ubuntu 16.04 的 Virtualenv 裡安裝 Tensorflow with GPU</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝-apt-套件"><span class="nav-number">1.1.</span> <span class="nav-text">安裝 apt 套件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#下載並安裝-cuda8"><span class="nav-number">1.2.</span> <span class="nav-text">下載並安裝 cuda8</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#下載並安裝-cuDNN-v6-0"><span class="nav-number">1.3.</span> <span class="nav-text">下載並安裝 cuDNN v6.0</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#設定環境變數"><span class="nav-number">1.4.</span> <span class="nav-text">設定環境變數</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#設定-virtualenv-並安裝-tensorflow"><span class="nav-number">1.5.</span> <span class="nav-text">設定 virtualenv 並安裝 tensorflow</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hello-Tensorflow"><span class="nav-number">1.6.</span> <span class="nav-text">Hello Tensorflow</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wyde Wu</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主題 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://wyde.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://wyde.github.io/2017/11/07/How-to-Install-Tensorflow-with-GPU-in-Virtualenv-on-Ubuntu-16-04/';
+          this.page.identifier = '2017/11/07/How-to-Install-Tensorflow-with-GPU-in-Virtualenv-on-Ubuntu-16-04/';
+          this.page.title = 'How to Install Tensorflow with GPU in Virtualenv on Ubuntu 16.04';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://wyde.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("EObj32zGPmfzzexdEpYvMFyS-gzGzoHsz", "lfpxqWTTPoAdkXiQPfrgycx0");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

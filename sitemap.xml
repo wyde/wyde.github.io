@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://wyde.github.io/2017/11/07/How-to-Install-Tensorflow-with-GPU-in-Virtualenv-on-Ubuntu-16-04/</loc>
+    
+    <lastmod>2017-11-07T09:21:01.087Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://wyde.github.io/2017/11/07/How-to-Setup-Virtualenv-on-Ubuntu-16-04/</loc>
     
-    <lastmod>2017-11-07T06:44:54.689Z</lastmod>
+    <lastmod>2017-11-07T06:46:04.229Z</lastmod>
     
   </url>
   
