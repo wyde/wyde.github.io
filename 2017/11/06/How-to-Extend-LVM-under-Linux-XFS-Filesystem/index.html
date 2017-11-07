@@ -78,7 +78,7 @@
 <meta property="og:site_name" content="Wyde&#39;s Blog">
 <meta property="og:description" content="Linux xfs 檔案系統下增長 LVM 空間 原本 f25 /dev/fedora/root 有 15G ，裝 cuda8.0 也要 13G 上下，只好來 enlarge Overview能夠線上 enlarge/extend 有幾個條件：a. 該 partition 是 LVMb. PV、VG 還有空間，也就是該 LVM 的上一層和上上一層都有空間可以增加，如果不夠可能要先增加實體硬碟 如">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2017-11-06T07:39:03.846Z">
+<meta property="og:updated_time" content="2017-11-06T07:42:27.886Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="How to Extend LVM in Linux">
 <meta name="twitter:description" content="Linux xfs 檔案系統下增長 LVM 空間 原本 f25 /dev/fedora/root 有 15G ，裝 cuda8.0 也要 13G 上下，只好來 enlarge Overview能夠線上 enlarge/extend 有幾個條件：a. 該 partition 是 LVMb. PV、VG 還有空間，也就是該 LVM 的上一層和上上一層都有空間可以增加，如果不夠可能要先增加實體硬碟 如">
@@ -333,6 +333,10 @@
 <p>lvextend 後<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ sudo lvs</div><div class="line">LV   VG     Attr       LSize  Pool Origin Data%  Meta%  Move Log Cpy%Sync Convert</div><div class="line">root fedora -wi-ao---- 30.00g</div></pre></td></tr></table></figure></p>
 <h2 id="extend-file-system"><a href="#extend-file-system" class="headerlink" title="extend file system"></a>extend file system</h2><p>由於 f25+ 、 CentOS 7 已是 xfs file system， <code>resize2fs</code> 只對 ext 家族適用，這裡我們要用 <code>xfs_growfs</code> 指令，如果不加參數就是把剩下的(LVM)空間撐滿<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">$ sudo xfs_growfs /dev/fedora/root </div><div class="line">meta-data=/dev/mapper/fedora-root isize=512    agcount=4, agsize=983040 blks</div><div class="line">         =                       sectsz=512   attr=2, projid32bit=1</div><div class="line">         =                       crc=1        finobt=1 spinodes=0 rmapbt=0</div><div class="line">         =                       reflink=0</div><div class="line">data     =                       bsize=4096   blocks=3932160, imaxpct=25</div><div class="line">         =                       sunit=0      swidth=0 blks</div><div class="line">naming   =version 2              bsize=4096   ascii-ci=0 ftype=1</div><div class="line">log      =internal               bsize=4096   blocks=2560, version=2</div><div class="line">         =                       sectsz=512   sunit=0 blks, lazy-count=1</div><div class="line">realtime =none                   extsz=4096   blocks=0, rtextents=0</div><div class="line">data blocks changed from 3932160 to 7864320</div></pre></td></tr></table></figure></p>
 <p>可以看到 data blocks 從 3932160 增加到 7864320，也可以用 <code>xfs_info</code> 指令查看 xfs 的狀況及大小</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a href="https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Logical_Volume_Manager_Administration/lv_extend.html" target="_blank" rel="external">Redhat - Growing Logical Volumes</a></li>
+<li><a href="https://www.tecmint.com/extend-and-reduce-lvms-in-linux/" target="_blank" rel="external">Tecmint - How to Extend/Reduce LVM’s (Logical Volume Management) in Linux – Part II</a></li>
+</ul>
 
       
     </div>
@@ -366,6 +370,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/07/How-to-Setup-Locale-in-Ubuntu-16-04/" rel="prev" title="How to Setup Locale in Ubuntu 16.04">
+                How to Setup Locale in Ubuntu 16.04 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -448,7 +456,7 @@
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">文章</span>
               </a>
             </div>
@@ -510,7 +518,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Linux-xfs-檔案系統下增長-LVM-空間"><span class="nav-number">1.</span> <span class="nav-text"> Linux xfs 檔案系統下增長 LVM 空間</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Overview"><span class="nav-number">1.1.</span> <span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Extend-LVM"><span class="nav-number">1.2.</span> <span class="nav-text">Extend LVM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#extend-file-system"><span class="nav-number">1.3.</span> <span class="nav-text">extend file system</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Linux-xfs-檔案系統下增長-LVM-空間"><span class="nav-number">1.</span> <span class="nav-text"> Linux xfs 檔案系統下增長 LVM 空間</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Overview"><span class="nav-number">1.1.</span> <span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Extend-LVM"><span class="nav-number">1.2.</span> <span class="nav-text">Extend LVM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#extend-file-system"><span class="nav-number">1.3.</span> <span class="nav-text">extend file system</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">1.4.</span> <span class="nav-text">Reference</span></a></li></ol></li></ol></div>
             
 
           </div>
