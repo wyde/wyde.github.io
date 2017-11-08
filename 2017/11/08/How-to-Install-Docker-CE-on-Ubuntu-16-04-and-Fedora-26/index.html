@@ -55,7 +55,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Github Pages,Hexo," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -71,18 +71,17 @@
 
 
 
-<meta name="description" content="利用 Hexo 和 Github Pages 建立 blog 第一篇文章不可免俗地來介紹這個 blog 怎麼建起來的，最陽春的那種 :) 結果不小心手殘誤刪，這篇無法當第一篇了，才發現 hexo deploy 只有 push public 裡 render 完的網頁，原本以為會連 markdown 都上傳，看來要用另一個 repo 管理 markdown 的 source ，難怪有人還會再接 CI">
-<meta name="keywords" content="Github Pages,Hexo">
+<meta name="description" content="如何在 Ubuntu 16.04 和 Fedora 26 上安裝 Docker Coummunity 版本 因為種種因素…導致我必須在 ubuntu 和 fedora 上切來切去，安裝 docker 的步驟其實差不多，紀錄一下 package name 而已  清除舊的 docker 安裝 docker 的 repo 選擇 docker 版本並安裝 post installation 例如不用 s">
 <meta property="og:type" content="article">
-<meta property="og:title" content="How to Deploy Hexo on Github Pages">
-<meta property="og:url" content="https://wyde.github.io/2017/09/23/How-to-Deploy-Hexo-on-Github-Pages/index.html">
+<meta property="og:title" content="How to Install Docker CE on Ubuntu 16.04 and Fedora 26">
+<meta property="og:url" content="https://wyde.github.io/2017/11/08/How-to-Install-Docker-CE-on-Ubuntu-16-04-and-Fedora-26/index.html">
 <meta property="og:site_name" content="wyde&#39;s note">
-<meta property="og:description" content="利用 Hexo 和 Github Pages 建立 blog 第一篇文章不可免俗地來介紹這個 blog 怎麼建起來的，最陽春的那種 :) 結果不小心手殘誤刪，這篇無法當第一篇了，才發現 hexo deploy 只有 push public 裡 render 完的網頁，原本以為會連 markdown 都上傳，看來要用另一個 repo 管理 markdown 的 source ，難怪有人還會再接 CI">
+<meta property="og:description" content="如何在 Ubuntu 16.04 和 Fedora 26 上安裝 Docker Coummunity 版本 因為種種因素…導致我必須在 ubuntu 和 fedora 上切來切去，安裝 docker 的步驟其實差不多，紀錄一下 package name 而已  清除舊的 docker 安裝 docker 的 repo 選擇 docker 版本並安裝 post installation 例如不用 s">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2017-11-02T19:16:13.971Z">
+<meta property="og:updated_time" content="2017-11-08T08:13:12.926Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="How to Deploy Hexo on Github Pages">
-<meta name="twitter:description" content="利用 Hexo 和 Github Pages 建立 blog 第一篇文章不可免俗地來介紹這個 blog 怎麼建起來的，最陽春的那種 :) 結果不小心手殘誤刪，這篇無法當第一篇了，才發現 hexo deploy 只有 push public 裡 render 完的網頁，原本以為會連 markdown 都上傳，看來要用另一個 repo 管理 markdown 的 source ，難怪有人還會再接 CI">
+<meta name="twitter:title" content="How to Install Docker CE on Ubuntu 16.04 and Fedora 26">
+<meta name="twitter:description" content="如何在 Ubuntu 16.04 和 Fedora 26 上安裝 Docker Coummunity 版本 因為種種因素…導致我必須在 ubuntu 和 fedora 上切來切去，安裝 docker 的步驟其實差不多，紀錄一下 package name 而已  清除舊的 docker 安裝 docker 的 repo 選擇 docker 版本並安裝 post installation 例如不用 s">
 
 
 
@@ -112,13 +111,13 @@
 
 
 
-  <link rel="canonical" href="https://wyde.github.io/2017/09/23/How-to-Deploy-Hexo-on-Github-Pages/"/>
+  <link rel="canonical" href="https://wyde.github.io/2017/11/08/How-to-Install-Docker-CE-on-Ubuntu-16-04-and-Fedora-26/"/>
 
 
 
 
 
-  <title>How to Deploy Hexo on Github Pages | wyde's note</title>
+  <title>How to Install Docker CE on Ubuntu 16.04 and Fedora 26 | wyde's note</title>
   
 
 
@@ -225,7 +224,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://wyde.github.io/2017/09/23/How-to-Deploy-Hexo-on-Github-Pages/">
+    <link itemprop="mainEntityOfPage" href="https://wyde.github.io/2017/11/08/How-to-Install-Docker-CE-on-Ubuntu-16-04-and-Fedora-26/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="wyde">
@@ -242,7 +241,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">How to Deploy Hexo on Github Pages</h2>
+          <h2 class="post-title" itemprop="name headline">How to Install Docker CE on Ubuntu 16.04 and Fedora 26</h2>
         
 
         <div class="post-meta">
@@ -254,8 +253,8 @@
               
                 <span class="post-meta-item-text">發表於</span>
               
-              <time title="創建於" itemprop="dateCreated datePublished" datetime="2017-09-23T02:56:58+08:00">
-                2017-09-23
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2017-11-08T14:26:08+08:00">
+                2017-11-08
               </time>
             
 
@@ -273,9 +272,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/09/23/How-to-Deploy-Hexo-on-Github-Pages/#comments" itemprop="discussionUrl">
+                <a href="/2017/11/08/How-to-Install-Docker-CE-on-Ubuntu-16-04-and-Fedora-26/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/09/23/How-to-Deploy-Hexo-on-Github-Pages/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/11/08/How-to-Install-Docker-CE-on-Ubuntu-16-04-and-Fedora-26/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -283,7 +282,7 @@
 
           
           
-             <span id="/2017/09/23/How-to-Deploy-Hexo-on-Github-Pages/" class="leancloud_visitors" data-flag-title="How to Deploy Hexo on Github Pages">
+             <span id="/2017/11/08/How-to-Install-Docker-CE-on-Ubuntu-16-04-and-Fedora-26/" class="leancloud_visitors" data-flag-title="How to Install Docker CE on Ubuntu 16.04 and Fedora 26">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -314,64 +313,28 @@
       
 
       
-        <h1 id="利用-Hexo-和-Github-Pages-建立-blog"><a href="#利用-Hexo-和-Github-Pages-建立-blog" class="headerlink" title="利用 Hexo 和 Github Pages 建立 blog"></a><center>利用 Hexo 和 Github Pages 建立 blog</center></h1><p><br></p>
-<p><del>第一篇文章不可免俗地來介紹這個 blog 怎麼建起來的，最陽春的那種 :)</del></p>
-<p>結果不小心手殘誤刪，這篇無法當第一篇了，才發現 hexo deploy 只有 push public 裡 render 完的網頁，原本以為會連 markdown 都上傳，看來要用另一個 repo 管理 markdown 的 source ，難怪有人還會再接 CI(Continous Integration) 的工具，這樣寫完 markdown 就直接生成網站了，這次先簡單地寫一下架設步驟，因為是在雲端 IDE 上處理，所以不論什麼 OS 的使用者都能 remote 免費使用</p>
-<p>主要有三個部分，</p>
-<ol>
-<li>設置 Node.js 的開發環境</li>
-<li>安裝與設定 Hexo 與 NexT theme</li>
-<li>編輯完推上 Github Pages</li>
-</ol>
-<p>之前在考慮 Pelican 、 Hugo 、 Hexo ，聽說了 Pelican 開發較不活躍且 render 速度慢， Hugo 配置較麻煩，就採用了 Hexo ，這些只是聽說，沒有實測…</p>
-<p>身為 Python 愛好者，希望有 Python + Jinja2 寫的靜態網站產生器同時又兼具美觀和易用性…這次架 Hexo 的感覺真的蠻快蠻方便的</p>
-<hr>
-<h2 id="Node-js-setup"><a href="#Node-js-setup" class="headerlink" title="Node.js setup"></a>Node.js setup</h2><p>我習慣在 linux 上工作，這邊的開發都在一個雲端 container(Ubuntu 14.04) 上工作，好處不管用 Mac 或 Windows 都可以用瀏覽器登入免費使用，網址在<a href="https://c9.io/" target="_blank" rel="external">這</a>，使用教學在<a href="https://wyde.github.io/2017/10/04/Setting-up-Cloud9-Dev-Environment">這</a>，當然如果自己有習慣的工作環境只要 node 有裝起來就可以繼續裝 Hexo</p>
-<hr>
-<h2 id="安裝-Hexo"><a href="#安裝-Hexo" class="headerlink" title="安裝 Hexo"></a>安裝 Hexo</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ sudo npm install -g hexo-cli</div><div class="line">$ hexo</div><div class="line">(列出 Hexo 常用指令，表示成功安裝)</div></pre></td></tr></table></figure>
-<p>我們打算拿 Github Pages 當個人的 blog，於是目錄就直接開 <code>&lt;your github account&gt;.github.io</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ cd ~</div><div class="line">$ mkdir &lt;your github account&gt;.github.io &amp;&amp; cd &lt;your github account&gt;.github.io</div><div class="line">$ hexo init</div><div class="line">$ npm install</div><div class="line">$ hexo s -p $PORT</div></pre></td></tr></table></figure>
-<p>(起了 hexo 的測試 server，如果要關掉就 Ctrl + C)<br>另開瀏覽器分頁，可以在 <code>https://&lt;c9 project name&gt;-&lt;c9 user name&gt;.c9users.io</code>看到 Hexo 的 hello-world，如果是在本機上開發，那瀏覽器就開 <code>localhost</code> 吧，這樣 Hexo 基本上就裝完了</p>
-<p>安裝 theme ，我選的是 NexT<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git clone https://github.com/iissnan/hexo-theme-next themes/next</div><div class="line">$ vim _config.yml</div></pre></td></tr></table></figure></p>
-<p>修改 theme 的設定值為 next</p>
+        <h1 id="如何在-Ubuntu-16-04-和-Fedora-26-上安裝-Docker-Coummunity-版本"><a href="#如何在-Ubuntu-16-04-和-Fedora-26-上安裝-Docker-Coummunity-版本" class="headerlink" title="如何在 Ubuntu 16.04 和 Fedora 26 上安裝 Docker Coummunity 版本"></a><center>如何在 Ubuntu 16.04 和 Fedora 26 上安裝 Docker Coummunity 版本</center></h1><p><br></p>
+<p>因為種種因素…導致我必須在 ubuntu 和 fedora 上切來切去，安裝 docker 的步驟其實差不多，紀錄一下 package name 而已</p>
 <ul>
-<li>修改 Hexo 本身的設定要在 ./_config.yml</li>
-<li>修改 Next 的主題設定要在 ./theme/next/_config.yml</li>
+<li>清除舊的 docker</li>
+<li>安裝 docker 的 repo</li>
+<li>選擇 docker 版本並安裝</li>
+<li>post installation 例如不用 sudo 執行 docker</li>
 </ul>
 <hr>
-<h2 id="Github-Pages-設定"><a href="#Github-Pages-設定" class="headerlink" title="Github Pages 設定"></a>Github Pages 設定</h2><ol>
-<li>如果沒有，先申請一個 Github 帳號</li>
-<li>開一個新的 repo 叫 <your github="" account="">.github.io</your></li>
-<li>repo 的 settings -&gt; Github Pages -&gt; Source 選擇 master branch</li>
-<li>以下回到 Cloud9 console</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ git config --global user.name &quot;&lt;github username&gt;&quot;</div><div class="line">$ git config --global user.email &quot;&lt;github user email&gt;&quot;</div><div class="line">$ vim ~/.ssh/&lt;private key&gt;</div></pre></td></tr></table></figure>
-<p>貼上 private key 或用 <code>ssh-keygen -t rsa -b 4096 -C &quot;&lt;your_email&gt;@example.com&quot;</code><br> 產一把新的 private key，這樣其實會把 ssh private key 放在網路上的某台機器，即使這台機器必須經由密碼登入，對於安全性非常敏感的人可能不能接受私鑰放在雲端的機器上。我會生一把專用的 key ，不會用在其他工作場合的 key ，所以要採用這種方法的人請自行考慮風險～</p>
-<p>臨時加個 ssh key ，測試成功應寫在 ~/.ssh/config<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ eval &quot;$(ssh-agent -s)&quot;</div><div class="line">Agent pid 31418</div><div class="line">$ ssh-add ~/.ssh/&lt;private key&gt;</div><div class="line">$ ssh -T git@github.com</div><div class="line">Hi &lt;your github account&gt;! Youve successfully authenticated, but GitHub does not provide shell access.</div></pre></td></tr></table></figure></p>
-<p>先安裝 deploy 套件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install hexo-deployer-git --save</div></pre></td></tr></table></figure></p>
-<p>修改 _config.yml 裡的 deploy<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">deploy:</div><div class="line">    type: git</div><div class="line">    repository: git@github.com:&lt;your github account&gt;/&lt;github account&gt;.github.io.git</div><div class="line">    branch: master</div></pre></td></tr></table></figure></p>
-<p>然後就可以測試部署<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo d --generate</div></pre></td></tr></table></figure></p>
-<p>開啟瀏覽器分頁，你的 blog 會在 <code>https://&lt;your github account&gt;.github.io</code></p>
+<h2 id="on-Ubuntu-16-04"><a href="#on-Ubuntu-16-04" class="headerlink" title="on Ubuntu 16.04"></a>on Ubuntu 16.04</h2><p><a href="https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/" target="_blank" rel="external">官方教學</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get remove docker docker-engine docker.io</div><div class="line">$ sudo apt-get update</div><div class="line">$ sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common</div><div class="line">$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -</div><div class="line">$ sudo add-apt-repository &quot;deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable&quot;</div><div class="line">$ sudo apt-get update</div></pre></td></tr></table></figure>
+<p>如果在 production 系統上安裝 docker 最好選擇固定版本，不然就直接用 latest<br>(optional)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$ apt-cache madison docker-ce</div><div class="line"> docker-ce | 17.09.0~ce-0~ubuntu | https://download.docker.com/linux/ubuntu xenial/stable amd64 Packages</div><div class="line"> docker-ce | 17.06.2~ce-0~ubuntu | https://download.docker.com/linux/ubuntu xenial/stable amd64 Packages</div><div class="line"> docker-ce | 17.06.1~ce-0~ubuntu | https://download.docker.com/linux/ubuntu xenial/stable amd64 Packages</div><div class="line"> docker-ce | 17.06.0~ce-0~ubuntu | https://download.docker.com/linux/ubuntu xenial/stable amd64 Packages</div><div class="line"> docker-ce | 17.03.2~ce-0~ubuntu-xenial | https://download.docker.com/linux/ubuntu xenial/stable amd64 Packages</div><div class="line"> docker-ce | 17.03.1~ce-0~ubuntu-xenial | https://download.docker.com/linux/ubuntu xenial/stable amd64 Packages</div><div class="line"> docker-ce | 17.03.0~ce-0~ubuntu-xenial | https://download.docker.com/linux/ubuntu xenial/stable amd64 Packages</div><div class="line">$ sudo apt-get install docker-ce=17.09.0~ce-0~ubuntu</div></pre></td></tr></table></figure></p>
+<p>直接安裝 latest<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get install -y docker-ce</div></pre></td></tr></table></figure></p>
+<p>post installation<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo groupadd docker</div><div class="line">$ sudo usermod -aG docker $USER</div></pre></td></tr></table></figure></p>
+<p>重新登入測試能不能不用 sudo 執行 docker<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ docker run hello-world</div><div class="line">$ sudo systemctl enable docker</div></pre></td></tr></table></figure></p>
+<p>若要移除<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get purge docker-ce</div><div class="line">$ sudo rm -rf /var/lib/docker</div></pre></td></tr></table></figure></p>
 <hr>
-<p>以下是常用編修文章的指令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ cd &lt;hexo 所在資料夾&gt;</div><div class="line">$ hexo n &quot;New Post&quot; # 新增 post</div><div class="line">$ hexo s -p $PORT # 本地起測試 server</div><div class="line">$ hexo clean # 清除 cache，部署前清一波</div><div class="line">$ hexo d --generate # 部署</div></pre></td></tr></table></figure>
-<hr>
-<h2 id="打草稿"><a href="#打草稿" class="headerlink" title="打草稿"></a>打草稿</h2><p>2017-11-03 新增</p>
-<p>參考了<a href="http://oomusou.io/hexo/hexo-draft/" target="_blank" rel="external">這篇文章</a>，學寫草稿</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ hexo n draft &quot;New Draft&quot; # 新增草稿</div><div class="line">$ hexo s --draft -p $PORT # 測試 server</div><div class="line">$ hexo publish New-Draft # 將草稿由 ./source/_drafts 移到 ./source/_posts 裡</div></pre></td></tr></table></figure>
-<p>坑：publish 後面接的是檔案不含 .md 也不含路徑！！</p>
-<hr>
-<h2 id="Third-Party-Integration"><a href="#Third-Party-Integration" class="headerlink" title="Third Party Integration"></a>Third Party Integration</h2><p>簡單的配置就懶得寫教學了，直接參考別人的<br>2017-09-30 新增</p>
-<ul>
-<li>評論系統： <a href="http://www.cylong.com/blog/2017/03/26/hexo-next-disqus/" target="_blank" rel="external">Hexo 集成 Disqus 评论</a></li>
-<li>瀏覽統計： <a href="https://notes.wanghao.work/2015-10-21-%E4%B8%BANexT%E4%B8%BB%E9%A2%98%E6%B7%BB%E5%8A%A0%E6%96%87%E7%AB%A0%E9%98%85%E8%AF%BB%E9%87%8F%E7%BB%9F%E8%AE%A1%E5%8A%9F%E8%83%BD.html#%E9%85%8D%E7%BD%AELeanCloud" target="_blank" rel="external">配置 LeanCloud</a> (如果用 Hexo  + NexT 那這篇文章上半就不用看了，直接從配置 LeanCloud 看就好)</li>
-</ul>
-<hr>
-<h2 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h2><ul>
-<li>社群分享</li>
-<li>打賞</li>
-<li>模板.md</li>
-</ul>
+<h2 id="on-f26"><a href="#on-f26" class="headerlink" title="on f26"></a>on f26</h2><p><a href="https://docs.docker.com/engine/installation/linux/docker-ce/fedora/" target="_blank" rel="external">官方教學</a>，只有寫 f24 f25 不過我自己測試適用 f26</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ sudo dnf remove docker docker-common docker-selinux docker-engine-selinux docker-engine</div><div class="line">$ sudo dnf -y install dnf-plugins-core</div><div class="line">$ sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo</div></pre></td></tr></table></figure>
+<p>然後安裝 docker<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ sudo dnf install -y docker-ce</div><div class="line">$ dnf list docker-ce  --showduplicates | sort -r</div><div class="line">docker-ce.x86_64               17.09.0.ce-1.fc26               docker-ce-stable</div></pre></td></tr></table></figure></p>
+<p>官方建議在 production 系統上應該要安裝同一版本的 docker-ce，所以安裝時要給版本參數<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ sudo dnf -y install docker-ce-17.09.0.ce-1.fc26</div><div class="line">$ sudo systemctl start docker; sudo systemctl enable docker</div><div class="line">$ sudo docker run hello-world</div></pre></td></tr></table></figure></p>
+<p>應該會看到歡迎訊息，如果不想用了要解除安裝<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo dnf remove docker-ce</div><div class="line">$ sudo rm -rf /var/lib/docker</div></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -387,14 +350,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/Github-Pages/" rel="tag"># Github Pages</a>
-          
-            <a href="/tags/Hexo/" rel="tag"># Hexo</a>
-          
-        </div>
-      
 
       
       
@@ -404,8 +359,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/09/19/Crawler-RESTful-API-Data-Visualization/" rel="next" title="Crawler, RESTful API & Data Visualization">
-                <i class="fa fa-chevron-left"></i> Crawler, RESTful API & Data Visualization
+              <a href="/2017/11/07/How-to-Install-Tensorflow-with-GPU-in-Virtualenv-on-Ubuntu-16-04/" rel="next" title="How to Install Tensorflow with GPU in Virtualenv on Ubuntu 16.04">
+                <i class="fa fa-chevron-left"></i> How to Install Tensorflow with GPU in Virtualenv on Ubuntu 16.04
               </a>
             
           </div>
@@ -413,10 +368,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/09/25/How-to-Deploy-a-Project-Site-on-Github-Pages/" rel="prev" title="How to Deploy a Project Site on Github Pages">
-                How to Deploy a Project Site on Github Pages <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -561,7 +512,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#利用-Hexo-和-Github-Pages-建立-blog"><span class="nav-number">1.</span> <span class="nav-text">利用 Hexo 和 Github Pages 建立 blog</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Node-js-setup"><span class="nav-number">1.1.</span> <span class="nav-text">Node.js setup</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝-Hexo"><span class="nav-number">1.2.</span> <span class="nav-text">安裝 Hexo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Github-Pages-設定"><span class="nav-number">1.3.</span> <span class="nav-text">Github Pages 設定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#打草稿"><span class="nav-number">1.4.</span> <span class="nav-text">打草稿</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Third-Party-Integration"><span class="nav-number">1.5.</span> <span class="nav-text">Third Party Integration</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TODO"><span class="nav-number">1.6.</span> <span class="nav-text">TODO</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#如何在-Ubuntu-16-04-和-Fedora-26-上安裝-Docker-Coummunity-版本"><span class="nav-number">1.</span> <span class="nav-text">如何在 Ubuntu 16.04 和 Fedora 26 上安裝 Docker Coummunity 版本</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#on-Ubuntu-16-04"><span class="nav-number">1.1.</span> <span class="nav-text">on Ubuntu 16.04</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#on-f26"><span class="nav-number">1.2.</span> <span class="nav-text">on f26</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -707,9 +658,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'https://wyde.github.io/2017/09/23/How-to-Deploy-Hexo-on-Github-Pages/';
-          this.page.identifier = '2017/09/23/How-to-Deploy-Hexo-on-Github-Pages/';
-          this.page.title = 'How to Deploy Hexo on Github Pages';
+          this.page.url = 'https://wyde.github.io/2017/11/08/How-to-Install-Docker-CE-on-Ubuntu-16-04-and-Fedora-26/';
+          this.page.identifier = '2017/11/08/How-to-Install-Docker-CE-on-Ubuntu-16-04-and-Fedora-26/';
+          this.page.title = 'How to Install Docker CE on Ubuntu 16.04 and Fedora 26';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://wyde.disqus.com/embed.js';
