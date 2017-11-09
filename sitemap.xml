@@ -2,23 +2,37 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://wyde.github.io/2017/11/08/How-to-Install-Docker-CE-on-Ubuntu-16-04-and-Fedora-26/</loc>
+    <loc>https://wyde.github.io/2017/11/05/Building-up-Personal-Deep-Learning-Rig-in-3000-US-Dollar/</loc>
     
-    <lastmod>2017-11-08T08:13:12.926Z</lastmod>
+    <lastmod>2017-11-09T05:00:09.908Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://wyde.github.io/2017/11/05/Building-up-Personal-Deep-Learning-Rig-in-3000-US-Dollar/</loc>
+    <loc>https://wyde.github.io/2017/11/09/How-to-Install-Tensorflow-using-Docker-on-Ubuntu-16-04/</loc>
     
-    <lastmod>2017-11-08T07:12:22.557Z</lastmod>
+    <lastmod>2017-11-09T04:59:22.680Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://wyde.github.io/2017/11/09/How-to-Install-Tensorflow-using-Docker-on-Fedora-26/</loc>
+    
+    <lastmod>2017-11-09T04:58:31.244Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://wyde.github.io/2017/11/08/How-to-Install-Docker-CE-on-Ubuntu-16-04-and-Fedora-26/</loc>
+    
+    <lastmod>2017-11-09T04:47:20.507Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://wyde.github.io/2017/11/07/How-to-Install-Tensorflow-with-GPU-in-Virtualenv-on-Ubuntu-16-04/</loc>
     
-    <lastmod>2017-11-07T09:41:38.959Z</lastmod>
+    <lastmod>2017-11-09T03:43:41.820Z</lastmod>
     
   </url>
   

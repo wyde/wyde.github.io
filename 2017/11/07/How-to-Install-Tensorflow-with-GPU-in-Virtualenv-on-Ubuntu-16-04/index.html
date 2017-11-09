@@ -71,22 +71,22 @@
 
 
 
-<meta name="description" content="在 Ubuntu 16.04 的 Virtualenv 裡安裝 Tensorflow with GPUTL;DR 安裝 Tensorflow 要麼直接用 docker ，要麼用 ubuntu，我會先說怎麼在 Fedora 25 26 上踩坑，最後用 Ubuntu 16.04 安裝成功的過程 #重灌的乾淨ubuntu #不用先手動裝驅動 #簡單快速不易失敗 #使用官方套件與教學前情提要：之前已經寫了">
+<meta name="description" content="在 Ubuntu 16.04 的 Virtualenv 裡安裝 Tensorflow with GPUTL;DR 安裝 Tensorflow 要麼直接用 docker ，要麼用 ubuntu，我會先說怎麼在 Fedora 25 26 上踩坑，最後用 Ubuntu 16.04 安裝成功的過程 #重灌的乾淨ubuntu  #不用先手動裝驅動  #簡單快速不易失敗  #盡量使用官方套件與教學前情提要：之">
 <meta name="keywords" content="ubuntu16.04,python3.5,virtualenv,tensorflow">
 <meta property="og:type" content="article">
 <meta property="og:title" content="How to Install Tensorflow with GPU in Virtualenv on Ubuntu 16.04">
 <meta property="og:url" content="https://wyde.github.io/2017/11/07/How-to-Install-Tensorflow-with-GPU-in-Virtualenv-on-Ubuntu-16-04/index.html">
 <meta property="og:site_name" content="wyde&#39;s note">
-<meta property="og:description" content="在 Ubuntu 16.04 的 Virtualenv 裡安裝 Tensorflow with GPUTL;DR 安裝 Tensorflow 要麼直接用 docker ，要麼用 ubuntu，我會先說怎麼在 Fedora 25 26 上踩坑，最後用 Ubuntu 16.04 安裝成功的過程 #重灌的乾淨ubuntu #不用先手動裝驅動 #簡單快速不易失敗 #使用官方套件與教學前情提要：之前已經寫了">
+<meta property="og:description" content="在 Ubuntu 16.04 的 Virtualenv 裡安裝 Tensorflow with GPUTL;DR 安裝 Tensorflow 要麼直接用 docker ，要麼用 ubuntu，我會先說怎麼在 Fedora 25 26 上踩坑，最後用 Ubuntu 16.04 安裝成功的過程 #重灌的乾淨ubuntu  #不用先手動裝驅動  #簡單快速不易失敗  #盡量使用官方套件與教學前情提要：之">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:image" content="https://i.imgur.com/fh3SGJG.png">
 <meta property="og:image" content="https://i.imgur.com/SOlBeAA.png">
+<meta property="og:image" content="https://i.imgur.com/dK0dPul.png">
 <meta property="og:image" content="https://i.imgur.com/P51gjfs.png">
-<meta property="og:updated_time" content="2017-11-07T09:41:38.959Z">
+<meta property="og:updated_time" content="2017-11-09T03:43:41.820Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="How to Install Tensorflow with GPU in Virtualenv on Ubuntu 16.04">
-<meta name="twitter:description" content="在 Ubuntu 16.04 的 Virtualenv 裡安裝 Tensorflow with GPUTL;DR 安裝 Tensorflow 要麼直接用 docker ，要麼用 ubuntu，我會先說怎麼在 Fedora 25 26 上踩坑，最後用 Ubuntu 16.04 安裝成功的過程 #重灌的乾淨ubuntu #不用先手動裝驅動 #簡單快速不易失敗 #使用官方套件與教學前情提要：之前已經寫了">
-<meta name="twitter:image" content="https://i.imgur.com/fh3SGJG.png">
+<meta name="twitter:description" content="在 Ubuntu 16.04 的 Virtualenv 裡安裝 Tensorflow with GPUTL;DR 安裝 Tensorflow 要麼直接用 docker ，要麼用 ubuntu，我會先說怎麼在 Fedora 25 26 上踩坑，最後用 Ubuntu 16.04 安裝成功的過程 #重灌的乾淨ubuntu  #不用先手動裝驅動  #簡單快速不易失敗  #盡量使用官方套件與教學前情提要：之">
+<meta name="twitter:image" content="https://i.imgur.com/SOlBeAA.png">
 
 
 
@@ -319,15 +319,10 @@
 
       
         <h1 id="在-Ubuntu-16-04-的-Virtualenv-裡安裝-Tensorflow-with-GPU"><a href="#在-Ubuntu-16-04-的-Virtualenv-裡安裝-Tensorflow-with-GPU" class="headerlink" title="在 Ubuntu 16.04 的 Virtualenv 裡安裝 Tensorflow with GPU"></a><center>在 Ubuntu 16.04 的 Virtualenv 裡安裝 Tensorflow with GPU</center></h1><p><br><br>TL;DR 安裝 Tensorflow 要麼直接用 docker ，要麼用 ubuntu，我會先說怎麼在 Fedora 25 26 上踩坑，最後用 Ubuntu 16.04 安裝成功的過程<br><br></p>
-<p>#重灌的乾淨ubuntu #不用先手動裝驅動 #簡單快速不易失敗 #使用官方套件與教學<br><br><br>前情提要：之前已經寫了一個<a href="https://wyde.github.io/2017/11/05/Building-up-Personal-Deep-Learning-Rig-in-3000-US-Dollar/">100k 搭建深度學習個人環境</a>，用 f26 + docker 裝得順順的，想說順手來裝個 python virtualenv 的版本，沒想到踩到了大坑…</p>
-<ul>
-<li>f26 + gcc7 + cuda9 + cudnn7 (failed)<br>  在寫這篇文章的時候，已經出了 cuda 9 和 cudnn v7.0，雖然<a href="https://negativo17.org/cuda-9-0-cudnn-7-0-and-wayland-support-in-fedora-27/" target="_blank" rel="external"> f27 也號稱要支援這兩者</a>，我還是先用 f26 試試看，殊不知 f26 預設已經到了 gcc 7，cuda 9 不支援，其實對照下面的圖，我根本不該有[在 f26 上安裝 virtualenv 版的 tf 會很順利的錯覺]…當初還花時間<a href="https://wyde.github.io/2017/10/12/Upgrade-Fedora-25-to-26/">從 f25 升到 f26</a>，我相信一定有辦法可以裝，只是都要出 f27 了，我不想折騰</li>
-<li>f25 + gcc6 + cuda9 (failed)<br>  ok，重灌成 f25 應該可以了吧，按照<a href="http://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html" target="_blank" rel="external">cuda installtion guide</a>這次 cuda 9 裝好了，殊不知測試安裝成功時報錯 <code>ImportError: libcublas.so.8.0: cannot open shared object file: No such file or directory</code>，我知道這看起來很像 <code>export LD_LIBRARY_PATH</code>之類，像是<a href="https://stackoverflow.com/questions/41746576/tensorflow-with-cuda-importerror" target="_blank" rel="external">這篇文章</a>可以解決的事，但怎麼設怎麼失敗</li>
-<li>f25 negativo17 (failed)<br>  再次重灌，然後有查到這篇文章，<a href="http://blog.mdda.net/oss/2016/11/25/nvidia-on-fedora-25" target="_blank" rel="external">Nvidia (8.0) installation for TensorFlow on Fedora 25</a>，想說雖然是 python2.7 還是試試看，裝起來進 python shell 會報 Segmentation Fault…現在想起來可能是我的 python 環境指到 python3 了，不過我想盡可能不用第三方的 repo，這次也是果斷棄坑</li>
-<li>f25 + gcc6 + cuda8 + cudnn6 (failed)<br>  再次重灌，回頭再重看一次 tensorflow 的安裝，發現它requirement 寫的是 cuda 8.0、cudnn v6.0，想說用這個版本裝裝看，在 cuda archive 裡找到 cuda8，裝完之後，好不容易找到 cudnn v6.0 的 archive(真的很隱晦的位置…)，發現官方只有提供 *.deb………要不要這麼坑，如果有 rpm 版的也許我會考慮再試一次…</li>
-</ul>
-<p><img src="https://i.imgur.com/fh3SGJG.png" alt=""></p>
-<p>最後還是裝好了，用的是以下版本</p>
+<p>#重灌的乾淨ubuntu </p>
+<p>#不用先手動裝驅動 </p>
+<p>#簡單快速不易失敗 </p>
+<p>#盡量使用官方套件與教學<br><br><br>前情提要：之前已經寫了一個<a href="https://wyde.github.io/2017/11/05/Building-up-Personal-Deep-Learning-Rig-in-3000-US-Dollar/">100k 搭建深度學習個人環境</a>，用 f26 + docker 裝得順順的，想說順手來裝個 python virtualenv 的版本，沒想到踩到了大坑…最後還是裝好了，用的是以下版本</p>
 <ul>
 <li>硬體：<ul>
 <li>Nvidia 1080 Ti 兩張 with 1000W Power</li>
@@ -342,6 +337,7 @@
 <li>cuDNN v6.0</li>
 <li>gcc 5.4</li>
 <li>tensorflow-gpu 1.4.0</li>
+<li>driver ~375.26~ 381.22</li>
 </ul>
 </li>
 </ul>
@@ -361,6 +357,10 @@
 <p>接著裝 patch<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ wget https://developer.nvidia.com/compute/cuda/8.0/Prod2/patches/2/cuda_8.0.61.2_linux-run -P ~ # 95.3 MB</div><div class="line">$ sudo sh ~/cuda_8.0.61.2_linux-run</div></pre></td></tr></table></figure></p>
 <p>如果前一步有裝好，這步應該很快</p>
 <hr>
+<p>(2017/11/9 更新)</p>
+<h2 id="更新-driver"><a href="#更新-driver" class="headerlink" title="更新 driver"></a>更新 driver</h2><p>根據<a href="https://blog.nelsonliu.me/2017/04/29/installing-and-updating-gtx-1080-ti-cuda-drivers-on-ubuntu/" target="_blank" rel="external">這篇文章</a>， cuda8 的 driver 是 375.26 ，不支援 GTX 1080 ti，所以我們要升到 381 ，可以透過 <code>$ nvidia-smi</code> 指令查看 driver 的訊息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ sudo add-apt-repository ppa:graphics-drivers/ppa</div><div class="line">$ sudo apt update</div><div class="line">$ sudo apt-get install -y nvidia-381</div><div class="line">$ sudo apt-get install -y nvidia-modprobe</div></pre></td></tr></table></figure></p>
+<p>大概就是一些加 repo 、更新 repo、安裝套件的過程，然後壓下 <code>$ nvidia-smi</code> 可以看到更新後的顯卡訊息<br><img src="https://i.imgur.com/dK0dPul.png" alt=""></p>
+<hr>
 <h2 id="下載並安裝-cuDNN-v6-0"><a href="#下載並安裝-cuDNN-v6-0" class="headerlink" title="下載並安裝 cuDNN v6.0"></a>下載並安裝 cuDNN v6.0</h2><blockquote>
 <p>Prerequisites:<br>CUDA 7.5 or higher version and a GPU of compute capability 3.0 or higher are required.</p>
 </blockquote>
@@ -373,7 +373,7 @@
 <h2 id="設定-virtualenv-並安裝-tensorflow"><a href="#設定-virtualenv-並安裝-tensorflow" class="headerlink" title="設定 virtualenv 並安裝 tensorflow"></a>設定 virtualenv 並安裝 tensorflow</h2><p>我使用 virtualenv + virtualenvwrapper 的組合建立 python3 的開發環境，由於 Ubuntu 16.04 自帶 python 3.5 ，我也跟著用 3.5，每個人建立 virtualenv 的習慣不一樣，也許有的人習慣用 native 的環境，如果要參考我的環境，可以看這篇前作，<a href="https://wyde.github.io/2017/11/07/How-to-Setup-Virtualenv-on-Ubuntu-16-04/">在 Ubuntu 16.04 上建立 Virtualenv</a>，總之 <code>$ python --version</code> 這裡要給一個 3.5，然後我們可以在 <a href="https://www.tensorflow.org/install/install_linux#the_url_of_the_tensorflow_python_package" target="_blank" rel="external">tensorflow 的安裝頁面</a>找到對應的 binary url</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ pip3 install --upgrade pip</div><div class="line">$ pip3 install --upgrade https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow_gpu-1.4.0-cp35-cp35m-linux_x86_64.whl</div></pre></td></tr></table></figure>
 <p>如果是用新的 Ubuntu 16.04 安裝，很有可能也會遇到語系設定的問題，pip install 會報錯，可以參考<a href="https://wyde.github.io/2017/11/07/How-to-Setup-Locale-in-Ubuntu-16-04/">在 Ubuntu 16.04 中設定 locale 環境變數</a></p>
-<h2 id="Hello-Tensorflow"><a href="#Hello-Tensorflow" class="headerlink" title="Hello Tensorflow"></a>Hello Tensorflow</h2><p>進入 python interactive shell，按照<a href="https://www.tensorflow.org/install/install_linux#ValidateYourInstallation" target="_blank" rel="external">官網提供的 validate your installation</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">$ python</div><div class="line">Python 3.5.2 (default, Sep 14 2017, 22:51:06) </div><div class="line">[GCC 5.4.0 20160609] on linux</div><div class="line">Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.</div><div class="line">&gt;&gt;&gt; import tensorflow as tf</div><div class="line">&gt;&gt;&gt; hello = tf.constant(&apos;Hello, TensorFlow!&apos;)</div><div class="line">&gt;&gt;&gt; sess = tf.Session()</div><div class="line">2017-11-07 13:18:38.841338: I tensorflow/core/platform/cpu_feature_guard.cc:137] Your CPU supports instructions that this TensorFlow binary was not compiled to use: SSE4.1 SSE4.2 AVX AVX2 FMA</div><div class="line">2017-11-07 13:18:40.821021: E tensorflow/stream_executor/cuda/cuda_driver.cc:406] failed call to cuInit: CUDA_ERROR_NO_DEVICE</div><div class="line">2017-11-07 13:18:40.821072: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:158] retrieving CUDA diagnostic information for host: ddl</div><div class="line">2017-11-07 13:18:40.821079: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:165] hostname: ddl</div><div class="line">2017-11-07 13:18:40.821121: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:189] libcuda reported version is: 375.26.0</div><div class="line">2017-11-07 13:18:40.821138: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:369] driver version file contents: &quot;&quot;&quot;NVRM version: NVIDIA UNIX x86_64 Kernel Module  375.26  Thu Dec  8 18:36:43 PST 2016</div><div class="line">GCC version:  gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.5) </div><div class="line">&quot;&quot;&quot;</div><div class="line">2017-11-07 13:18:40.821160: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:193] kernel reported version is: 375.26.0</div><div class="line">2017-11-07 13:18:40.821165: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:300] kernel version seems to match DSO: 375.26.0</div><div class="line"></div><div class="line">&gt;&gt;&gt; print(sess.run(hello))</div><div class="line">b&apos;Hello, TensorFlow!&apos;</div></pre></td></tr></table></figure></p>
+<h2 id="Hello-Tensorflow"><a href="#Hello-Tensorflow" class="headerlink" title="Hello Tensorflow"></a>Hello Tensorflow</h2><p>進入 python interactive shell，按照<a href="https://www.tensorflow.org/install/install_linux#ValidateYourInstallation" target="_blank" rel="external">官網提供的 validate your installation</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">$ python</div><div class="line">Python 3.5.2 (default, Sep 14 2017, 22:51:06) </div><div class="line">[GCC 5.4.0 20160609] on linux</div><div class="line">Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.</div><div class="line">&gt;&gt;&gt; import tensorflow as tf</div><div class="line">&gt;&gt;&gt; hello = tf.constant(&apos;Hello, TensorFlow!&apos;)</div><div class="line">&gt;&gt;&gt; sess = tf.Session()</div><div class="line">2017-11-09 11:18:52.434919: I tensorflow/core/platform/cpu_feature_guard.cc:137] Your CPU supports instructions that this TensorFlow binary was not compiled to use: SSE4.1 SSE4.2 AVX AVX2 FMA</div><div class="line">2017-11-09 11:18:52.587915: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:892] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero</div><div class="line">2017-11-09 11:18:52.588325: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1030] Found device 0 with properties: </div><div class="line">name: GeForce GTX 1080 Ti major: 6 minor: 1 memoryClockRate(GHz): 1.582</div><div class="line">pciBusID: 0000:01:00.0</div><div class="line">totalMemory: 10.91GiB freeMemory: 10.75GiB</div><div class="line">2017-11-09 11:18:52.690694: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:892] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero</div><div class="line">2017-11-09 11:18:52.691144: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1030] Found device 1 with properties: </div><div class="line">name: GeForce GTX 1080 Ti major: 6 minor: 1 memoryClockRate(GHz): 1.582</div><div class="line">pciBusID: 0000:02:00.0</div><div class="line">totalMemory: 10.91GiB freeMemory: 10.75GiB</div><div class="line">2017-11-09 11:18:52.691703: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1045] Device peer to peer matrix</div><div class="line">2017-11-09 11:18:52.692064: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1051] DMA: 0 1 </div><div class="line">2017-11-09 11:18:52.692072: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1061] 0:   Y Y </div><div class="line">2017-11-09 11:18:52.692076: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1061] 1:   Y Y </div><div class="line">2017-11-09 11:18:52.692082: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1120] Creating TensorFlow device (/device:GPU:0) -&gt; (device: 0, name: GeForce GTX 1080 Ti, pci bus id: 0000:01:00.0, compute capability: 6.1)</div><div class="line">2017-11-09 11:18:52.692087: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1120] Creating TensorFlow device (/device:GPU:1) -&gt; (device: 1, name: GeForce GTX 1080 Ti, pci bus id: 0000:02:00.0, compute capability: 6.1)</div><div class="line"></div><div class="line">&gt;&gt;&gt; print(sess.run(hello))</div><div class="line">b&apos;Hello, TensorFlow!&apos;</div></pre></td></tr></table></figure></p>
 <p>安裝完畢，比 fedora 順利多了，不愧是官方支援…接下來會裝一遍 docker 版的，預期不會遇到太大困難…吧 :)</p>
 <p><a href="https://www.tensorflow.org/get_started/get_started" target="_blank" rel="external">Getting started with Tensorflow</a></p>
 
@@ -507,7 +507,7 @@
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-count">22</span>
                 <span class="site-state-item-name">文章</span>
               </a>
             </div>
@@ -520,7 +520,7 @@
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">53</span>
+                <span class="site-state-item-count">56</span>
                 <span class="site-state-item-name">標籤</span>
               
             </div>
@@ -569,7 +569,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#在-Ubuntu-16-04-的-Virtualenv-裡安裝-Tensorflow-with-GPU"><span class="nav-number">1.</span> <span class="nav-text">在 Ubuntu 16.04 的 Virtualenv 裡安裝 Tensorflow with GPU</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝-apt-套件"><span class="nav-number">1.1.</span> <span class="nav-text">安裝 apt 套件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#下載並安裝-cuda8"><span class="nav-number">1.2.</span> <span class="nav-text">下載並安裝 cuda8</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#下載並安裝-cuDNN-v6-0"><span class="nav-number">1.3.</span> <span class="nav-text">下載並安裝 cuDNN v6.0</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#設定環境變數"><span class="nav-number">1.4.</span> <span class="nav-text">設定環境變數</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#設定-virtualenv-並安裝-tensorflow"><span class="nav-number">1.5.</span> <span class="nav-text">設定 virtualenv 並安裝 tensorflow</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hello-Tensorflow"><span class="nav-number">1.6.</span> <span class="nav-text">Hello Tensorflow</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#在-Ubuntu-16-04-的-Virtualenv-裡安裝-Tensorflow-with-GPU"><span class="nav-number">1.</span> <span class="nav-text">在 Ubuntu 16.04 的 Virtualenv 裡安裝 Tensorflow with GPU</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝-apt-套件"><span class="nav-number">1.1.</span> <span class="nav-text">安裝 apt 套件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#下載並安裝-cuda8"><span class="nav-number">1.2.</span> <span class="nav-text">下載並安裝 cuda8</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更新-driver"><span class="nav-number">1.3.</span> <span class="nav-text">更新 driver</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#下載並安裝-cuDNN-v6-0"><span class="nav-number">1.4.</span> <span class="nav-text">下載並安裝 cuDNN v6.0</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#設定環境變數"><span class="nav-number">1.5.</span> <span class="nav-text">設定環境變數</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#設定-virtualenv-並安裝-tensorflow"><span class="nav-number">1.6.</span> <span class="nav-text">設定 virtualenv 並安裝 tensorflow</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hello-Tensorflow"><span class="nav-number">1.7.</span> <span class="nav-text">Hello Tensorflow</span></a></li></ol></li></ol></div>
             
 
           </div>

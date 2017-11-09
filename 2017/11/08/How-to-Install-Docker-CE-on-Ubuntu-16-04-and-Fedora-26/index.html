@@ -78,7 +78,7 @@
 <meta property="og:site_name" content="wyde&#39;s note">
 <meta property="og:description" content="如何在 Ubuntu 16.04 和 Fedora 26 上安裝 Docker Coummunity 版本 因為種種因素…導致我必須在 ubuntu 和 fedora 上切來切去，安裝 docker 的步驟其實差不多，紀錄一下 package name 而已  清除舊的 docker 安裝 docker 的 repo 選擇 docker 版本並安裝 post installation 例如不用 s">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2017-11-08T08:13:12.926Z">
+<meta property="og:updated_time" content="2017-11-09T04:47:20.507Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="How to Install Docker CE on Ubuntu 16.04 and Fedora 26">
 <meta name="twitter:description" content="如何在 Ubuntu 16.04 和 Fedora 26 上安裝 Docker Coummunity 版本 因為種種因素…導致我必須在 ubuntu 和 fedora 上切來切去，安裝 docker 的步驟其實差不多，紀錄一下 package name 而已  清除舊的 docker 安裝 docker 的 repo 選擇 docker 版本並安裝 post installation 例如不用 s">
@@ -324,16 +324,18 @@
 <hr>
 <h2 id="on-Ubuntu-16-04"><a href="#on-Ubuntu-16-04" class="headerlink" title="on Ubuntu 16.04"></a>on Ubuntu 16.04</h2><p><a href="https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/" target="_blank" rel="external">官方教學</a></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get remove docker docker-engine docker.io</div><div class="line">$ sudo apt-get update</div><div class="line">$ sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common</div><div class="line">$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -</div><div class="line">$ sudo add-apt-repository &quot;deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable&quot;</div><div class="line">$ sudo apt-get update</div></pre></td></tr></table></figure>
-<p>如果在 production 系統上安裝 docker 最好選擇固定版本，不然就直接用 latest<br>(optional)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$ apt-cache madison docker-ce</div><div class="line"> docker-ce | 17.09.0~ce-0~ubuntu | https://download.docker.com/linux/ubuntu xenial/stable amd64 Packages</div><div class="line"> docker-ce | 17.06.2~ce-0~ubuntu | https://download.docker.com/linux/ubuntu xenial/stable amd64 Packages</div><div class="line"> docker-ce | 17.06.1~ce-0~ubuntu | https://download.docker.com/linux/ubuntu xenial/stable amd64 Packages</div><div class="line"> docker-ce | 17.06.0~ce-0~ubuntu | https://download.docker.com/linux/ubuntu xenial/stable amd64 Packages</div><div class="line"> docker-ce | 17.03.2~ce-0~ubuntu-xenial | https://download.docker.com/linux/ubuntu xenial/stable amd64 Packages</div><div class="line"> docker-ce | 17.03.1~ce-0~ubuntu-xenial | https://download.docker.com/linux/ubuntu xenial/stable amd64 Packages</div><div class="line"> docker-ce | 17.03.0~ce-0~ubuntu-xenial | https://download.docker.com/linux/ubuntu xenial/stable amd64 Packages</div><div class="line">$ sudo apt-get install docker-ce=17.09.0~ce-0~ubuntu</div></pre></td></tr></table></figure></p>
-<p>直接安裝 latest<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get install -y docker-ce</div></pre></td></tr></table></figure></p>
+<p>如果在 production 系統上安裝 docker 最好選擇固定版本，不然就直接用 latest<br>(optional but recommanded)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$ apt-cache madison docker-ce</div><div class="line"> docker-ce | 17.09.0~ce-0~ubuntu | https://download.docker.com/linux/ubuntu xenial/stable amd64 Packages</div><div class="line"> docker-ce | 17.06.2~ce-0~ubuntu | https://download.docker.com/linux/ubuntu xenial/stable amd64 Packages</div><div class="line"> docker-ce | 17.06.1~ce-0~ubuntu | https://download.docker.com/linux/ubuntu xenial/stable amd64 Packages</div><div class="line"> docker-ce | 17.06.0~ce-0~ubuntu | https://download.docker.com/linux/ubuntu xenial/stable amd64 Packages</div><div class="line"> docker-ce | 17.03.2~ce-0~ubuntu-xenial | https://download.docker.com/linux/ubuntu xenial/stable amd64 Packages</div><div class="line"> docker-ce | 17.03.1~ce-0~ubuntu-xenial | https://download.docker.com/linux/ubuntu xenial/stable amd64 Packages</div><div class="line"> docker-ce | 17.03.0~ce-0~ubuntu-xenial | https://download.docker.com/linux/ubuntu xenial/stable amd64 Packages</div><div class="line">$ sudo apt-get install docker-ce=17.09.0~ce-0~ubuntu</div></pre></td></tr></table></figure></p>
+<p>直接安裝 latest<br>(fast in dev environment)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get install -y docker-ce</div></pre></td></tr></table></figure></p>
 <p>post installation<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo groupadd docker</div><div class="line">$ sudo usermod -aG docker $USER</div></pre></td></tr></table></figure></p>
 <p>重新登入測試能不能不用 sudo 執行 docker<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ docker run hello-world</div><div class="line">$ sudo systemctl enable docker</div></pre></td></tr></table></figure></p>
 <p>若要移除<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get purge docker-ce</div><div class="line">$ sudo rm -rf /var/lib/docker</div></pre></td></tr></table></figure></p>
 <hr>
-<h2 id="on-f26"><a href="#on-f26" class="headerlink" title="on f26"></a>on f26</h2><p><a href="https://docs.docker.com/engine/installation/linux/docker-ce/fedora/" target="_blank" rel="external">官方教學</a>，只有寫 f24 f25 不過我自己測試適用 f26</p>
+<h2 id="on-f26"><a href="#on-f26" class="headerlink" title="on f26"></a>on f26</h2><p><a href="https://docs.docker.com/engine/installation/linux/docker-ce/fedora/" target="_blank" rel="external">官方教學</a> ，只有寫 f24 f25 不過我自己測試適用 f26</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ sudo dnf remove docker docker-common docker-selinux docker-engine-selinux docker-engine</div><div class="line">$ sudo dnf -y install dnf-plugins-core</div><div class="line">$ sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo</div></pre></td></tr></table></figure>
 <p>然後安裝 docker<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ sudo dnf install -y docker-ce</div><div class="line">$ dnf list docker-ce  --showduplicates | sort -r</div><div class="line">docker-ce.x86_64               17.09.0.ce-1.fc26               docker-ce-stable</div></pre></td></tr></table></figure></p>
 <p>官方建議在 production 系統上應該要安裝同一版本的 docker-ce，所以安裝時要給版本參數<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ sudo dnf -y install docker-ce-17.09.0.ce-1.fc26</div><div class="line">$ sudo systemctl start docker; sudo systemctl enable docker</div><div class="line">$ sudo docker run hello-world</div></pre></td></tr></table></figure></p>
+<p>post installation(這裡跟 ubuntu 一樣)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo groupadd docker</div><div class="line">$ sudo usermod -aG docker $USER</div></pre></td></tr></table></figure></p>
+<p>重新登入測試能不能不用 sudo 執行 docker<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ docker run hello-world</div><div class="line">$ sudo systemctl enable docker</div></pre></td></tr></table></figure></p>
 <p>應該會看到歡迎訊息，如果不想用了要解除安裝<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo dnf remove docker-ce</div><div class="line">$ sudo rm -rf /var/lib/docker</div></pre></td></tr></table></figure></p>
 
       
@@ -368,6 +370,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/09/How-to-Install-Tensorflow-using-Docker-on-Fedora-26/" rel="prev" title="如何在 f26 上用 Docker 玩 Tensorflow">
+                如何在 f26 上用 Docker 玩 Tensorflow <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -450,7 +456,7 @@
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-count">22</span>
                 <span class="site-state-item-name">文章</span>
               </a>
             </div>
@@ -463,7 +469,7 @@
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">53</span>
+                <span class="site-state-item-count">56</span>
                 <span class="site-state-item-name">標籤</span>
               
             </div>
