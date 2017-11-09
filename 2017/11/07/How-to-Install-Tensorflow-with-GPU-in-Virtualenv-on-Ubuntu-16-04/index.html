@@ -71,21 +71,21 @@
 
 
 
-<meta name="description" content="How to Install Tensorflow with GPU in Virtualenv on Ubuntu 16.04TL;DR 安裝 Tensorflow 要麼直接用 docker ，要麼用 ubuntu，我會先說怎麼在 Fedora 25 26 上踩坑，最後用 Ubuntu 16.04 安裝成功的過程 #重灌的乾淨ubuntu  #不用先手動裝驅動  #簡單快速不易失敗  #盡量使用">
+<meta name="description" content="TL;DR 安裝 Tensorflow 要麼直接用 docker ，要麼用 ubuntu ，用其他發行版搞起 dependency 我覺得很麻煩… #重灌的乾淨ubuntu  #不用先手動裝驅動  #簡單快速不易失敗  #盡量使用官方套件與教學前情提要：之前已經寫了一個100k 搭建深度學習個人環境，用 f26 + docker 裝得順順的，想說順手來裝個 python virtualenv 的版">
 <meta name="keywords" content="ubuntu16.04,python3.5,virtualenv,tensorflow">
 <meta property="og:type" content="article">
-<meta property="og:title" content="在 Ubuntu 16.04 的 Virtualenv 裡安裝 Tensorflow with GPU">
+<meta property="og:title" content="如何在 Ubuntu 16.04 的 Virtualenv 裡安裝 Tensorflow with GPU">
 <meta property="og:url" content="https://wyde.github.io/2017/11/07/How-to-Install-Tensorflow-with-GPU-in-Virtualenv-on-Ubuntu-16-04/index.html">
 <meta property="og:site_name" content="wyde&#39;s note">
-<meta property="og:description" content="How to Install Tensorflow with GPU in Virtualenv on Ubuntu 16.04TL;DR 安裝 Tensorflow 要麼直接用 docker ，要麼用 ubuntu，我會先說怎麼在 Fedora 25 26 上踩坑，最後用 Ubuntu 16.04 安裝成功的過程 #重灌的乾淨ubuntu  #不用先手動裝驅動  #簡單快速不易失敗  #盡量使用">
+<meta property="og:description" content="TL;DR 安裝 Tensorflow 要麼直接用 docker ，要麼用 ubuntu ，用其他發行版搞起 dependency 我覺得很麻煩… #重灌的乾淨ubuntu  #不用先手動裝驅動  #簡單快速不易失敗  #盡量使用官方套件與教學前情提要：之前已經寫了一個100k 搭建深度學習個人環境，用 f26 + docker 裝得順順的，想說順手來裝個 python virtualenv 的版">
 <meta property="og:locale" content="zh-tw">
 <meta property="og:image" content="https://i.imgur.com/SOlBeAA.png">
 <meta property="og:image" content="https://i.imgur.com/dK0dPul.png">
 <meta property="og:image" content="https://i.imgur.com/P51gjfs.png">
-<meta property="og:updated_time" content="2017-11-09T05:03:42.556Z">
+<meta property="og:updated_time" content="2017-11-09T12:13:56.310Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="在 Ubuntu 16.04 的 Virtualenv 裡安裝 Tensorflow with GPU">
-<meta name="twitter:description" content="How to Install Tensorflow with GPU in Virtualenv on Ubuntu 16.04TL;DR 安裝 Tensorflow 要麼直接用 docker ，要麼用 ubuntu，我會先說怎麼在 Fedora 25 26 上踩坑，最後用 Ubuntu 16.04 安裝成功的過程 #重灌的乾淨ubuntu  #不用先手動裝驅動  #簡單快速不易失敗  #盡量使用">
+<meta name="twitter:title" content="如何在 Ubuntu 16.04 的 Virtualenv 裡安裝 Tensorflow with GPU">
+<meta name="twitter:description" content="TL;DR 安裝 Tensorflow 要麼直接用 docker ，要麼用 ubuntu ，用其他發行版搞起 dependency 我覺得很麻煩… #重灌的乾淨ubuntu  #不用先手動裝驅動  #簡單快速不易失敗  #盡量使用官方套件與教學前情提要：之前已經寫了一個100k 搭建深度學習個人環境，用 f26 + docker 裝得順順的，想說順手來裝個 python virtualenv 的版">
 <meta name="twitter:image" content="https://i.imgur.com/SOlBeAA.png">
 
 
@@ -122,7 +122,7 @@
 
 
 
-  <title>在 Ubuntu 16.04 的 Virtualenv 裡安裝 Tensorflow with GPU | wyde's note</title>
+  <title>如何在 Ubuntu 16.04 的 Virtualenv 裡安裝 Tensorflow with GPU | wyde's note</title>
   
 
 
@@ -246,7 +246,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">在 Ubuntu 16.04 的 Virtualenv 裡安裝 Tensorflow with GPU</h2>
+          <h2 class="post-title" itemprop="name headline">如何在 Ubuntu 16.04 的 Virtualenv 裡安裝 Tensorflow with GPU</h2>
         
 
         <div class="post-meta">
@@ -287,7 +287,7 @@
 
           
           
-             <span id="/2017/11/07/How-to-Install-Tensorflow-with-GPU-in-Virtualenv-on-Ubuntu-16-04/" class="leancloud_visitors" data-flag-title="在 Ubuntu 16.04 的 Virtualenv 裡安裝 Tensorflow with GPU">
+             <span id="/2017/11/07/How-to-Install-Tensorflow-with-GPU-in-Virtualenv-on-Ubuntu-16-04/" class="leancloud_visitors" data-flag-title="如何在 Ubuntu 16.04 的 Virtualenv 裡安裝 Tensorflow with GPU">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -318,7 +318,7 @@
       
 
       
-        <h1 id="How-to-Install-Tensorflow-with-GPU-in-Virtualenv-on-Ubuntu-16-04"><a href="#How-to-Install-Tensorflow-with-GPU-in-Virtualenv-on-Ubuntu-16-04" class="headerlink" title="How to Install Tensorflow with GPU in Virtualenv on Ubuntu 16.04"></a><center>How to Install Tensorflow with GPU in Virtualenv on Ubuntu 16.04</center></h1><p><br><br>TL;DR 安裝 Tensorflow 要麼直接用 docker ，要麼用 ubuntu，我會先說怎麼在 Fedora 25 26 上踩坑，最後用 Ubuntu 16.04 安裝成功的過程<br><br></p>
+        <p>TL;DR 安裝 Tensorflow 要麼直接用 docker ，要麼用 ubuntu ，用其他發行版搞起 dependency 我覺得很麻煩…<br><br></p>
 <p>#重灌的乾淨ubuntu </p>
 <p>#不用先手動裝驅動 </p>
 <p>#簡單快速不易失敗 </p>
@@ -337,7 +337,7 @@
 <li>cuDNN v6.0</li>
 <li>gcc 5.4</li>
 <li>tensorflow-gpu 1.4.0</li>
-<li>driver ~375.26~ 381.22</li>
+<li>driver <del>375.26</del> 381.22</li>
 </ul>
 </li>
 </ul>
@@ -569,7 +569,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#How-to-Install-Tensorflow-with-GPU-in-Virtualenv-on-Ubuntu-16-04"><span class="nav-number">1.</span> <span class="nav-text">How to Install Tensorflow with GPU in Virtualenv on Ubuntu 16.04</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝-apt-套件"><span class="nav-number">1.1.</span> <span class="nav-text">安裝 apt 套件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#下載並安裝-cuda8"><span class="nav-number">1.2.</span> <span class="nav-text">下載並安裝 cuda8</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更新-driver"><span class="nav-number">1.3.</span> <span class="nav-text">更新 driver</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#下載並安裝-cuDNN-v6-0"><span class="nav-number">1.4.</span> <span class="nav-text">下載並安裝 cuDNN v6.0</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#設定環境變數"><span class="nav-number">1.5.</span> <span class="nav-text">設定環境變數</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#設定-virtualenv-並安裝-tensorflow"><span class="nav-number">1.6.</span> <span class="nav-text">設定 virtualenv 並安裝 tensorflow</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hello-Tensorflow"><span class="nav-number">1.7.</span> <span class="nav-text">Hello Tensorflow</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝-apt-套件"><span class="nav-number">1.</span> <span class="nav-text">安裝 apt 套件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#下載並安裝-cuda8"><span class="nav-number">2.</span> <span class="nav-text">下載並安裝 cuda8</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更新-driver"><span class="nav-number">3.</span> <span class="nav-text">更新 driver</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#下載並安裝-cuDNN-v6-0"><span class="nav-number">4.</span> <span class="nav-text">下載並安裝 cuDNN v6.0</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#設定環境變數"><span class="nav-number">5.</span> <span class="nav-text">設定環境變數</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#設定-virtualenv-並安裝-tensorflow"><span class="nav-number">6.</span> <span class="nav-text">設定 virtualenv 並安裝 tensorflow</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hello-Tensorflow"><span class="nav-number">7.</span> <span class="nav-text">Hello Tensorflow</span></a></li></ol></div>
             
 
           </div>
@@ -717,7 +717,7 @@
         var disqus_config = function () {
           this.page.url = 'https://wyde.github.io/2017/11/07/How-to-Install-Tensorflow-with-GPU-in-Virtualenv-on-Ubuntu-16-04/';
           this.page.identifier = '2017/11/07/How-to-Install-Tensorflow-with-GPU-in-Virtualenv-on-Ubuntu-16-04/';
-          this.page.title = '在 Ubuntu 16.04 的 Virtualenv 裡安裝 Tensorflow with GPU';
+          this.page.title = '如何在 Ubuntu 16.04 的 Virtualenv 裡安裝 Tensorflow with GPU';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://wyde.disqus.com/embed.js';

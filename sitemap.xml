@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://wyde.github.io/2017/11/07/How-to-Install-Tensorflow-with-GPU-in-Virtualenv-on-Ubuntu-16-04/</loc>
+    
+    <lastmod>2017-11-09T12:13:56.310Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://wyde.github.io/2017/11/09/How-to-Install-Tensorflow-using-Docker-on-Fedora-26/</loc>
+    
+    <lastmod>2017-11-09T05:16:13.329Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://wyde.github.io/2017/11/05/Building-up-Personal-Deep-Learning-Rig-in-3000-US-Dollar/</loc>
     
     <lastmod>2017-11-09T05:13:03.065Z</lastmod>
@@ -9,23 +23,9 @@
   </url>
   
   <url>
-    <loc>https://wyde.github.io/2017/11/07/How-to-Install-Tensorflow-with-GPU-in-Virtualenv-on-Ubuntu-16-04/</loc>
-    
-    <lastmod>2017-11-09T05:03:42.556Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://wyde.github.io/2017/11/09/How-to-Install-Tensorflow-using-Docker-on-Ubuntu-16-04/</loc>
     
     <lastmod>2017-11-09T04:59:22.680Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://wyde.github.io/2017/11/09/How-to-Install-Tensorflow-using-Docker-on-Fedora-26/</loc>
-    
-    <lastmod>2017-11-09T04:58:31.244Z</lastmod>
     
   </url>
   
