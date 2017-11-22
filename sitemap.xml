@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://wyde.github.io/2017/11/22/How-to-Merge-Dev-Branch-into-Master/</loc>
+    
+    <lastmod>2017-11-22T09:22:35.977Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://wyde.github.io/2017/11/08/How-to-Install-Docker-CE-on-Ubuntu-16-04-and-Fedora-26/</loc>
+    
+    <lastmod>2017-11-09T12:17:18.502Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://wyde.github.io/2017/11/07/How-to-Install-Tensorflow-with-GPU-in-Virtualenv-on-Ubuntu-16-04/</loc>
     
     <lastmod>2017-11-09T12:13:56.310Z</lastmod>
@@ -26,13 +40,6 @@
     <loc>https://wyde.github.io/2017/11/09/How-to-Install-Tensorflow-using-Docker-on-Ubuntu-16-04/</loc>
     
     <lastmod>2017-11-09T04:59:22.680Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://wyde.github.io/2017/11/08/How-to-Install-Docker-CE-on-Ubuntu-16-04-and-Fedora-26/</loc>
-    
-    <lastmod>2017-11-09T04:47:20.507Z</lastmod>
     
   </url>
   

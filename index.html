@@ -224,6 +224,158 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://wyde.github.io/2017/11/22/How-to-Merge-Dev-Branch-into-Master/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wyde">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wyde's note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/11/22/How-to-Merge-Dev-Branch-into-Master/" itemprop="url">Git 小劇場：如何合併開發分支到主分支</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2017-11-22T17:00:08+08:00">
+                2017-11-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/11/22/How-to-Merge-Dev-Branch-into-Master/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/11/22/How-to-Merge-Dev-Branch-into-Master/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/11/22/How-to-Merge-Dev-Branch-into-Master/" class="leancloud_visitors" data-flag-title="Git 小劇場：如何合併開發分支到主分支">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">閱讀次數&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          How to Merge Dev Branch into Master
+最近逐漸在自己開發的 side project 也用上 git ，把 .bak 的習慣改掉
+
+在 dev branch 上開發， rebase 回 master 所在的 commit
+(在 public repo 上 repo 
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/11/22/How-to-Merge-Dev-Branch-into-Master/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://wyde.github.io/2017/11/09/How-to-Install-Tensorflow-using-Docker-on-Ubuntu-16-04/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -546,7 +698,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/11/08/How-to-Install-Docker-CE-on-Ubuntu-16-04-and-Fedora-26/" itemprop="url">How to Install Docker CE on Ubuntu 16.04 and Fedora 26</a></h2>
+                <a class="post-title-link" href="/2017/11/08/How-to-Install-Docker-CE-on-Ubuntu-16-04-and-Fedora-26/" itemprop="url">如何在 Ubuntu 16.04 和 Fedora 26 上安裝 Docker CE</a></h2>
         
 
         <div class="post-meta">
@@ -587,7 +739,7 @@
 
           
           
-             <span id="/2017/11/08/How-to-Install-Docker-CE-on-Ubuntu-16-04-and-Fedora-26/" class="leancloud_visitors" data-flag-title="How to Install Docker CE on Ubuntu 16.04 and Fedora 26">
+             <span id="/2017/11/08/How-to-Install-Docker-CE-on-Ubuntu-16-04-and-Fedora-26/" class="leancloud_visitors" data-flag-title="如何在 Ubuntu 16.04 和 Fedora 26 上安裝 Docker CE">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -620,11 +772,12 @@
       
         
           
-          如何在 Ubuntu 16.04 和 Fedora 26 上安裝 Docker Coummunity 版本
-因為種種因素…導致我必須在 ubuntu 和 fedora 上切來切去，安裝 docker 的步驟其實差不多，紀錄一下 package name 而已
+          CE 就是指 Community Edition，社群貢獻的免費版本，安裝 docker 的步驟其實差不多，紀錄一下 package name 而已
 
 清除舊的 docker
-安裝 dock
+安裝 docker 的 repo
+選擇 docker 版本並安裝
+post installation 例如不用 sudo 執
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1572,162 +1725,6 @@ tested environment: Fedora 25 and 26
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://wyde.github.io/2017/11/03/How-to-Extract-Text-and-its-Coordinates-from-PDF/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="wyde">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="wyde's note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/11/03/How-to-Extract-Text-and-its-Coordinates-from-PDF/" itemprop="url">How to Extract Text and its Coordinates from PDF</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">發表於</span>
-              
-              <time title="創建於" itemprop="dateCreated datePublished" datetime="2017-11-03T03:14:45+08:00">
-                2017-11-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/11/03/How-to-Extract-Text-and-its-Coordinates-from-PDF/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/11/03/How-to-Extract-Text-and-its-Coordinates-from-PDF/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/11/03/How-to-Extract-Text-and-its-Coordinates-from-PDF/" class="leancloud_visitors" data-flag-title="How to Extract Text and its Coordinates from PDF">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">閱讀次數&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          如何取出 PDF 裡的文字與其座標
-今天遇到一個小任務，要把一票 PDF 特定區域的文字抓下來，有幾個剛需
-
-區域沒有統一的欄位名稱
-缺乏可識別特徵只知道是英數字組合
-那些 PDF 有好幾個版型，希望一開始能用人工做一個版，後續批次套用
-該處的文字應該還是標準的 text 非手寫
-
-…嗯，說真的是難
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/11/03/How-to-Extract-Text-and-its-Coordinates-from-PDF/#more" rel="contents">
-              閱讀全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1777,7 +1774,7 @@ tested environment: Fedora 25 and 26
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">文章</span>
               </a>
             </div>
@@ -1790,7 +1787,7 @@ tested environment: Fedora 25 and 26
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">56</span>
+                <span class="site-state-item-count">59</span>
                 <span class="site-state-item-name">標籤</span>
               
             </div>

@@ -55,7 +55,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Ubuntu 16.04,Fedora 26,Docker CE," />
 
 
 
@@ -71,17 +71,18 @@
 
 
 
-<meta name="description" content="如何在 Ubuntu 16.04 和 Fedora 26 上安裝 Docker Coummunity 版本 因為種種因素…導致我必須在 ubuntu 和 fedora 上切來切去，安裝 docker 的步驟其實差不多，紀錄一下 package name 而已  清除舊的 docker 安裝 docker 的 repo 選擇 docker 版本並安裝 post installation 例如不用 s">
+<meta name="description" content="CE 就是指 Community Edition，社群貢獻的免費版本，安裝 docker 的步驟其實差不多，紀錄一下 package name 而已  清除舊的 docker 安裝 docker 的 repo 選擇 docker 版本並安裝 post installation 例如不用 sudo 執行 docker   on Ubuntu 16.04官方教學 123456$ sudo apt-ge">
+<meta name="keywords" content="Ubuntu 16.04,Fedora 26,Docker CE">
 <meta property="og:type" content="article">
-<meta property="og:title" content="How to Install Docker CE on Ubuntu 16.04 and Fedora 26">
+<meta property="og:title" content="如何在 Ubuntu 16.04 和 Fedora 26 上安裝 Docker CE">
 <meta property="og:url" content="https://wyde.github.io/2017/11/08/How-to-Install-Docker-CE-on-Ubuntu-16-04-and-Fedora-26/index.html">
 <meta property="og:site_name" content="wyde&#39;s note">
-<meta property="og:description" content="如何在 Ubuntu 16.04 和 Fedora 26 上安裝 Docker Coummunity 版本 因為種種因素…導致我必須在 ubuntu 和 fedora 上切來切去，安裝 docker 的步驟其實差不多，紀錄一下 package name 而已  清除舊的 docker 安裝 docker 的 repo 選擇 docker 版本並安裝 post installation 例如不用 s">
+<meta property="og:description" content="CE 就是指 Community Edition，社群貢獻的免費版本，安裝 docker 的步驟其實差不多，紀錄一下 package name 而已  清除舊的 docker 安裝 docker 的 repo 選擇 docker 版本並安裝 post installation 例如不用 sudo 執行 docker   on Ubuntu 16.04官方教學 123456$ sudo apt-ge">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2017-11-09T04:47:20.507Z">
+<meta property="og:updated_time" content="2017-11-09T12:17:18.502Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="How to Install Docker CE on Ubuntu 16.04 and Fedora 26">
-<meta name="twitter:description" content="如何在 Ubuntu 16.04 和 Fedora 26 上安裝 Docker Coummunity 版本 因為種種因素…導致我必須在 ubuntu 和 fedora 上切來切去，安裝 docker 的步驟其實差不多，紀錄一下 package name 而已  清除舊的 docker 安裝 docker 的 repo 選擇 docker 版本並安裝 post installation 例如不用 s">
+<meta name="twitter:title" content="如何在 Ubuntu 16.04 和 Fedora 26 上安裝 Docker CE">
+<meta name="twitter:description" content="CE 就是指 Community Edition，社群貢獻的免費版本，安裝 docker 的步驟其實差不多，紀錄一下 package name 而已  清除舊的 docker 安裝 docker 的 repo 選擇 docker 版本並安裝 post installation 例如不用 sudo 執行 docker   on Ubuntu 16.04官方教學 123456$ sudo apt-ge">
 
 
 
@@ -117,7 +118,7 @@
 
 
 
-  <title>How to Install Docker CE on Ubuntu 16.04 and Fedora 26 | wyde's note</title>
+  <title>如何在 Ubuntu 16.04 和 Fedora 26 上安裝 Docker CE | wyde's note</title>
   
 
 
@@ -241,7 +242,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">How to Install Docker CE on Ubuntu 16.04 and Fedora 26</h2>
+          <h2 class="post-title" itemprop="name headline">如何在 Ubuntu 16.04 和 Fedora 26 上安裝 Docker CE</h2>
         
 
         <div class="post-meta">
@@ -282,7 +283,7 @@
 
           
           
-             <span id="/2017/11/08/How-to-Install-Docker-CE-on-Ubuntu-16-04-and-Fedora-26/" class="leancloud_visitors" data-flag-title="How to Install Docker CE on Ubuntu 16.04 and Fedora 26">
+             <span id="/2017/11/08/How-to-Install-Docker-CE-on-Ubuntu-16-04-and-Fedora-26/" class="leancloud_visitors" data-flag-title="如何在 Ubuntu 16.04 和 Fedora 26 上安裝 Docker CE">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -313,8 +314,7 @@
       
 
       
-        <h1 id="如何在-Ubuntu-16-04-和-Fedora-26-上安裝-Docker-Coummunity-版本"><a href="#如何在-Ubuntu-16-04-和-Fedora-26-上安裝-Docker-Coummunity-版本" class="headerlink" title="如何在 Ubuntu 16.04 和 Fedora 26 上安裝 Docker Coummunity 版本"></a><center>如何在 Ubuntu 16.04 和 Fedora 26 上安裝 Docker Coummunity 版本</center></h1><p><br></p>
-<p>因為種種因素…導致我必須在 ubuntu 和 fedora 上切來切去，安裝 docker 的步驟其實差不多，紀錄一下 package name 而已</p>
+        <p>CE 就是指 Community Edition，社群貢獻的免費版本，安裝 docker 的步驟其實差不多，紀錄一下 package name 而已</p>
 <ul>
 <li>清除舊的 docker</li>
 <li>安裝 docker 的 repo</li>
@@ -351,6 +351,16 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Ubuntu-16-04/" rel="tag"># Ubuntu 16.04</a>
+          
+            <a href="/tags/Fedora-26/" rel="tag"># Fedora 26</a>
+          
+            <a href="/tags/Docker-CE/" rel="tag"># Docker CE</a>
+          
+        </div>
       
 
       
@@ -456,7 +466,7 @@
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">文章</span>
               </a>
             </div>
@@ -469,7 +479,7 @@
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">56</span>
+                <span class="site-state-item-count">59</span>
                 <span class="site-state-item-name">標籤</span>
               
             </div>
@@ -518,7 +528,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#如何在-Ubuntu-16-04-和-Fedora-26-上安裝-Docker-Coummunity-版本"><span class="nav-number">1.</span> <span class="nav-text">如何在 Ubuntu 16.04 和 Fedora 26 上安裝 Docker Coummunity 版本</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#on-Ubuntu-16-04"><span class="nav-number">1.1.</span> <span class="nav-text">on Ubuntu 16.04</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#on-f26"><span class="nav-number">1.2.</span> <span class="nav-text">on f26</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#on-Ubuntu-16-04"><span class="nav-number">1.</span> <span class="nav-text">on Ubuntu 16.04</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#on-f26"><span class="nav-number">2.</span> <span class="nav-text">on f26</span></a></li></ol></div>
             
 
           </div>
@@ -666,7 +676,7 @@
         var disqus_config = function () {
           this.page.url = 'https://wyde.github.io/2017/11/08/How-to-Install-Docker-CE-on-Ubuntu-16-04-and-Fedora-26/';
           this.page.identifier = '2017/11/08/How-to-Install-Docker-CE-on-Ubuntu-16-04-and-Fedora-26/';
-          this.page.title = 'How to Install Docker CE on Ubuntu 16.04 and Fedora 26';
+          this.page.title = '如何在 Ubuntu 16.04 和 Fedora 26 上安裝 Docker CE';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://wyde.disqus.com/embed.js';

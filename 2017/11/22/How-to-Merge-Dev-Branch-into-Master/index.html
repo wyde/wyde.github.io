@@ -55,7 +55,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="ubuntu16.04,virtualenv,python3,virtualenvwrapper," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -71,18 +71,17 @@
 
 
 
-<meta name="description" content="在 Ubuntu 16.04 上建立 Virtualenv 前作在 CentOS 7 上創建 Python 3 虛擬環境，其實在 Ubuntu 上也是大同小異，這篇速記一下順序和 package，同樣也是用原生的 python 2.7 pip、virtualenv、virtualenvwrapper 來建立 python3 的開發環境 123456$ sudo apt update$ sudo a">
-<meta name="keywords" content="ubuntu16.04,virtualenv,python3,virtualenvwrapper">
+<meta name="description" content="How to Merge Dev Branch into Master 最近逐漸在自己開發的 side project 也用上 git ，把 .bak 的習慣改掉  在 dev branch 上開發， rebase 回 master 所在的 commit (在 public repo 上 repo 要用 rebase 的話要注意跟別人 code 的 conflict)  checkout 回 ma">
 <meta property="og:type" content="article">
-<meta property="og:title" content="How to Setup Virtualenv on Ubuntu 16.04">
-<meta property="og:url" content="https://wyde.github.io/2017/11/07/How-to-Setup-Virtualenv-on-Ubuntu-16-04/index.html">
+<meta property="og:title" content="Git 小劇場：如何合併開發分支到主分支">
+<meta property="og:url" content="https://wyde.github.io/2017/11/22/How-to-Merge-Dev-Branch-into-Master/index.html">
 <meta property="og:site_name" content="wyde&#39;s note">
-<meta property="og:description" content="在 Ubuntu 16.04 上建立 Virtualenv 前作在 CentOS 7 上創建 Python 3 虛擬環境，其實在 Ubuntu 上也是大同小異，這篇速記一下順序和 package，同樣也是用原生的 python 2.7 pip、virtualenv、virtualenvwrapper 來建立 python3 的開發環境 123456$ sudo apt update$ sudo a">
+<meta property="og:description" content="How to Merge Dev Branch into Master 最近逐漸在自己開發的 side project 也用上 git ，把 .bak 的習慣改掉  在 dev branch 上開發， rebase 回 master 所在的 commit (在 public repo 上 repo 要用 rebase 的話要注意跟別人 code 的 conflict)  checkout 回 ma">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2017-11-07T06:46:04.229Z">
+<meta property="og:updated_time" content="2017-11-22T09:22:35.977Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="How to Setup Virtualenv on Ubuntu 16.04">
-<meta name="twitter:description" content="在 Ubuntu 16.04 上建立 Virtualenv 前作在 CentOS 7 上創建 Python 3 虛擬環境，其實在 Ubuntu 上也是大同小異，這篇速記一下順序和 package，同樣也是用原生的 python 2.7 pip、virtualenv、virtualenvwrapper 來建立 python3 的開發環境 123456$ sudo apt update$ sudo a">
+<meta name="twitter:title" content="Git 小劇場：如何合併開發分支到主分支">
+<meta name="twitter:description" content="How to Merge Dev Branch into Master 最近逐漸在自己開發的 side project 也用上 git ，把 .bak 的習慣改掉  在 dev branch 上開發， rebase 回 master 所在的 commit (在 public repo 上 repo 要用 rebase 的話要注意跟別人 code 的 conflict)  checkout 回 ma">
 
 
 
@@ -112,13 +111,13 @@
 
 
 
-  <link rel="canonical" href="https://wyde.github.io/2017/11/07/How-to-Setup-Virtualenv-on-Ubuntu-16-04/"/>
+  <link rel="canonical" href="https://wyde.github.io/2017/11/22/How-to-Merge-Dev-Branch-into-Master/"/>
 
 
 
 
 
-  <title>How to Setup Virtualenv on Ubuntu 16.04 | wyde's note</title>
+  <title>Git 小劇場：如何合併開發分支到主分支 | wyde's note</title>
   
 
 
@@ -225,7 +224,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://wyde.github.io/2017/11/07/How-to-Setup-Virtualenv-on-Ubuntu-16-04/">
+    <link itemprop="mainEntityOfPage" href="https://wyde.github.io/2017/11/22/How-to-Merge-Dev-Branch-into-Master/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="wyde">
@@ -242,7 +241,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">How to Setup Virtualenv on Ubuntu 16.04</h2>
+          <h2 class="post-title" itemprop="name headline">Git 小劇場：如何合併開發分支到主分支</h2>
         
 
         <div class="post-meta">
@@ -254,8 +253,8 @@
               
                 <span class="post-meta-item-text">發表於</span>
               
-              <time title="創建於" itemprop="dateCreated datePublished" datetime="2017-11-07T14:34:05+08:00">
-                2017-11-07
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2017-11-22T17:00:08+08:00">
+                2017-11-22
               </time>
             
 
@@ -273,9 +272,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/11/07/How-to-Setup-Virtualenv-on-Ubuntu-16-04/#comments" itemprop="discussionUrl">
+                <a href="/2017/11/22/How-to-Merge-Dev-Branch-into-Master/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/11/07/How-to-Setup-Virtualenv-on-Ubuntu-16-04/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/11/22/How-to-Merge-Dev-Branch-into-Master/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -283,7 +282,7 @@
 
           
           
-             <span id="/2017/11/07/How-to-Setup-Virtualenv-on-Ubuntu-16-04/" class="leancloud_visitors" data-flag-title="How to Setup Virtualenv on Ubuntu 16.04">
+             <span id="/2017/11/22/How-to-Merge-Dev-Branch-into-Master/" class="leancloud_visitors" data-flag-title="Git 小劇場：如何合併開發分支到主分支">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -314,10 +313,41 @@
       
 
       
-        <h1 id="在-Ubuntu-16-04-上建立-Virtualenv"><a href="#在-Ubuntu-16-04-上建立-Virtualenv" class="headerlink" title="在 Ubuntu 16.04 上建立 Virtualenv"></a><center>在 Ubuntu 16.04 上建立 Virtualenv</center></h1><p><br></p>
-<p>前作<a href="https://wyde.github.io/2017/10/30/Setting-up-Python-3-Virtual-Environment-on-CentOS-7/#more">在 CentOS 7 上創建 Python 3 虛擬環境</a>，其實在 Ubuntu 上也是大同小異，這篇速記一下順序和 package，同樣也是用原生的 python 2.7 pip、virtualenv、virtualenvwrapper 來建立 python3 的開發環境</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ sudo apt update</div><div class="line">$ sudo apt install -y python-pip python-virtualenv python3-dev</div><div class="line">$ sudo pip install virtualenvwrapper</div><div class="line">$ echo &apos;export WORKON_HOME=&quot;$HOME/.virtualenvs&quot;&apos; &gt;&gt; ~/.bashrc</div><div class="line">$ source ~/.bashrc</div><div class="line">$ source /usr/local/bin/virtualenvwrapper.sh</div></pre></td></tr></table></figure>
-<p>然是是使用 virtualwrapper 來建立環境<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ mkvirtualenv --system-site-packages --python=`which python3` &lt;env name&gt; # 建立</div><div class="line">$ deactivate # 退出</div><div class="line">$ workon &lt;env name&gt; # 進入</div><div class="line">$ rmvirtualenv &lt;env name&gt; # 刪除</div><div class="line">$ lsvirtualenv # 列表</div></pre></td></tr></table></figure></p>
+        <h1 id="How-to-Merge-Dev-Branch-into-Master"><a href="#How-to-Merge-Dev-Branch-into-Master" class="headerlink" title="How to Merge Dev Branch into Master"></a><center>How to Merge Dev Branch into Master</center></h1><p><br></p>
+<p>最近逐漸在自己開發的 side project 也用上 git ，把 .bak 的習慣改掉</p>
+<ul>
+<li>在 dev branch 上開發， rebase 回 master 所在的 commit</li>
+<li>(在 public repo 上 repo 要用 rebase 的話要注意跟別人 code 的 conflict) </li>
+<li>checkout 回 master，merge</li>
+<li>push master to remote repo</li>
+<li>刪除 local dev branch</li>
+</ul>
+<hr>
+<h2 id="memo"><a href="#memo" class="headerlink" title="memo"></a>memo</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">(on dev branch) </div><div class="line">$ git lg</div><div class="line">* 13a704f (HEAD, dev) plaintext echo bot prototype done</div><div class="line">* cb876e8 (master) initail commit</div><div class="line"></div><div class="line">(on dev branch)</div><div class="line">$ git rebase master</div><div class="line">Current branch dev is up to date.</div></pre></td></tr></table></figure>
+<p>這篇範例是比較簡單的狀況，dev 的根本來就是 master</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">(on dev branch)</div><div class="line">$ git checkout master</div><div class="line">Switched to branch &apos;master&apos;</div><div class="line"></div><div class="line">(on master branch)</div><div class="line">$ git lg</div><div class="line">* 13a704f (dev) plaintext echo bot prototype done</div><div class="line">* cb876e8 (HEAD, master) initail commit</div><div class="line"></div><div class="line">(on master branch)</div><div class="line">$ git merge dev</div><div class="line">Updating cb876e8..13a704f</div><div class="line">Fast-forward</div><div class="line"></div><div class="line">(on master branch)</div><div class="line">$ git lg</div><div class="line">* 13a704f (HEAD, master, dev) plaintext echo bot prototype done</div><div class="line">* cb876e8 initail commit</div><div class="line"></div><div class="line">(on master branch)</div><div class="line">$ git branch</div><div class="line">  dev</div><div class="line">* master</div><div class="line"></div><div class="line">(on master branch)</div><div class="line">$ git branch -d dev</div><div class="line">Deleted branch dev (was 13a704f).</div><div class="line"></div><div class="line">(on master branch)</div><div class="line">$ git branch</div><div class="line">* master</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="注意的點"><a href="#注意的點" class="headerlink" title="注意的點"></a>注意的點</h2><ul>
+<li><code>$ git merge</code> or <code>$ git rebase</code><ul>
+<li>public: merge<ul>
+<li>理由為保留紀錄</li>
+</ul>
+</li>
+<li>private or not affect other: rebase <ul>
+<li>理由為線性、乾淨</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>$ git merge</code> or <code>$ git merge --no-ff</code></li>
+</ul>
+<hr>
+<h2 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h2><ul>
+<li><a href="https://zlargon.gitbooks.io/git-tutorial/content/branch/create_delete.html" target="_blank" rel="external">zlargon - 建立 / 刪除分支</a></li>
+<li><a href="https://stackoverflow.com/questions/14168677/merge-development-branch-with-master" target="_blank" rel="external">stackoverflow(2013) - Merge development branch with master</a></li>
+<li><a href="https://github.com/geeeeeeeeek/git-recipes/wiki/5.1-%E4%BB%A3%E7%A0%81%E5%90%88%E5%B9%B6%EF%BC%9AMerge%E3%80%81Rebase-%E7%9A%84%E9%80%89%E6%8B%A9" target="_blank" rel="external">代码合并：Merge、Rebase 的选择(原 Atlassian 文章)</a></li>
+<li><a href="https://backlog.com/git-tutorial/tw/stepup/stepup1_4.html" target="_blank" rel="external">連猴子都能懂的 Git 入門指南 - 分支的合併</a> </li>
+</ul>
 
       
     </div>
@@ -333,18 +363,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/ubuntu16-04/" rel="tag"># ubuntu16.04</a>
-          
-            <a href="/tags/virtualenv/" rel="tag"># virtualenv</a>
-          
-            <a href="/tags/python3/" rel="tag"># python3</a>
-          
-            <a href="/tags/virtualenvwrapper/" rel="tag"># virtualenvwrapper</a>
-          
-        </div>
-      
 
       
       
@@ -354,8 +372,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/11/07/How-to-Setup-Locale-in-Ubuntu-16-04/" rel="next" title="How to Setup Locale in Ubuntu 16.04">
-                <i class="fa fa-chevron-left"></i> How to Setup Locale in Ubuntu 16.04
+              <a href="/2017/11/09/How-to-Install-Tensorflow-using-Docker-on-Ubuntu-16-04/" rel="next" title="如何在 Ubuntu 16.04 上用 Docker 跑 Tensorflow">
+                <i class="fa fa-chevron-left"></i> 如何在 Ubuntu 16.04 上用 Docker 跑 Tensorflow
               </a>
             
           </div>
@@ -363,10 +381,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/11/07/How-to-Install-Tensorflow-with-GPU-in-Virtualenv-on-Ubuntu-16-04/" rel="prev" title="如何在 Ubuntu 16.04 的 Virtualenv 裡安裝 Tensorflow with GPU">
-                如何在 Ubuntu 16.04 的 Virtualenv 裡安裝 Tensorflow with GPU <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -511,7 +525,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#在-Ubuntu-16-04-上建立-Virtualenv"><span class="nav-number">1.</span> <span class="nav-text">在 Ubuntu 16.04 上建立 Virtualenv</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#How-to-Merge-Dev-Branch-into-Master"><span class="nav-number">1.</span> <span class="nav-text">How to Merge Dev Branch into Master</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#memo"><span class="nav-number">1.1.</span> <span class="nav-text">memo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注意的點"><span class="nav-number">1.2.</span> <span class="nav-text">注意的點</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ref"><span class="nav-number">1.3.</span> <span class="nav-text">Ref</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -657,9 +671,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'https://wyde.github.io/2017/11/07/How-to-Setup-Virtualenv-on-Ubuntu-16-04/';
-          this.page.identifier = '2017/11/07/How-to-Setup-Virtualenv-on-Ubuntu-16-04/';
-          this.page.title = 'How to Setup Virtualenv on Ubuntu 16.04';
+          this.page.url = 'https://wyde.github.io/2017/11/22/How-to-Merge-Dev-Branch-into-Master/';
+          this.page.identifier = '2017/11/22/How-to-Merge-Dev-Branch-into-Master/';
+          this.page.title = 'Git 小劇場：如何合併開發分支到主分支';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://wyde.disqus.com/embed.js';
