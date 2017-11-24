@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-tw,en,default">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="Prh0dJbvt-zwGE-LNDAOSQYuJs0RmkgAi40IKxhDpSU" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Django Channels,bot server,Daphne,Nginx,Python,Deploy,CentOS 7,https,Certbot," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="Deploying Django Channels using Daphne 看了前一陣子很紅的小黃雞，想做個網頁版的 chatbot 來玩玩，參考了vaisaghvt 的 django-bot-server-tutorial還有jacobian 的 channels-example，寫了一個簡單的 EchoBot Server 作為原型，還在改進中，特意維持地很乾淨，以便自己將來要用 Djang">
+<meta name="keywords" content="Django Channels,bot server,Daphne,Nginx,Python,Deploy,CentOS 7,https,Certbot">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用 Daphne 部署 Django Channels">
+<meta property="og:url" content="https://wyde.github.io/2017/11/24/Deploying-Django-Channels-using-Daphne/index.html">
+<meta property="og:site_name" content="wyde&#39;s note">
+<meta property="og:description" content="Deploying Django Channels using Daphne 看了前一陣子很紅的小黃雞，想做個網頁版的 chatbot 來玩玩，參考了vaisaghvt 的 django-bot-server-tutorial還有jacobian 的 channels-example，寫了一個簡單的 EchoBot Server 作為原型，還在改進中，特意維持地很乾淨，以便自己將來要用 Djang">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:image" content="https://i.imgur.com/nPJ7vGM.png">
+<meta property="og:updated_time" content="2017-11-24T12:33:50.522Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="用 Daphne 部署 Django Channels">
+<meta name="twitter:description" content="Deploying Django Channels using Daphne 看了前一陣子很紅的小黃雞，想做個網頁版的 chatbot 來玩玩，參考了vaisaghvt 的 django-bot-server-tutorial還有jacobian 的 channels-example，寫了一個簡單的 EchoBot Server 作為原型，還在改進中，特意維持地很乾淨，以便自己將來要用 Djang">
+<meta name="twitter:image" content="https://i.imgur.com/nPJ7vGM.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"hide","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://wyde.github.io/2017/11/24/Deploying-Django-Channels-using-Daphne/"/>
+
+
+
+
+
+  <title>用 Daphne 部署 Django Channels | wyde's note</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-tw">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">wyde's note</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">locus solus</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            歸檔
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://wyde.github.io/2017/11/24/Deploying-Django-Channels-using-Daphne/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wyde">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wyde's note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">用 Daphne 部署 Django Channels</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2017-11-24T18:14:32+08:00">
+                2017-11-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/11/24/Deploying-Django-Channels-using-Daphne/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/11/24/Deploying-Django-Channels-using-Daphne/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/11/24/Deploying-Django-Channels-using-Daphne/" class="leancloud_visitors" data-flag-title="用 Daphne 部署 Django Channels">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">閱讀次數&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Deploying-Django-Channels-using-Daphne"><a href="#Deploying-Django-Channels-using-Daphne" class="headerlink" title="Deploying Django Channels using Daphne"></a><center>Deploying Django Channels using Daphne</center></h1><p><br></p>
+<p>看了前一陣子很紅的<a href="http://simsimi.com/" target="_blank" rel="external">小黃雞</a>，想做個網頁版的 chatbot 來玩玩，參考了<a href="https://chatbotsmagazine.com/creating-a-simple-bot-server-using-python-django-and-django-channels-69fa3b775f2" target="_blank" rel="external">vaisaghvt 的 django-bot-server-tutorial</a>還有<a href="https://blog.heroku.com/in_deep_with_django_channels_the_future_of_real_time_apps_in_django" target="_blank" rel="external">jacobian 的 channels-example</a>，寫了一個簡單的 EchoBot Server 作為原型，還在改進中，特意維持地很乾淨，以便自己將來要用 Django Channels 做 websocket 時比較容易參考，詳見 <a href="https://github.com/wyde/django-channel-echobot" target="_blank" rel="external">Github Repo</a></p>
+<p>這篇先來紀錄一下怎麼部署的，根據<a href="https://channels.readthedocs.io/en/latest/deploying.html" target="_blank" rel="external">官方文件的 Deploying 篇</a>，部署至少有三件事要做</p>
+<ul>
+<li>Set up a channel backend</li>
+<li>Run worker servers</li>
+<li>Run interface servers</li>
+</ul>
+<p>借用 jacobian 的圖來解釋一下各個 process 之間的關係<br><img src="https://i.imgur.com/nPJ7vGM.png" alt=""></p>
+<p>channel backend 我用的是 redis，<a href="https://channels.readthedocs.io/en/latest/getting-started.html" target="_blank" rel="external">官網的 getting started</a>用的是 asgiref.inmemory.ChannelLayer ，不適合用在 production 的環境，不過改這個 backend ，大概在開發階段就會做了，只要改 settings.py 就好，上 production 也不需要什麼特別設定，以後講到開發再說，所以這邊要做的事其實是</p>
+<ul>
+<li>git clone 專案</li>
+<li>worker server 寫成 systemd service</li>
+<li>daphne server 另外寫成 systemd service</li>
+<li>設定 nginx</li>
+<li>設定 certbot for https</li>
+</ul>
+<hr>
+<h2 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ cd ~</div><div class="line">$ git@github.com:wyde/django-channel-echobot.git</div><div class="line">$ cd django-channel-echobot</div></pre></td></tr></table></figure>
+<ul>
+<li>project name: bot2</li>
+<li>app name: echo</li>
+<li>(fake) address: myapp.echobot.ai</li>
+</ul>
+<p>我把 Django secret key 和 ALLOWED_HOST 放在環境變數裡，可以寫在 ~/.bash_profile 之類的地方，clone 之後在 python 的虛擬環境下安裝 pip 套件，跟佈署有關的套件是 daphne 、nginx<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pip install -r requirements.txt</div></pre></td></tr></table></figure></p>
+<p>環境變數、虛擬環境，和套件裝好之後，可以開兩個 terminal 分頁來測試是不是準備好部署了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">(分頁1)$ ./manage.py runworker --threads &lt;cpu core 數，大約 4、5&gt;</div><div class="line">(分頁2)$ daphne -b 0.0.0.0 -p 8000 bot2.asgi:channel_layer</div></pre></td></tr></table></figure></p>
+<p>這時候瀏覽器打開 <code>myapp.echobot.ai:8000/chat</code> 應該就可以測試 echobot 的功能</p>
+<hr>
+<h2 id="設定-worker-和-daphne-daemon"><a href="#設定-worker-和-daphne-daemon" class="headerlink" title="設定 worker 和 daphne daemon"></a>設定 worker 和 daphne daemon</h2><p>常見的方式有 upstart、systemd，或是用 supervisord 來寫 daemon，好像蠻多 python web app 是用 supervisord 來寫的，不過既然 CentOS 7 自帶 systemd ，我就懶得多裝一個套件了</p>
+<p>systemd 的入門，可以參考<a href="http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-part-two.html" target="_blank" rel="external">阮一峰的 Systemd 入门教程：实战篇</a>， CentOS 7 上設定檔預設放在 <code>/etc/systemd/system/&lt;daemon name&gt;.service</code>，這邊我就直接上設定檔它本人</p>
+<script src="https://gist.github.com/wyde/dbef999aa8b9fc2f96bdc2e841349613.js"></script>
+
+<p>以及</p>
+<script src="https://gist.github.com/wyde/f519f92f9200e2d0523090ad7b66cff5.js"></script>
+
+<p>如果要用 upstart 執行 daemon ，可以參考<a href="http://masnun.rocks/2016/11/02/deploying-django-channels-using-daphne/" target="_blank" rel="external">masnun 這篇文章</a></p>
+<p>相關操作<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ sudo systemctl start &lt;daemon name&gt;.service # 啟動</div><div class="line">$ sudo systemctl enable &lt;daemon name&gt;.service # 開機時啟動 </div><div class="line">$ sudo systemctl stop &lt;daemon name&gt;.service # 停止</div><div class="line">$ sudo systemctl disable &lt;daemon name&gt;.service # 取消開機啟動</div><div class="line">$ sudo systemctl reload &lt;daemon name&gt;.service # 改完設定重新載入</div><div class="line">$ systemctl list-units # 可搭配 管線和 grep 來查 daemon</div></pre></td></tr></table></figure></p>
+<p>坑：daphne 是用來 serve websocket 的 ASGI interface server，其它 normal Django view 的 WSGI 也可以使用 gunicorn 或 uWSGI 來 serve ，不過小專案先不考慮，都讓 daphne 來處理就好，可參考 <a href="https://github.com/django/daphne/" target="_blank" rel="external">daphne 的 github repo</a></p>
+<hr>
+<h2 id="設定-Nginx-與-certbot"><a href="#設定-Nginx-與-certbot" class="headerlink" title="設定 Nginx 與 certbot"></a>設定 Nginx 與 certbot</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo yum install -y nginx</div></pre></td></tr></table></figure>
+<p>接下來就是比較一般的 Django + Nginx + https 佈署套路，不過我在<code>proxy_pass</code> 那裡踩了坑，還是直接貼個設定檔，檔案位置放在 <code>/etc/nginx/conf.d/&lt;設定檔名&gt;.conf</code></p>
+<script src="https://gist.github.com/wyde/1316d4a1154e42fb0d5f95b27854d5d0.js"></script>
+
+<p>其中 42,51 行是 certbot 自己產生的，必須要先上半部，有 <code>server_name</code> ， certbot 才能自動產生剩下的設定檔，certbot 基本上讓 lets encrpyt 這件事簡化到一個很舒服的境界，大推，其他發行版的 certbot 套件下載，可以參考<a href="https://certbot.eff.org/" target="_blank" rel="external">certbot 的官方網站</a>，我自己寫這篇的時候參考了 <a href="https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-centos-7" target="_blank" rel="external">Digitalocean 的教學</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ sudo yum install -y epel-release</div><div class="line">$ sudo yum install -y certbot-nginx</div><div class="line">$ sudo certbot --nginx -d myapp.echobot.ai</div><div class="line">(照著 prompt 安裝)</div></pre></td></tr></table></figure>
+<p>相關操作<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ nginx -t # 去檢查 /etc/nginx 底下的設定檔是否正常</div><div class="line">$ sudo systemctl reload nginx</div></pre></td></tr></table></figure></p>
+<p>坑</p>
+<ul>
+<li>主設定檔的部分，<code>/etc/nginx/nginx.conf</code> 最上面的 user 要改成執行 web process 的 owner ，例如我是用 webuser 這個身份</li>
+<li>第 7 行的 <code>server 0.0.0.0:8000;</code> 要搭配 daphne systemd 設定檔的第 11 行 <code>-b 0.0.0.0 -p 8000</code> 來用</li>
+<li>原本在 gunicorn 的時候，我會用 socket 跟 nginx 溝通，這邊不太確定能不能用類似的作法，至少目前的作法能動，沒測效能就是了</li>
+</ul>
+<p>其實坑還不少 orz，最後，設定 certbox 每日自動檢查憑證更新<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo crontab -e</div><div class="line">17 2 * * * /usr/bin/certbot renew --quiet # 代表每天早上兩點十七分執行</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Django-Channels/" rel="tag"># Django Channels</a>
+          
+            <a href="/tags/bot-server/" rel="tag"># bot server</a>
+          
+            <a href="/tags/Daphne/" rel="tag"># Daphne</a>
+          
+            <a href="/tags/Nginx/" rel="tag"># Nginx</a>
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+            <a href="/tags/Deploy/" rel="tag"># Deploy</a>
+          
+            <a href="/tags/CentOS-7/" rel="tag"># CentOS 7</a>
+          
+            <a href="/tags/https/" rel="tag"># https</a>
+          
+            <a href="/tags/Certbot/" rel="tag"># Certbot</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/22/How-to-Merge-Dev-Branch-into-Master/" rel="next" title="Git 小劇場：如何合併開發分支到主分支">
+                <i class="fa fa-chevron-left"></i> Git 小劇場：如何合併開發分支到主分支
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          
+            <p class="site-author-name" itemprop="name">wyde</p>
+            <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives/">
+            
+                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-name">文章</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">67</span>
+                <span class="site-state-item-name">標籤</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wyde" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:wyde@csie.ntu.edu.tw" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Deploying-Django-Channels-using-Daphne"><span class="nav-number">1.</span> <span class="nav-text">Deploying Django Channels using Daphne</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Setup"><span class="nav-number">1.1.</span> <span class="nav-text">Setup</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#設定-worker-和-daphne-daemon"><span class="nav-number">1.2.</span> <span class="nav-text">設定 worker 和 daphne daemon</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#設定-Nginx-與-certbot"><span class="nav-number">1.3.</span> <span class="nav-text">設定 Nginx 與 certbot</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wyde</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主題 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://wyde.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://wyde.github.io/2017/11/24/Deploying-Django-Channels-using-Daphne/';
+          this.page.identifier = '2017/11/24/Deploying-Django-Channels-using-Daphne/';
+          this.page.title = '用 Daphne 部署 Django Channels';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://wyde.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("EObj32zGPmfzzexdEpYvMFyS-gzGzoHsz", "lfpxqWTTPoAdkXiQPfrgycx0");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
