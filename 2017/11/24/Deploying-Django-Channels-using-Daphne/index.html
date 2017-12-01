@@ -80,7 +80,7 @@
 <meta property="og:description" content="Deploying Django Channels using Daphne 看了前一陣子很紅的小黃雞，想做個網頁版的 chatbot 來玩玩，參考了vaisaghvt 的 django-bot-server-tutorial還有jacobian 的 channels-example，寫了一個簡單的 EchoBot Server 作為原型，還在改進中，特意維持地很乾淨，以便自己將來要用 Djang">
 <meta property="og:locale" content="zh-tw">
 <meta property="og:image" content="https://i.imgur.com/nPJ7vGM.png">
-<meta property="og:updated_time" content="2017-11-24T12:33:50.522Z">
+<meta property="og:updated_time" content="2017-11-24T12:44:59.069Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="用 Daphne 部署 Django Channels">
 <meta name="twitter:description" content="Deploying Django Channels using Daphne 看了前一陣子很紅的小黃雞，想做個網頁版的 chatbot 來玩玩，參考了vaisaghvt 的 django-bot-server-tutorial還有jacobian 的 channels-example，寫了一個簡單的 EchoBot Server 作為原型，還在改進中，特意維持地很乾淨，以便自己將來要用 Djang">
@@ -369,6 +369,8 @@
 <li>原本在 gunicorn 的時候，我會用 socket 跟 nginx 溝通，這邊不太確定能不能用類似的作法，至少目前的作法能動，沒測效能就是了</li>
 </ul>
 <p>其實坑還不少 orz，最後，設定 certbox 每日自動檢查憑證更新<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo crontab -e</div><div class="line">17 2 * * * /usr/bin/certbot renew --quiet # 代表每天早上兩點十七分執行</div></pre></td></tr></table></figure></p>
+<h2 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h2><p>為了這事第一次回了 stackoverflow ，然後被一個來自 Dublin City University 的正妹(？) Clíodhna 改了文法，明明就只是開頭有沒有大小寫 XDDDDD</p>
+<p>紀念一下，<a href="https://stackoverflow.com/review/suggested-edits/18040411" target="_blank" rel="external">連結在此</a></p>
 
       
     </div>
@@ -568,7 +570,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Deploying-Django-Channels-using-Daphne"><span class="nav-number">1.</span> <span class="nav-text">Deploying Django Channels using Daphne</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Setup"><span class="nav-number">1.1.</span> <span class="nav-text">Setup</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#設定-worker-和-daphne-daemon"><span class="nav-number">1.2.</span> <span class="nav-text">設定 worker 和 daphne daemon</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#設定-Nginx-與-certbot"><span class="nav-number">1.3.</span> <span class="nav-text">設定 Nginx 與 certbot</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Deploying-Django-Channels-using-Daphne"><span class="nav-number">1.</span> <span class="nav-text">Deploying Django Channels using Daphne</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Setup"><span class="nav-number">1.1.</span> <span class="nav-text">Setup</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#設定-worker-和-daphne-daemon"><span class="nav-number">1.2.</span> <span class="nav-text">設定 worker 和 daphne daemon</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#設定-Nginx-與-certbot"><span class="nav-number">1.3.</span> <span class="nav-text">設定 Nginx 與 certbot</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#後記"><span class="nav-number">1.4.</span> <span class="nav-text">後記</span></a></li></ol></li></ol></div>
             
 
           </div>

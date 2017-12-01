@@ -2,16 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://wyde.github.io/2017/10/04/Setting-up-Cloud9-Dev-Environment/</loc>
+    <loc>https://wyde.github.io/2017/10/13/How-to-Mount-a-Second-Drive-Managed-by-LVM/</loc>
     
-    <lastmod>2017-11-24T12:37:14.495Z</lastmod>
+    <lastmod>2017-12-01T09:57:18.172Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://wyde.github.io/2017/11/24/Deploying-Django-Channels-using-Daphne/</loc>
     
-    <lastmod>2017-11-24T12:33:50.522Z</lastmod>
+    <lastmod>2017-11-24T12:44:59.069Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://wyde.github.io/2017/10/04/Setting-up-Cloud9-Dev-Environment/</loc>
+    
+    <lastmod>2017-11-24T12:37:14.495Z</lastmod>
     
   </url>
   
@@ -131,13 +138,6 @@
     <loc>https://wyde.github.io/2017/10/15/How-to-Install-VM-on-Linux-KVM-Virtualization-Host-using-Kickstart-File/</loc>
     
     <lastmod>2017-10-19T11:13:18.721Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://wyde.github.io/2017/10/13/How-to-Mount-a-Second-Drive-Managed-by-LVM/</loc>
-    
-    <lastmod>2017-10-15T15:30:01.547Z</lastmod>
     
   </url>
   
