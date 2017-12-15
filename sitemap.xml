@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://wyde.github.io/2017/12/14/How-to-Setup-IP-and-Gateway-for-Temporary-Use-on-Linux/</loc>
+    
+    <lastmod>2017-12-15T01:13:05.663Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://wyde.github.io/2017/12/13/How-to-Move-KVM-Guest-VM-to-Another-Host/</loc>
     
     <lastmod>2017-12-13T10:39:10.430Z</lastmod>
