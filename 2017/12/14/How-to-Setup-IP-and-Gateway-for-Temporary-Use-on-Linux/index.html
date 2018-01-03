@@ -71,18 +71,18 @@
 
 
 
-<meta name="description" content="```    $ ip a                                  # ip 列表    $ ip -4 a                               # ipv4 列表，未取得 ipv4 位址則不顯示    $ ip -4 a sh eno1                       # 列出 device eno1 的 ipv4 位址    $ i">
+<meta name="description" content="How to Setup IP and Gateway for Temporary Use on Linux 這件事在初始化伺服器和測試網路時常常用呢 筆記```    $ ip a                                  # ip 列表    $ ip -4 a                               # ipv4 列表，未取得 ipv4 位址則不顯">
 <meta name="keywords" content="ta217,sysadmin">
 <meta property="og:type" content="article">
-<meta property="og:title" content="How to Setup IP and Gateway for Temporary Use on Linux">
+<meta property="og:title" content="在 linux 上暫時設置 IP 和 Gateway 的方法">
 <meta property="og:url" content="https://wyde.github.io/2017/12/14/How-to-Setup-IP-and-Gateway-for-Temporary-Use-on-Linux/index.html">
 <meta property="og:site_name" content="wyde&#39;s note">
-<meta property="og:description" content="```    $ ip a                                  # ip 列表    $ ip -4 a                               # ipv4 列表，未取得 ipv4 位址則不顯示    $ ip -4 a sh eno1                       # 列出 device eno1 的 ipv4 位址    $ i">
+<meta property="og:description" content="How to Setup IP and Gateway for Temporary Use on Linux 這件事在初始化伺服器和測試網路時常常用呢 筆記```    $ ip a                                  # ip 列表    $ ip -4 a                               # ipv4 列表，未取得 ipv4 位址則不顯">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2017-12-15T01:13:05.663Z">
+<meta property="og:updated_time" content="2018-01-03T10:42:06.522Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="How to Setup IP and Gateway for Temporary Use on Linux">
-<meta name="twitter:description" content="```    $ ip a                                  # ip 列表    $ ip -4 a                               # ipv4 列表，未取得 ipv4 位址則不顯示    $ ip -4 a sh eno1                       # 列出 device eno1 的 ipv4 位址    $ i">
+<meta name="twitter:title" content="在 linux 上暫時設置 IP 和 Gateway 的方法">
+<meta name="twitter:description" content="How to Setup IP and Gateway for Temporary Use on Linux 這件事在初始化伺服器和測試網路時常常用呢 筆記```    $ ip a                                  # ip 列表    $ ip -4 a                               # ipv4 列表，未取得 ipv4 位址則不顯">
 
 
 
@@ -118,7 +118,7 @@
 
 
 
-  <title>How to Setup IP and Gateway for Temporary Use on Linux | wyde's note</title>
+  <title>在 linux 上暫時設置 IP 和 Gateway 的方法 | wyde's note</title>
   
 
 
@@ -242,7 +242,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">How to Setup IP and Gateway for Temporary Use on Linux</h2>
+          <h2 class="post-title" itemprop="name headline">在 linux 上暫時設置 IP 和 Gateway 的方法</h2>
         
 
         <div class="post-meta">
@@ -283,7 +283,7 @@
 
           
           
-             <span id="/2017/12/14/How-to-Setup-IP-and-Gateway-for-Temporary-Use-on-Linux/" class="leancloud_visitors" data-flag-title="How to Setup IP and Gateway for Temporary Use on Linux">
+             <span id="/2017/12/14/How-to-Setup-IP-and-Gateway-for-Temporary-Use-on-Linux/" class="leancloud_visitors" data-flag-title="在 linux 上暫時設置 IP 和 Gateway 的方法">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -314,7 +314,9 @@
       
 
       
-        <p>```<br>    $ ip a                                  # ip 列表<br>    $ ip -4 a                               # ipv4 列表，未取得 ipv4 位址則不顯示<br>    $ ip -4 a sh eno1                       # 列出 device eno1 的 ipv4 位址<br>    $ ip a add 10.2.17.15/24 dev eno1       # device eno1 加上 ip 且 mask 為 255.255.255.0<br>    $ ip a del 10.2.17.15/24 dev eno1       # 移除<br>    $ ip link set dev eno1 up<br>    $ ip link set dev eno1 down</p>
+        <h1 id="How-to-Setup-IP-and-Gateway-for-Temporary-Use-on-Linux"><a href="#How-to-Setup-IP-and-Gateway-for-Temporary-Use-on-Linux" class="headerlink" title="How to Setup IP and Gateway for Temporary Use on Linux"></a><center>How to Setup IP and Gateway for Temporary Use on Linux</center></h1><p><br></p>
+<p>這件事在初始化伺服器和測試網路時常常用呢</p>
+<h2 id="筆記"><a href="#筆記" class="headerlink" title="筆記"></a>筆記</h2><p>```<br>    $ ip a                                  # ip 列表<br>    $ ip -4 a                               # ipv4 列表，未取得 ipv4 位址則不顯示<br>    $ ip -4 a sh eno1                       # 列出 device eno1 的 ipv4 位址<br>    $ ip a add 10.2.17.15/24 dev eno1       # device eno1 加上 ip 且 mask 為 255.255.255.0<br>    $ ip a del 10.2.17.15/24 dev eno1       # 移除<br>    $ ip link set dev eno1 up<br>    $ ip link set dev eno1 down</p>
 <pre><code>$ ip r                                  # show routing rule 
 $ route del default                     # delete default route
 $ route add default gw 10.2.17.254      # add default route
@@ -363,6 +365,10 @@ $ route add default gw 10.2.17.254      # add default route
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/01/03/Hello-World-in-JAVA-9/" rel="prev" title="Ubuntu 16.04 上寫 Java 9 的 Hello World">
+                Ubuntu 16.04 上寫 Java 9 的 Hello World <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -445,7 +451,7 @@ $ route add default gw 10.2.17.254      # add default route
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-count">28</span>
                 <span class="site-state-item-name">文章</span>
               </a>
             </div>
@@ -458,7 +464,7 @@ $ route add default gw 10.2.17.254      # add default route
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">69</span>
+                <span class="site-state-item-count">70</span>
                 <span class="site-state-item-name">標籤</span>
               
             </div>
@@ -507,7 +513,7 @@ $ route add default gw 10.2.17.254      # add default route
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">1.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#How-to-Setup-IP-and-Gateway-for-Temporary-Use-on-Linux"><span class="nav-number">1.</span> <span class="nav-text">How to Setup IP and Gateway for Temporary Use on Linux</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#筆記"><span class="nav-number">1.1.</span> <span class="nav-text">筆記</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">1.2.</span> <span class="nav-text">Reference</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -530,7 +536,7 @@ $ route add default gw 10.2.17.254      # add default route
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -655,7 +661,7 @@ $ route add default gw 10.2.17.254      # add default route
         var disqus_config = function () {
           this.page.url = 'https://wyde.github.io/2017/12/14/How-to-Setup-IP-and-Gateway-for-Temporary-Use-on-Linux/';
           this.page.identifier = '2017/12/14/How-to-Setup-IP-and-Gateway-for-Temporary-Use-on-Linux/';
-          this.page.title = 'How to Setup IP and Gateway for Temporary Use on Linux';
+          this.page.title = '在 linux 上暫時設置 IP 和 Gateway 的方法';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://wyde.disqus.com/embed.js';

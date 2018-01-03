@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-tw,en,default">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="Prh0dJbvt-zwGE-LNDAOSQYuJs0RmkgAi40IKxhDpSU" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Java," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="Hello World in JAVA 9 新的一年因為工作的關係，要來好好學個 java ，先來個環境設置(私心希望團隊未來能轉 go 啊…)，首先有幾件事要先區分 最基礎 Open JDK 和 Oracle JDK 的差別  JDK、JRE、JVM 的區別  JRE: java runtime，java 程式碼如果要可以動必須安裝 JDK: java developement kit，如果要寫">
+<meta name="keywords" content="Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu 16.04 上寫 Java 9 的 Hello World">
+<meta property="og:url" content="https://wyde.github.io/2018/01/03/Hello-World-in-JAVA-9/index.html">
+<meta property="og:site_name" content="wyde&#39;s note">
+<meta property="og:description" content="Hello World in JAVA 9 新的一年因為工作的關係，要來好好學個 java ，先來個環境設置(私心希望團隊未來能轉 go 啊…)，首先有幾件事要先區分 最基礎 Open JDK 和 Oracle JDK 的差別  JDK、JRE、JVM 的區別  JRE: java runtime，java 程式碼如果要可以動必須安裝 JDK: java developement kit，如果要寫">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:updated_time" content="2018-01-03T10:37:19.290Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Ubuntu 16.04 上寫 Java 9 的 Hello World">
+<meta name="twitter:description" content="Hello World in JAVA 9 新的一年因為工作的關係，要來好好學個 java ，先來個環境設置(私心希望團隊未來能轉 go 啊…)，首先有幾件事要先區分 最基礎 Open JDK 和 Oracle JDK 的差別  JDK、JRE、JVM 的區別  JRE: java runtime，java 程式碼如果要可以動必須安裝 JDK: java developement kit，如果要寫">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"hide","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://wyde.github.io/2018/01/03/Hello-World-in-JAVA-9/"/>
+
+
+
+
+
+  <title>Ubuntu 16.04 上寫 Java 9 的 Hello World | wyde's note</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-tw">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">wyde's note</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">locus solus</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            歸檔
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://wyde.github.io/2018/01/03/Hello-World-in-JAVA-9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wyde">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wyde's note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Ubuntu 16.04 上寫 Java 9 的 Hello World</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2018-01-03T15:33:18+08:00">
+                2018-01-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/01/03/Hello-World-in-JAVA-9/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/01/03/Hello-World-in-JAVA-9/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/01/03/Hello-World-in-JAVA-9/" class="leancloud_visitors" data-flag-title="Ubuntu 16.04 上寫 Java 9 的 Hello World">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">閱讀次數&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Hello-World-in-JAVA-9"><a href="#Hello-World-in-JAVA-9" class="headerlink" title="Hello World in JAVA 9"></a><center>Hello World in JAVA 9</center></h1><p><br></p>
+<p>新的一年因為工作的關係，要來好好學個 java ，先來個環境設置(私心希望團隊未來能轉 go 啊…)，首先有幾件事要先區分</p>
+<h2 id="最基礎"><a href="#最基礎" class="headerlink" title="最基礎"></a>最基礎</h2><ul>
+<li><p>Open JDK 和 Oracle JDK 的差別</p>
+</li>
+<li><p>JDK、JRE、JVM 的區別</p>
+<ul>
+<li>JRE: java runtime，java 程式碼如果要可以動必須安裝</li>
+<li>JDK: java developement kit，如果要寫 java code 必須安裝</li>
+</ul>
+</li>
+<li><p>J2SE、J2EE、J2ME 的概念區別</p>
+</li>
+<li><p>Reference</p>
+<ul>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzAxOTc0NzExNg==&amp;mid=415513252&amp;idx=1&amp;sn=1c1211e23c507c34f9befbf5282a85c8&amp;scene=21#wechat_redirect" target="_blank" rel="external">假如时光能够倒流， 我会这么学习Java</a></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="Java-Web-相關"><a href="#Java-Web-相關" class="headerlink" title="Java Web 相關"></a>Java Web 相關</h2><ul>
+<li><p>JSP、Java Servlet</p>
+<ul>
+<li>jSP: 包含 java 程式碼的 html 文件 *.jsp (如果做前後端分離，而且使用 React 之類的就不用了)</li>
+<li>java servlet: 在 server 端純粹的 java 程式碼 <em>.java -&gt; </em>.class</li>
+</ul>
+</li>
+<li><p>JavaBeans、EJB、POJO</p>
+<ul>
+<li>JavaBeans: 符合某些約定的 public 類，可以說是一種彌補語言不足的規範<ul>
+<li>所有屬性為 private</li>
+<li>提供默認構造方法 (無參構造器)</li>
+<li>提供 getter 和 setter 例如: 屬性 name ， get 方法寫成 public String getName(){}</li>
+<li>實現可序列化(serializable)接口</li>
+</ul>
+</li>
+<li>Reference<ul>
+<li><a href="https://www.zhihu.com/question/19773379" target="_blank" rel="external">Java bean 是个什么概念？</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>如何解耦與開發 web 項目的思路</p>
+<ul>
+<li>後端<ul>
+<li>控制層 (controller/action)</li>
+<li>業務層 (service/manage)</li>
+<li>持久層 (dao)</li>
+</ul>
+</li>
+<li>前端<ul>
+<li>以後再說…</li>
+</ul>
+</li>
+<li>Reference<ul>
+<li><a href="http://blog.csdn.net/piantoutongyang/article/details/65446892" target="_blank" rel="external">JavaWeb项目为什么我们要放弃jsp？为什么要前后端解耦？为什么要前后端分离？2.0版，为分布式架构打基础。(2017-03-23)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="安裝"><a href="#安裝" class="headerlink" title="安裝"></a>安裝</h2><p>以下將筆記安裝 Java 9 在 Ubuntu 16.04 上</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ sudo add-apt-repository ppa:webupd8team/java</div><div class="line">$ sudo apt-get update</div><div class="line">$ sudo apt-get install oracle-java9-installer</div></pre></td></tr></table></figure>
+<h2 id="檢查"><a href="#檢查" class="headerlink" title="檢查"></a>檢查</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ javac --version</div><div class="line">javac 9.0.1</div><div class="line"></div><div class="line">$ java --version</div><div class="line">java 9.0.1</div><div class="line">Java(TM) SE Runtime Environment (build 9.0.1+11)</div><div class="line">Java HotSpot(TM) 64-Bit Server VM (build 9.0.1+11, mixed mode)</div></pre></td></tr></table></figure>
+<h2 id="設定-java-default-的版本"><a href="#設定-java-default-的版本" class="headerlink" title="設定 java default 的版本"></a>設定 java default 的版本</h2><p>用 <code>sudo update-alternatives --config &lt;要改變預設的 binary&gt;</code> 可以設定預設使用的版號<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$ sudo update-alternatives --config java</div><div class="line">替代項目 java（提供 /usr/bin/java）有 1 個選擇。</div><div class="line"></div><div class="line">  選項       路徑                               優先權  狀態</div><div class="line">------------------------------------------------------------</div><div class="line">  0            /usr/lib/jvm/java-9-oracle/bin/java   1091      自動模式</div><div class="line">* 1            /usr/lib/jvm/java-9-oracle/bin/java   1091      手動模式</div><div class="line"></div><div class="line">Press &lt;enter&gt; to keep the current choice[*], or type selection number:</div></pre></td></tr></table></figure></p>
+<h2 id="JAVA-HOME-環境變數"><a href="#JAVA-HOME-環境變數" class="headerlink" title="JAVA_HOME 環境變數"></a>JAVA_HOME 環境變數</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ echo &apos;JAVA_HOME=&quot;/usr/lib/jvm/java-9-oracle&quot;&apos; | sudo tee --append /etc/environment &gt; /dev/null</div><div class="line"></div><div class="line">$ echo $JAVA_HOME</div><div class="line">/usr/lib/jvm/java-9-oracle</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="Hello-World-snippet"><a href="#Hello-World-snippet" class="headerlink" title="Hello World snippet"></a>Hello World snippet</h2><p>Hello.java ，首字要大寫<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">public class Hello &#123;</div><div class="line">    public static void main(String[] argv) &#123;</div><div class="line">        System.out.print(&quot;hello, world!!\n&quot;);</div><div class="line">    &#125;   </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="compile"><a href="#compile" class="headerlink" title="compile"></a>compile</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ javac *.java</div></pre></td></tr></table></figure>
+<p><code>-verbose</code> 可以看整個 compile 的流程，編出來是 *.class ，以上述片段而言是 Hello.class</p>
+<h2 id="execute"><a href="#execute" class="headerlink" title="execute"></a>execute</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ java Hello</div><div class="line">hello, world!!</div></pre></td></tr></table></figure>
+<p>(end)</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/14/How-to-Setup-IP-and-Gateway-for-Temporary-Use-on-Linux/" rel="next" title="在 linux 上暫時設置 IP 和 Gateway 的方法">
+                <i class="fa fa-chevron-left"></i> 在 linux 上暫時設置 IP 和 Gateway 的方法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          
+            <p class="site-author-name" itemprop="name">wyde</p>
+            <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives/">
+            
+                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-name">文章</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">70</span>
+                <span class="site-state-item-name">標籤</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wyde" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:wyde@csie.ntu.edu.tw" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Hello-World-in-JAVA-9"><span class="nav-number">1.</span> <span class="nav-text">Hello World in JAVA 9</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#最基礎"><span class="nav-number">1.1.</span> <span class="nav-text">最基礎</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-Web-相關"><span class="nav-number">1.2.</span> <span class="nav-text">Java Web 相關</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝"><span class="nav-number">1.3.</span> <span class="nav-text">安裝</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#檢查"><span class="nav-number">1.4.</span> <span class="nav-text">檢查</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#設定-java-default-的版本"><span class="nav-number">1.5.</span> <span class="nav-text">設定 java default 的版本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JAVA-HOME-環境變數"><span class="nav-number">1.6.</span> <span class="nav-text">JAVA_HOME 環境變數</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hello-World-snippet"><span class="nav-number">1.7.</span> <span class="nav-text">Hello World snippet</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#compile"><span class="nav-number">1.8.</span> <span class="nav-text">compile</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#execute"><span class="nav-number">1.9.</span> <span class="nav-text">execute</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wyde</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主題 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://wyde.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://wyde.github.io/2018/01/03/Hello-World-in-JAVA-9/';
+          this.page.identifier = '2018/01/03/Hello-World-in-JAVA-9/';
+          this.page.title = 'Ubuntu 16.04 上寫 Java 9 的 Hello World';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://wyde.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("EObj32zGPmfzzexdEpYvMFyS-gzGzoHsz", "lfpxqWTTPoAdkXiQPfrgycx0");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
