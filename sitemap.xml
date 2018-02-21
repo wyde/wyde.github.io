@@ -2,198 +2,205 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://wyde.github.io/2018/02/21/How-to-Use-Internal-Mail-Relay-Server-to-Send-Notification/</loc>
+    
+    <lastmod>2018-02-21T07:38:26.911Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://wyde.github.io/2017/12/14/How-to-Setup-IP-and-Gateway-for-Temporary-Use-on-Linux/</loc>
     
-    <lastmod>2018-01-03T10:42:06.522Z</lastmod>
+    <lastmod>2018-01-03T10:42:06.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://wyde.github.io/2018/01/03/Hello-World-in-JAVA-9/</loc>
     
-    <lastmod>2018-01-03T10:37:19.290Z</lastmod>
+    <lastmod>2018-01-03T10:37:19.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://wyde.github.io/2017/12/13/How-to-Move-KVM-Guest-VM-to-Another-Host/</loc>
     
-    <lastmod>2017-12-13T10:39:10.430Z</lastmod>
+    <lastmod>2017-12-13T10:39:10.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://wyde.github.io/2017/12/12/Practical-Commands-of-Linux-Administrating/</loc>
     
-    <lastmod>2017-12-13T08:07:36.671Z</lastmod>
+    <lastmod>2017-12-13T08:07:36.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://wyde.github.io/2017/10/13/How-to-Mount-a-Second-Drive-Managed-by-LVM/</loc>
     
-    <lastmod>2017-12-01T09:57:18.172Z</lastmod>
+    <lastmod>2017-12-01T09:57:18.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://wyde.github.io/2017/11/24/Deploying-Django-Channels-using-Daphne/</loc>
     
-    <lastmod>2017-11-24T12:44:59.069Z</lastmod>
+    <lastmod>2017-11-24T12:44:59.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://wyde.github.io/2017/10/04/Setting-up-Cloud9-Dev-Environment/</loc>
     
-    <lastmod>2017-11-24T12:37:14.495Z</lastmod>
+    <lastmod>2017-11-24T12:37:14.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://wyde.github.io/2017/11/22/How-to-Merge-Dev-Branch-into-Master/</loc>
     
-    <lastmod>2017-11-22T09:22:35.977Z</lastmod>
+    <lastmod>2017-11-22T09:22:35.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://wyde.github.io/2017/11/08/How-to-Install-Docker-CE-on-Ubuntu-16-04-and-Fedora-26/</loc>
     
-    <lastmod>2017-11-09T12:17:18.502Z</lastmod>
+    <lastmod>2017-11-09T12:17:18.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://wyde.github.io/2017/11/07/How-to-Install-Tensorflow-with-GPU-in-Virtualenv-on-Ubuntu-16-04/</loc>
     
-    <lastmod>2017-11-09T12:13:56.310Z</lastmod>
+    <lastmod>2017-11-09T12:13:56.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://wyde.github.io/2017/11/09/How-to-Install-Tensorflow-using-Docker-on-Fedora-26/</loc>
     
-    <lastmod>2017-11-09T05:16:13.329Z</lastmod>
+    <lastmod>2017-11-09T05:16:13.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://wyde.github.io/2017/11/05/Building-up-Personal-Deep-Learning-Rig-in-3000-US-Dollar/</loc>
     
-    <lastmod>2017-11-09T05:13:03.065Z</lastmod>
+    <lastmod>2017-11-09T05:13:03.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://wyde.github.io/2017/11/09/How-to-Install-Tensorflow-using-Docker-on-Ubuntu-16-04/</loc>
     
-    <lastmod>2017-11-09T04:59:22.680Z</lastmod>
+    <lastmod>2017-11-09T04:59:22.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://wyde.github.io/2017/11/07/How-to-Setup-Virtualenv-on-Ubuntu-16-04/</loc>
     
-    <lastmod>2017-11-07T06:46:04.229Z</lastmod>
+    <lastmod>2017-11-07T06:46:04.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://wyde.github.io/2017/11/07/How-to-Setup-Locale-in-Ubuntu-16-04/</loc>
     
-    <lastmod>2017-11-07T04:51:59.344Z</lastmod>
+    <lastmod>2017-11-07T04:51:59.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://wyde.github.io/2017/11/06/How-to-Extend-LVM-under-Linux-XFS-Filesystem/</loc>
     
-    <lastmod>2017-11-06T07:42:27.886Z</lastmod>
+    <lastmod>2017-11-06T07:42:27.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://wyde.github.io/2017/11/03/How-to-Install-Nvidia-1080Ti-GPU-Driver-on-Fedora/</loc>
     
-    <lastmod>2017-11-06T07:06:43.461Z</lastmod>
+    <lastmod>2017-11-06T07:06:43.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://wyde.github.io/2017/09/23/How-to-Deploy-Hexo-on-Github-Pages/</loc>
     
-    <lastmod>2017-11-02T19:16:13.971Z</lastmod>
+    <lastmod>2017-11-02T19:16:13.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://wyde.github.io/2017/11/03/How-to-Extract-Text-and-its-Coordinates-from-PDF/</loc>
     
-    <lastmod>2017-11-02T19:14:45.547Z</lastmod>
+    <lastmod>2017-11-02T19:14:45.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://wyde.github.io/2017/11/01/Minikube-hello-world-on-Ubuntu-16-04/</loc>
     
-    <lastmod>2017-11-01T08:55:44.641Z</lastmod>
+    <lastmod>2017-11-01T08:55:44.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://wyde.github.io/2017/09/29/How-to-Mount-Storage-Array-via-iSCSI/</loc>
     
-    <lastmod>2017-11-01T06:50:11.241Z</lastmod>
+    <lastmod>2017-11-01T06:50:11.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://wyde.github.io/2017/10/30/Setting-up-Python-3-Virtual-Environment-on-CentOS-7/</loc>
     
-    <lastmod>2017-10-31T09:29:09.474Z</lastmod>
+    <lastmod>2017-10-31T09:29:09.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://wyde.github.io/2017/10/23/How-to-Execute-Remote-Command-via-ssh/</loc>
     
-    <lastmod>2017-10-23T09:53:18.580Z</lastmod>
+    <lastmod>2017-10-23T09:53:18.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://wyde.github.io/2017/10/15/How-to-Install-VM-on-Linux-KVM-Virtualization-Host-using-Kickstart-File/</loc>
     
-    <lastmod>2017-10-19T11:13:18.721Z</lastmod>
+    <lastmod>2017-10-19T11:13:18.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://wyde.github.io/2017/09/25/How-to-Deploy-a-Project-Site-on-Github-Pages/</loc>
     
-    <lastmod>2017-10-13T23:44:15.066Z</lastmod>
+    <lastmod>2017-10-13T23:44:15.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://wyde.github.io/2017/10/12/Upgrade-Fedora-25-to-26/</loc>
     
-    <lastmod>2017-10-12T14:13:00.882Z</lastmod>
+    <lastmod>2017-10-12T14:13:00.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://wyde.github.io/2017/10/03/Python-Markdown-Resume-Generator/</loc>
     
-    <lastmod>2017-10-04T16:26:11.504Z</lastmod>
+    <lastmod>2017-10-04T16:26:11.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://wyde.github.io/2017/09/19/Crawler-RESTful-API-Data-Visualization/</loc>
     
-    <lastmod>2017-10-03T23:34:50.204Z</lastmod>
+    <lastmod>2017-10-03T23:34:50.000Z</lastmod>
     
   </url>
   

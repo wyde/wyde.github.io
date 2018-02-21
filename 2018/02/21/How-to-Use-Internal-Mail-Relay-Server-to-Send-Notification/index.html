@@ -55,7 +55,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="ta217,sysadmin," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -71,18 +71,17 @@
 
 
 
-<meta name="description" content="How to Setup IP and Gateway for Temporary Use on Linux 這件事在初始化伺服器和測試網路時常常用呢 筆記```    $ ip a                                  # ip 列表    $ ip -4 a                               # ipv4 列表，未取得 ipv4 位址則不顯">
-<meta name="keywords" content="ta217,sysadmin">
+<meta name="description" content="How to Use Internal Mail Relay Server to Send Notification 使用機房的機器或 vm 時，常常都用送監控系統狀態的信，然後往往會使用一個擁有本地 domain 的 mail server 寄信，由於走內網，又是不怎麼具有機敏性的資訊，就不走 465, 587 port ，直接簡單用 25 port，這裡做個備忘，以下資訊包含：  手動使用 t">
 <meta property="og:type" content="article">
-<meta property="og:title" content="在 linux 上暫時設置 IP 和 Gateway 的方法">
-<meta property="og:url" content="https://wyde.github.io/2017/12/14/How-to-Setup-IP-and-Gateway-for-Temporary-Use-on-Linux/index.html">
+<meta property="og:title" content="如何用內部 mail relay 寄信">
+<meta property="og:url" content="https://wyde.github.io/2018/02/21/How-to-Use-Internal-Mail-Relay-Server-to-Send-Notification/index.html">
 <meta property="og:site_name" content="wyde&#39;s note">
-<meta property="og:description" content="How to Setup IP and Gateway for Temporary Use on Linux 這件事在初始化伺服器和測試網路時常常用呢 筆記```    $ ip a                                  # ip 列表    $ ip -4 a                               # ipv4 列表，未取得 ipv4 位址則不顯">
+<meta property="og:description" content="How to Use Internal Mail Relay Server to Send Notification 使用機房的機器或 vm 時，常常都用送監控系統狀態的信，然後往往會使用一個擁有本地 domain 的 mail server 寄信，由於走內網，又是不怎麼具有機敏性的資訊，就不走 465, 587 port ，直接簡單用 25 port，這裡做個備忘，以下資訊包含：  手動使用 t">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2018-01-03T10:42:06.000Z">
+<meta property="og:updated_time" content="2018-02-21T07:38:26.911Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="在 linux 上暫時設置 IP 和 Gateway 的方法">
-<meta name="twitter:description" content="How to Setup IP and Gateway for Temporary Use on Linux 這件事在初始化伺服器和測試網路時常常用呢 筆記```    $ ip a                                  # ip 列表    $ ip -4 a                               # ipv4 列表，未取得 ipv4 位址則不顯">
+<meta name="twitter:title" content="如何用內部 mail relay 寄信">
+<meta name="twitter:description" content="How to Use Internal Mail Relay Server to Send Notification 使用機房的機器或 vm 時，常常都用送監控系統狀態的信，然後往往會使用一個擁有本地 domain 的 mail server 寄信，由於走內網，又是不怎麼具有機敏性的資訊，就不走 465, 587 port ，直接簡單用 25 port，這裡做個備忘，以下資訊包含：  手動使用 t">
 
 
 
@@ -112,13 +111,13 @@
 
 
 
-  <link rel="canonical" href="https://wyde.github.io/2017/12/14/How-to-Setup-IP-and-Gateway-for-Temporary-Use-on-Linux/"/>
+  <link rel="canonical" href="https://wyde.github.io/2018/02/21/How-to-Use-Internal-Mail-Relay-Server-to-Send-Notification/"/>
 
 
 
 
 
-  <title>在 linux 上暫時設置 IP 和 Gateway 的方法 | wyde's note</title>
+  <title>如何用內部 mail relay 寄信 | wyde's note</title>
   
 
 
@@ -225,7 +224,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://wyde.github.io/2017/12/14/How-to-Setup-IP-and-Gateway-for-Temporary-Use-on-Linux/">
+    <link itemprop="mainEntityOfPage" href="https://wyde.github.io/2018/02/21/How-to-Use-Internal-Mail-Relay-Server-to-Send-Notification/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="wyde">
@@ -242,7 +241,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">在 linux 上暫時設置 IP 和 Gateway 的方法</h2>
+          <h2 class="post-title" itemprop="name headline">如何用內部 mail relay 寄信</h2>
         
 
         <div class="post-meta">
@@ -254,8 +253,8 @@
               
                 <span class="post-meta-item-text">發表於</span>
               
-              <time title="創建於" itemprop="dateCreated datePublished" datetime="2017-12-14T18:59:19+08:00">
-                2017-12-14
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2018-02-21T14:06:35+08:00">
+                2018-02-21
               </time>
             
 
@@ -273,9 +272,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/12/14/How-to-Setup-IP-and-Gateway-for-Temporary-Use-on-Linux/#comments" itemprop="discussionUrl">
+                <a href="/2018/02/21/How-to-Use-Internal-Mail-Relay-Server-to-Send-Notification/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/12/14/How-to-Setup-IP-and-Gateway-for-Temporary-Use-on-Linux/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/02/21/How-to-Use-Internal-Mail-Relay-Server-to-Send-Notification/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -283,7 +282,7 @@
 
           
           
-             <span id="/2017/12/14/How-to-Setup-IP-and-Gateway-for-Temporary-Use-on-Linux/" class="leancloud_visitors" data-flag-title="在 linux 上暫時設置 IP 和 Gateway 的方法">
+             <span id="/2018/02/21/How-to-Use-Internal-Mail-Relay-Server-to-Send-Notification/" class="leancloud_visitors" data-flag-title="如何用內部 mail relay 寄信">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -314,16 +313,31 @@
       
 
       
-        <h1 id="How-to-Setup-IP-and-Gateway-for-Temporary-Use-on-Linux"><a href="#How-to-Setup-IP-and-Gateway-for-Temporary-Use-on-Linux" class="headerlink" title="How to Setup IP and Gateway for Temporary Use on Linux"></a><center>How to Setup IP and Gateway for Temporary Use on Linux</center></h1><p><br></p>
-<p>這件事在初始化伺服器和測試網路時常常用呢</p>
-<h2 id="筆記"><a href="#筆記" class="headerlink" title="筆記"></a>筆記</h2><p>```<br>    $ ip a                                  # ip 列表<br>    $ ip -4 a                               # ipv4 列表，未取得 ipv4 位址則不顯示<br>    $ ip -4 a sh eno1                       # 列出 device eno1 的 ipv4 位址<br>    $ ip a add 10.2.17.15/24 dev eno1       # device eno1 加上 ip 且 mask 為 255.255.255.0<br>    $ ip a del 10.2.17.15/24 dev eno1       # 移除<br>    $ ip link set dev eno1 up<br>    $ ip link set dev eno1 down</p>
-<pre><code>$ ip r                                  # show routing rule 
-$ route del default                     # delete default route
-$ route add default gw 10.2.17.254      # add default route
-</code></pre><hr>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
-<li><a href="http://kenlosolid.blogspot.tw/2013/01/linux-ip-gateway.html" target="_blank" rel="external">Linux 暫時設定 ip 與 gateway 的方法</a></li>
+        <h1 id="How-to-Use-Internal-Mail-Relay-Server-to-Send-Notification"><a href="#How-to-Use-Internal-Mail-Relay-Server-to-Send-Notification" class="headerlink" title="How to Use Internal Mail Relay Server to Send Notification"></a><center>How to Use Internal Mail Relay Server to Send Notification</center></h1><p><br></p>
+<p>使用機房的機器或 vm 時，常常都用送監控系統狀態的信，然後往往會使用一個擁有本地 domain 的 mail server 寄信，由於走內網，又是不怎麼具有機敏性的資訊，就不走 465, 587 port ，直接簡單用 25 port，這裡做個備忘，以下資訊包含：</p>
+<ul>
+<li>手動使用 telnet 連結 smtp relay server 並寄信</li>
+<li>在 centos 7 上安裝 mailx 並 config</li>
 </ul>
+<hr>
+<p>首先 ping 看看在內網能不能碰到 relay server，以下是本篇用到的參數</p>
+<ul>
+<li>內網 mail server: relay.mySite.com.tw</li>
+<li>local vm hostname: myVM.mySite.com.tw</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">$ telnet relay.mySite.com.tw 25</div><div class="line">220 ESMTP Postfix</div><div class="line"></div><div class="line">HELO myVM.mySite.com.tw # HELO 或 EHLO 都可以，後面 hostname 亂打，對方 server 會依 dns 回正確的</div><div class="line">250 myVM.mySite.com.tw</div><div class="line"></div><div class="line">MAIL FROM:&quot;Somebody&quot;&lt; somebody@mySite.com.tw &gt; # 其實可以亂打</div><div class="line">250 2.1.0 Ok</div><div class="line"></div><div class="line">RCPT TO:&quot;Some One Else&quot;&lt; someoneelse@mySite.com.tw &gt; </div><div class="line">250 2.1.0 Ok</div><div class="line"></div><div class="line">DATA # 輸入 DATA 準備開始寫信</div><div class="line">354 End data with &lt;CR&gt;&lt;LF&gt;.&lt;CR&gt;&lt;LF&gt;</div><div class="line"></div><div class="line">Subject: mail from tutorial</div><div class="line">As Title</div><div class="line"></div><div class="line">. # 最後一行輸入 . 並按回車鍵，信件將會立刻寄出</div><div class="line">250 2.0.0 Ok: queued as XXXXXXXXXX </div><div class="line"></div><div class="line">QUIT</div><div class="line">221 2.0.0 Bye</div><div class="line">Connection closed by foreign host.</div></pre></td></tr></table></figure>
+<p><a href="http://blog.faq-book.com/?p=351" target="_blank" rel="external">參考資料</a></p>
+<hr>
+<p>上面的測試過程證明了這台機器可以正確使用內網的 mail relay 寄信，接下來要用 mailx 這個套件，簡單的在 command line 寄信</p>
+<ul>
+<li>OS: CentOS 7</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ sudo yum install -y mailx</div><div class="line">$ ln -s /bin/mailx /bin/email</div><div class="line">$ sudo echo &quot;set smtp=smtp://relay.mySite.com.tw:25&quot; &gt;&gt; /etc/mail.rc</div><div class="line">$ sudo echo &quot;set ssl-verify=ignore&quot; &gt;&gt; /etc/mail.rc</div><div class="line">$ sudo echo &quot;nss-config-dir=/etc/pki/nssdb/&quot; &gt;&gt; /etc/mail.rc</div></pre></td></tr></table></figure>
+<p>如果訊息很短的話，直接一行寄掉，加 -v 可以看到類似 telnet 的過程<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ echo &quot;Message Body&quot; | mail -s &quot;Message Subject&quot; someoneelse@mySite.com.tw</div></pre></td></tr></table></figure></p>
+<p>信稍微長一點，可以使用 redirect operator<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ mail -s &quot;Message Subject&quot; -r &apos;&quot;Somebody&quot; somebody@mySite.com.tw&apos; someoneelse@mySite.com.tw &lt; mail_content.txt</div></pre></td></tr></table></figure></p>
+<p><a href="https://gist.github.com/ilkereroglu/aa6c868153d1c5d57cd8" target="_blank" rel="external">參考資料</a></p>
+<hr>
+<p>大致上就這樣，如果要使用外部的 smtp relay 的話，例如說 smtp.gmail.com，有使用 SSL/TLS 加密的話，就沒辦法這麼方便，可能要把帳密寫在環境變數帶入帳號驗證，使用場景不一樣，這邊就先不寫了</p>
 
       
     </div>
@@ -339,14 +353,6 @@ $ route add default gw 10.2.17.254      # add default route
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/ta217/" rel="tag"># ta217</a>
-          
-            <a href="/tags/sysadmin/" rel="tag"># sysadmin</a>
-          
-        </div>
-      
 
       
       
@@ -356,8 +362,8 @@ $ route add default gw 10.2.17.254      # add default route
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/12/13/How-to-Move-KVM-Guest-VM-to-Another-Host/" rel="next" title="搬 KVM 虛擬機">
-                <i class="fa fa-chevron-left"></i> 搬 KVM 虛擬機
+              <a href="/2018/01/03/Hello-World-in-JAVA-9/" rel="next" title="Ubuntu 16.04 上寫 Java 9 的 Hello World">
+                <i class="fa fa-chevron-left"></i> Ubuntu 16.04 上寫 Java 9 的 Hello World
               </a>
             
           </div>
@@ -365,10 +371,6 @@ $ route add default gw 10.2.17.254      # add default route
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/01/03/Hello-World-in-JAVA-9/" rel="prev" title="Ubuntu 16.04 上寫 Java 9 的 Hello World">
-                Ubuntu 16.04 上寫 Java 9 的 Hello World <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -513,7 +515,7 @@ $ route add default gw 10.2.17.254      # add default route
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#How-to-Setup-IP-and-Gateway-for-Temporary-Use-on-Linux"><span class="nav-number">1.</span> <span class="nav-text">How to Setup IP and Gateway for Temporary Use on Linux</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#筆記"><span class="nav-number">1.1.</span> <span class="nav-text">筆記</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">1.2.</span> <span class="nav-text">Reference</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#How-to-Use-Internal-Mail-Relay-Server-to-Send-Notification"><span class="nav-number">1.</span> <span class="nav-text">How to Use Internal Mail Relay Server to Send Notification</span></a></li></ol></div>
             
 
           </div>
@@ -659,9 +661,9 @@ $ route add default gw 10.2.17.254      # add default route
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'https://wyde.github.io/2017/12/14/How-to-Setup-IP-and-Gateway-for-Temporary-Use-on-Linux/';
-          this.page.identifier = '2017/12/14/How-to-Setup-IP-and-Gateway-for-Temporary-Use-on-Linux/';
-          this.page.title = '在 linux 上暫時設置 IP 和 Gateway 的方法';
+          this.page.url = 'https://wyde.github.io/2018/02/21/How-to-Use-Internal-Mail-Relay-Server-to-Send-Notification/';
+          this.page.identifier = '2018/02/21/How-to-Use-Internal-Mail-Relay-Server-to-Send-Notification/';
+          this.page.title = '如何用內部 mail relay 寄信';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://wyde.disqus.com/embed.js';
